@@ -4,6 +4,7 @@ import "./globals.css";
 import { ReactNode } from "react";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { ThemeProvider } from "@/components/providers/ThemeProvider";
 
 export const metadata: Metadata = {
     title: "Formazon — Farid Rafikov",
@@ -12,19 +13,21 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
     return (
-        <html lang="en">
+        <html lang="en" suppressHydrationWarning>
         <body className="bg-black text-zinc-100 antialiased">
-        {/* Весь layout сайта */}
-        <div className="min-h-screen flex flex-col">
-            <Header />
+        <ThemeProvider>
+            {/* Весь layout сайта */}
+            <div className="min-h-screen flex flex-col">
+                <Header />
 
-            {/* Основной контент страницы */}
-            <main className="flex-1">
-                {children}
-            </main>
+                {/* Основной контент страницы */}
+                <main className="flex-1">
+                    {children}
+                </main>
 
-            <Footer />
-        </div>
+                <Footer />
+            </div>
+        </ThemeProvider>
         </body>
         </html>
     );

@@ -1,7 +1,7 @@
-// src/components/home/SelectedWorkSection.tsx
 import Link from "next/link";
-import { workItems } from "@/lib/content/work";
+import { featuredWorkItems } from "@/lib/content/work";
 import { WorkCard } from "./WorkCard";
+import { WorkGrid } from "@/components/work/WorkGrid";
 
 export function SelectedWorkSection() {
     return (
@@ -18,11 +18,11 @@ export function SelectedWorkSection() {
                 </Link>
             </div>
 
-            <div className="grid gap-6 md:grid-cols-2">
-                {workItems.map((item) => (
-                    <WorkCard key={item.slug} item={item} />
-                ))}
-            </div>
+            <WorkGrid
+                items={featuredWorkItems}
+                columns={2}
+                renderItem={(item) => <WorkCard item={item} />}
+            />
         </section>
     );
 }

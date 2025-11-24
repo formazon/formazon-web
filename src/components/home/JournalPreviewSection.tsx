@@ -2,11 +2,15 @@
 import Link from "next/link";
 import { journalPosts } from "@/lib/content/journal";
 import { JournalPostCard } from "./JournalPostCard";
+import { journalEnabled } from "@/lib/config/features";
 
 export function JournalPreviewSection() {
+    if (!journalEnabled) {
+        return null;
+    }
+
     return (
         <section className="mb-20 mt-20 space-y-6">
-
             {/* Header */}
             <div className="flex items-baseline justify-between">
                 <h2 className="text-xs font-medium uppercase tracking-[0.2em] text-zinc-500">
@@ -30,3 +34,4 @@ export function JournalPreviewSection() {
         </section>
     );
 }
+
