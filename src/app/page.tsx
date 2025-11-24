@@ -3,11 +3,11 @@ import type { Metadata } from "next";
 import { HomeHero } from "@/components/home/HomeHero";
 import { HomeIntroStrip } from "@/components/home/HomeIntroStrip";
 import { SelectedWorkSection } from "@/components/home/SelectedWorkSection";
-import { CapabilitiesSection } from "@/components/home/CapabilitiesSection";
 import { AboutPreviewSection } from "@/components/home/AboutPreviewSection";
 import { JournalPreviewSection } from "@/components/home/JournalPreviewSection";
 import { ContactCtaSection } from "@/components/home/ContactCtaSection";
 import { PageShell } from "@/components/layout/PageShell";
+import { ServicesHomeSection } from "@/components/home/ServicesHomeSection";
 
 export const metadata: Metadata = {
     title: "Formazon — Farid Rafikov",
@@ -26,7 +26,7 @@ export default function HomePage() {
             />
             <HomeIntroStrip />
             <SelectedWorkSection />
-            <CapabilitiesSection />
+            <ServicesHomeSection />
             <AboutPreviewSection />
             <JournalPreviewSection />
             <ContactCtaSection />
