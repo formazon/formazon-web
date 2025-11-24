@@ -1,0 +1,40 @@
+# Commit message template for formazon.com
+# Format: <type>: <short summary>
+#
+# Types:
+#   feat    - new feature or functionality
+#   fix     - bug fix
+#   docs    - documentation only
+#   style   - formatting, no code logic changes
+#   refactor- code changes that don't affect behavior
+#   perf    - performance improvements
+#   test    - adding or updating tests
+#   build   - build system, dependencies
+#   ci      - CI/CD configuration
+#   chore   - maintenance, setup, configs, cleanup
+#
+# Rules:
+# - Use present tense, imperative mood: "add", "fix", "update"
+# - Keep the first line under 70 characters
+# - Do not end the first line with a period
+# - One logical change per commit when possible
+#
+# Examples:
+#   chore: initialize next.js project for formazon.com
+#   chore: setup tailwind css and base styles
+#   feat: add hero section to home page
+#   feat: implement work page with project cards
+#   fix: correct spacing in hero on mobile
+#   docs: add git workflow guide
+#
+# -------------------- COMMIT MESSAGE BELOW --------------------
+
+<type>: <short summary>
+
+# Optional longer description:
+# - Explain what and why, not how.
+# - Add bullet points if needed.
+#
+# Optional references:
+# - Closes #123
+# - Related to #456
