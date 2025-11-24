@@ -10,7 +10,12 @@ export function ThemeToggle() {
 
     // Избегает гидратационной ошибки
     useEffect(() => setMounted(true), []);
-    if (!mounted) return null;
+
+    // Чтобы избежать сдвига верстки (layout shift) при загрузке,
+    // можно вернуть заглушку того же размера, вместо null.
+    if (!mounted) {
+        return <div className="h-8 w-8" />;
+    }
 
     const isDark = theme === "dark";
 
@@ -18,7 +23,12 @@ export function ThemeToggle() {
         <button
             onClick={() => setTheme(isDark ? "light" : "dark")}
             aria-label="Toggle theme"
-            className="rounded-lg p-2 text-zinc-500 hover:text-zinc-100 hover:bg-zinc-800/40 transition"
+            className="
+                rounded-lg p-2
+                text-text-muted
+                transition-colors
+                hover:bg-surface-muted hover:text-foreground
+            "
         >
             {isDark ? (
                 <Sun className="h-4 w-4" />

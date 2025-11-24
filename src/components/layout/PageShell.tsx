@@ -1,23 +1,30 @@
 // src/components/layout/PageShell.tsx
+import { ReactNode } from "react";
 import { Container } from "./Container";
+
+interface PageShellProps {
+    children: ReactNode;
+    wide?: boolean;      // Если true — контент шире (для галерей)
+    className?: string;  // Возможность прокинуть доп. классы при необходимости
+}
 
 export function PageShell({
                               children,
-                              wide = false, // бывает нужно (например, галереи)
-                          }: {
-    children: React.ReactNode;
-    wide?: boolean;
-}) {
+                              wide = false,
+                              className = "",
+                          }: PageShellProps) {
     return (
         <Container>
             <div
-                className={
-                    (wide ? "" : "max-w-4xl") + " mx-auto py-space-12 lg:py-space-16"
-                }
+                className={`
+                    mx-auto 
+                    py-12 lg:py-16 
+                    ${wide ? "" : "max-w-4xl"} 
+                    ${className}
+                `}
             >
                 {children}
             </div>
         </Container>
     );
 }
-

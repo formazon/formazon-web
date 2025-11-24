@@ -22,30 +22,30 @@ export function JournalLayout({ entry, previous, next }: JournalLayoutProps) {
     return (
         <PageShell>
             {/* Breadcrumb */}
-            <nav className="mb-6 text-xs text-zinc-500">
-                <Link href="/journal" className="hover:text-zinc-200">
+            <nav className="mb-6 text-xs text-text-muted transition-colors">
+                <Link href="/journal" className="hover:text-foreground transition-colors">
                     Journal
                 </Link>
-                <span className="mx-2">/</span>
-                <span className="text-zinc-300">{title}</span>
+                <span className="mx-2 opacity-50">/</span>
+                <span className="text-foreground">{title}</span>
             </nav>
 
             {/* Header */}
             <header className="mb-8 space-y-4">
                 {tag && (
-                    <p className="text-[10px] uppercase tracking-[0.2em] text-zinc-500">
+                    <p className="text-[10px] uppercase tracking-[0.2em] text-text-muted">
                         {tag}
                     </p>
                 )}
-                <h1 className="max-w-3xl text-3xl font-semibold tracking-tight text-zinc-50 sm:text-4xl">
+                <h1 className="max-w-3xl text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
                     {title}
                 </h1>
-                <p className="text-xs text-zinc-500">{formattedDate}</p>
+                <p className="text-xs text-text-muted">{formattedDate}</p>
             </header>
 
             {/* Cover image (если есть) */}
             {coverImage && (
-                <div className="mb-8 overflow-hidden rounded-2xl border border-zinc-900 bg-zinc-950/40">
+                <div className="mb-8 overflow-hidden rounded-2xl border border-border-subtle bg-surface-muted">
                     <Image
                         src={coverImage.src}
                         alt={coverImage.alt}
@@ -61,7 +61,9 @@ export function JournalLayout({ entry, previous, next }: JournalLayoutProps) {
                 {body.map((paragraph, index) => (
                     <p
                         key={index}
-                        className="max-w-3xl text-sm leading-relaxed text-zinc-300"
+                        // text-foreground с небольшой прозрачностью часто читается лучше,
+                        // но чистый text-foreground тоже подойдет.
+                        className="max-w-3xl text-sm leading-relaxed text-foreground/90"
                     >
                         {paragraph}
                     </p>
@@ -69,21 +71,21 @@ export function JournalLayout({ entry, previous, next }: JournalLayoutProps) {
             </section>
 
             {/* Navigation */}
-            <section className="mt-12 border-t border-zinc-900 pt-8">
+            <section className="mt-12 border-t border-border-subtle pt-8">
                 <div className="grid gap-4 md:grid-cols-2">
                     {previous && (
                         <Link
                             href={`/journal/${previous.slug}`}
-                            className="group flex flex-col justify-between rounded-2xl border border-zinc-900 bg-zinc-950/40 p-4 transition hover:border-zinc-700 hover:bg-zinc-900/60"
+                            className="group flex flex-col justify-between rounded-2xl border border-border-subtle bg-surface-muted p-4 transition-all hover:border-text-muted/50 hover:bg-surface-muted/80"
                         >
-                            <div className="mb-2 text-[10px] uppercase tracking-[0.2em] text-zinc-500">
+                            <div className="mb-2 text-[10px] uppercase tracking-[0.2em] text-text-muted transition-colors group-hover:text-text-muted/80">
                                 ← Previous
                             </div>
                             <div className="space-y-1">
-                                <p className="text-sm font-medium text-zinc-100 group-hover:text-white">
+                                <p className="text-sm font-medium text-foreground transition-colors">
                                     {previous.title}
                                 </p>
-                                <p className="text-[11px] text-zinc-500">
+                                <p className="text-[11px] text-text-muted">
                                     {new Date(previous.date).toLocaleDateString("en-US", {
                                         month: "short",
                                         day: "numeric",
@@ -97,16 +99,16 @@ export function JournalLayout({ entry, previous, next }: JournalLayoutProps) {
                     {next && (
                         <Link
                             href={`/journal/${next.slug}`}
-                            className="group flex flex-col justify-between rounded-2xl border border-zinc-900 bg-zinc-950/40 p-4 text-right transition hover:border-zinc-700 hover:bg-zinc-900/60"
+                            className="group flex flex-col justify-between rounded-2xl border border-border-subtle bg-surface-muted p-4 text-right transition-all hover:border-text-muted/50 hover:bg-surface-muted/80"
                         >
-                            <div className="mb-2 text-[10px] uppercase tracking-[0.2em] text-zinc-500">
+                            <div className="mb-2 text-[10px] uppercase tracking-[0.2em] text-text-muted transition-colors group-hover:text-text-muted/80">
                                 Next →
                             </div>
                             <div className="space-y-1">
-                                <p className="text-sm font-medium text-zinc-100 group-hover:text-white">
+                                <p className="text-sm font-medium text-foreground transition-colors">
                                     {next.title}
                                 </p>
-                                <p className="text-[11px] text-zinc-500">
+                                <p className="text-[11px] text-text-muted">
                                     {new Date(next.date).toLocaleDateString("en-US", {
                                         month: "short",
                                         day: "numeric",
@@ -121,7 +123,7 @@ export function JournalLayout({ entry, previous, next }: JournalLayoutProps) {
                 <div className="mt-6 text-xs">
                     <Link
                         href="/journal"
-                        className="text-zinc-500 underline underline-offset-4 hover:text-zinc-200"
+                        className="text-text-muted underline underline-offset-4 transition-colors hover:text-foreground"
                     >
                         Back to all entries
                     </Link>
@@ -130,4 +132,3 @@ export function JournalLayout({ entry, previous, next }: JournalLayoutProps) {
         </PageShell>
     );
 }
-

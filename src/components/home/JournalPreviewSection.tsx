@@ -12,14 +12,14 @@ export function JournalPreviewSection() {
     return (
         <section className="mb-20 mt-20 space-y-6">
             {/* Header */}
-            <div className="flex items-baseline justify-between">
-                <h2 className="text-xs font-medium uppercase tracking-[0.2em] text-zinc-500">
+            <div className="flex items-baseline justify-between gap-4">
+                <h2 className="text-xs font-medium uppercase tracking-[0.2em] text-text-muted">
                     Journal
                 </h2>
 
                 <Link
                     href="/journal"
-                    className="text-xs text-zinc-500 underline underline-offset-4 hover:text-zinc-200"
+                    className="text-xs text-text-muted underline underline-offset-4 transition-colors hover:text-foreground"
                 >
                     View all
                 </Link>
@@ -34,4 +34,3 @@ export function JournalPreviewSection() {
         </section>
     );
 }
-

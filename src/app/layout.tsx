@@ -14,14 +14,17 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
     return (
         <html lang="en" suppressHydrationWarning>
-        <body className="bg-black text-zinc-100 antialiased">
+        {/* Используем токены:
+            bg-background — белый в светлой, черный в темной
+            text-foreground — черный в светлой, белый в темной
+        */}
+        <body className="bg-background text-foreground antialiased">
         <ThemeProvider>
-            {/* Весь layout сайта */}
             <div className="min-h-screen flex flex-col">
                 <Header />
 
                 {/* Основной контент страницы */}
-                <main className="flex-1">
+                <main className="flex-1 pt-24 pb-20">
                     {children}
                 </main>
 

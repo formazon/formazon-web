@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { PageShell } from "@/components/layout/PageShell";
 import { workItems } from "@/lib/content/work";
-import { WorkListCard } from "@/components/work/WorkListCard";
+import { WorkCard } from "@/components/work/WorkCard";
 import { WorkGrid } from "@/components/work/WorkGrid";
 
 export const metadata: Metadata = {
@@ -33,7 +33,7 @@ export default function WorkPage() {
                 <WorkGrid
                     items={workItems}
                     columns={2}
-                    renderItem={(item) => <WorkListCard item={item} />}
+                    renderItem={(item) => <WorkCard item={item} />}
                 />
             </section>
         </PageShell>

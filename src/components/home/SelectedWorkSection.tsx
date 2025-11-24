@@ -1,21 +1,19 @@
-import Link from "next/link";
+// src/components/work/SelectedWorkSection.tsx
 import { featuredWorkItems } from "@/lib/content/work";
-import { WorkCard } from "./WorkCard";
 import { WorkGrid } from "@/components/work/WorkGrid";
+import { WorkCard } from "@/components/work/WorkCard";
+import { Button } from "@/components/ui/Button";
 
 export function SelectedWorkSection() {
     return (
         <section className="mb-16 space-y-6">
             <div className="flex items-baseline justify-between gap-4">
-                <h2 className="text-sm font-medium uppercase tracking-[0.2em] text-zinc-400">
+                <h2 className="text-sm font-medium uppercase tracking-[0.2em] text-text-muted">
                     Selected work
                 </h2>
-                <Link
-                    href="/work"
-                    className="text-xs text-zinc-500 underline underline-offset-4 hover:text-zinc-200"
-                >
+                <Button href="/work" variant="ghost" className="px-0 underline underline-offset-4">
                     View all
-                </Link>
+                </Button>
             </div>
 
             <WorkGrid

@@ -5,7 +5,7 @@ import { CapabilityItem } from "./CapabilityItem";
 export function CapabilitiesSection() {
     return (
         <section className="mb-16 space-y-6">
-            <h2 className="text-sm font-medium uppercase tracking-[0.2em] text-zinc-400">
+            <h2 className="text-sm font-medium uppercase tracking-[0.2em] text-text-muted">
                 What I do
             </h2>
 

@@ -24,55 +24,55 @@ export function WorkCaseLayout({ workCase }: WorkCaseLayoutProps) {
     return (
         <PageShell>
             {/* Breadcrumb */}
-            <nav className="mb-6 text-xs text-zinc-500">
-                <Link href="/work" className="hover:text-zinc-200">
+            <nav className="mb-6 text-xs text-text-muted transition-colors">
+                <Link href="/work" className="hover:text-foreground transition-colors">
                     Work
                 </Link>
-                <span className="mx-2">/</span>
-                <span className="text-zinc-300">{title}</span>
+                <span className="mx-2 opacity-50">/</span>
+                <span className="text-foreground">{title}</span>
             </nav>
 
             {/* Hero */}
             <header className="mb-10 space-y-4">
                 {heroKicker && (
-                    <p className="text-xs uppercase tracking-[0.2em] text-zinc-500">
+                    <p className="text-xs uppercase tracking-[0.2em] text-text-muted">
                         {heroKicker}
                     </p>
                 )}
-                <h1 className="max-w-3xl text-3xl font-semibold tracking-tight text-zinc-50 sm:text-4xl">
+                <h1 className="max-w-3xl text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
                     {title}
                 </h1>
                 {heroSummary && (
-                    <p className="max-w-2xl text-sm text-zinc-400">
+                    <p className="max-w-2xl text-sm text-text-muted leading-relaxed">
                         {heroSummary}
                     </p>
                 )}
             </header>
 
             {/* Meta info */}
-            <section className="mb-12 grid gap-6 text-xs text-zinc-400 sm:grid-cols-2 md:grid-cols-4">
+            <section className="mb-12 grid gap-6 text-xs sm:grid-cols-2 md:grid-cols-4 border-b border-border-subtle pb-12">
                 {role && (
-                    <div>
-                        <p className="mb-1 font-medium text-zinc-500">Role</p>
-                        <p>{role}</p>
+                    <div className="space-y-1">
+                        <p className="font-medium text-text-muted">Role</p>
+                        <p className="text-foreground">{role}</p>
                     </div>
                 )}
                 {type && (
-                    <div>
-                        <p className="mb-1 font-medium text-zinc-500">Type</p>
-                        <p>{type}</p>
+                    <div className="space-y-1">
+                        <p className="font-medium text-text-muted">Type</p>
+                        <p className="text-foreground">{type}</p>
                     </div>
                 )}
                 {timeframe && (
-                    <div>
-                        <p className="mb-1 font-medium text-zinc-500">Timeframe</p>
-                        <p>{timeframe}</p>
+                    <div className="space-y-1">
+                        <p className="font-medium text-text-muted">Timeframe</p>
+                        <p className="text-foreground">{timeframe}</p>
                     </div>
                 )}
                 {services && services.length > 0 && (
-                    <div>
-                        <p className="mb-1 font-medium text-zinc-500">Scope</p>
-                        <ul className="space-y-0.5">
+                    <div className="space-y-1">
+                        <p className="font-medium text-text-muted">Scope</p>
+                        <ul className="space-y-0.5 text-foreground">
                             {services.map((service) => (
                                 <li key={service}>{service}</li>
                             ))}
@@ -82,13 +82,17 @@ export function WorkCaseLayout({ workCase }: WorkCaseLayoutProps) {
             </section>
 
             {/* Text sections */}
-            <section className="space-y-10">
+            <section className="space-y-12">
                 {sections.map((section) => (
                     <article key={section.id} className="space-y-3">
-                        <h2 className="text-sm font-semibold text-zinc-100">
+                        <h2 className="text-sm font-semibold text-foreground">
                             {section.title}
                         </h2>
-                        <p className="max-w-3xl text-sm leading-relaxed text-zinc-300">
+                        {/* text-foreground/90 или text-text-muted?
+                            Для длинных текстов лучше использовать цвет чуть светлее черного,
+                            но темнее серого placeholder-а. text-text-muted в вашей теме достаточно читабелен.
+                        */}
+                        <p className="max-w-3xl text-sm leading-relaxed text-text-muted">
                             {section.body}
                         </p>
                     </article>
@@ -96,25 +100,25 @@ export function WorkCaseLayout({ workCase }: WorkCaseLayoutProps) {
             </section>
 
             {/* Gallery / visuals */}
-            <section className="mt-12 border-t border-zinc-900 pt-10">
-                <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-zinc-500">
+            <section className="mt-16 border-t border-border-subtle pt-10">
+                <p className="mb-6 text-xs font-medium uppercase tracking-[0.2em] text-text-muted">
                     Visuals
                 </p>
 
                 {!images || images.length === 0 ? (
                     <>
-                        <p className="max-w-2xl text-xs text-zinc-500">
+                        <p className="max-w-2xl text-xs text-text-muted">
                             This is a placeholder for screenshots, UI mockups, or diagrams.
                             You can replace this block with a real gallery later.
                         </p>
-                        <div className="mt-4 h-40 rounded-2xl border border-dashed border-zinc-800 bg-zinc-950/40" />
+                        <div className="mt-4 h-40 rounded-2xl border border-dashed border-border-subtle bg-surface-muted/50" />
                     </>
                 ) : (
                     <div className="grid gap-6 md:grid-cols-2">
                         {images.map((image) => (
                             <figure
                                 key={image.src}
-                                className="overflow-hidden rounded-2xl border border-zinc-900 bg-zinc-950/60"
+                                className="overflow-hidden rounded-2xl border border-border-subtle bg-surface-muted"
                             >
                                 <Image
                                     src={image.src}
@@ -125,7 +129,7 @@ export function WorkCaseLayout({ workCase }: WorkCaseLayoutProps) {
                                     priority={false}
                                 />
                                 {image.alt && (
-                                    <figcaption className="px-4 py-3 text-xs text-zinc-500">
+                                    <figcaption className="border-t border-border-subtle px-4 py-3 text-xs text-text-muted bg-surface/50">
                                         {image.alt}
                                     </figcaption>
                                 )}

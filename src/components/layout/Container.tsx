@@ -1,6 +1,9 @@
-export function Container({ children }: { children: React.ReactNode }) {
+// src/components/layout/Container.tsx
+import { ReactNode } from "react";
+
+export function Container({ children }: { children: ReactNode }) {
     return (
-        <div className="mx-auto w-full max-w-container-max px-space-4 sm:px-space-6 lg:px-space-8">
+        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
             {children}
         </div>
     );
