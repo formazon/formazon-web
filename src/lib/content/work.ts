@@ -394,3 +394,12 @@ export const featuredWorkItems: WorkItem[] = featuredWorkSlugs
     .map((slug) => workItems.find((item) => item.slug === slug))
     .filter((item): item is WorkItem => Boolean(item));
 
+export function getRandomWorkCase(currentSlug: string): WorkItem | undefined {
+    // Сразу фильтруем workItems, не создавая лишних промежуточных переменных
+    const otherItems = workItems.filter((item) => item.slug !== currentSlug);
+
+    if (otherItems.length === 0) return undefined;
+
+    const randomIndex = Math.floor(Math.random() * otherItems.length);
+    return otherItems[randomIndex];
+}

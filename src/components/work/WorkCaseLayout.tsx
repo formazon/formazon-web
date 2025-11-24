@@ -2,13 +2,15 @@
 import Link from "next/link";
 import Image from "next/image";
 import { PageShell } from "@/components/layout/PageShell";
-import type { WorkCase } from "@/lib/content/work";
+import type { WorkCase, WorkItem } from "@/lib/content/work";
+import {WorkCard} from "@/components/work/WorkCard";
 
 type WorkCaseLayoutProps = {
     workCase: WorkCase;
+    nextCase?: WorkItem;
 };
 
-export function WorkCaseLayout({ workCase }: WorkCaseLayoutProps) {
+export function WorkCaseLayout({ workCase, nextCase }: WorkCaseLayoutProps) {
     const {
         title,
         heroKicker,
@@ -138,6 +140,28 @@ export function WorkCaseLayout({ workCase }: WorkCaseLayoutProps) {
                     </div>
                 )}
             </section>
+
+            {/* НОВАЯ СЕКЦИЯ: Read Next */}
+            {nextCase && (
+                <section className="mt-24 border-t border-border-subtle pt-12">
+                    <div className="mb-8 flex items-baseline justify-between">
+                        <h2 className="text-xs font-medium uppercase tracking-[0.2em] text-text-muted">
+                            Up Next
+                        </h2>
+                        <Link
+                            href="/work"
+                            className="text-xs text-text-muted underline underline-offset-4 hover:text-foreground transition-colors"
+                        >
+                            View all work
+                        </Link>
+                    </div>
+
+                    <div className="grid md:grid-cols-2">
+                        {/* Показываем карточку. Можно растянуть на всю ширину или ограничить половиной */}
+                        <WorkCard item={nextCase} />
+                    </div>
+                </section>
+            )}
         </PageShell>
     );
 }

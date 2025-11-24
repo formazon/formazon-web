@@ -2,27 +2,22 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { WorkCaseLayout } from "@/components/work/WorkCaseLayout";
-import { getWorkCase, workCases } from "@/lib/content/work";
+import { getWorkCase, getRandomWorkCase, workCases } from "@/lib/content/work"; // Добавили импорт
 
-// ВАЖНО: params теперь Promise
 type Props = {
     params: Promise<{ slug: string }>;
 };
 
-// Генерим статику для всех кейсов (включая fuelet)
 export function generateStaticParams() {
     return Object.keys(workCases).map((slug) => ({ slug }));
 }
 
-// generateMetadata тоже должен дождаться params
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const { slug } = await params;
     const workCase = getWorkCase(slug);
 
     if (!workCase) {
-        return {
-            title: "Case not found — Formazon",
-        };
+        return { title: "Case not found — Formazon" };
     }
 
     return {
@@ -31,7 +26,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     };
 }
 
-// Сам компонент страницы тоже async и ждёт params
 export default async function WorkCasePage({ params }: Props) {
     const { slug } = await params;
 
@@ -41,5 +35,9 @@ export default async function WorkCasePage({ params }: Props) {
         return notFound();
     }
 
-    return <WorkCaseLayout workCase={workCase} />;
+    // Получаем следующий случайный проект
+    const nextCase = getRandomWorkCase(slug);
+
+    // Передаем nextCase в лэйаут
+    return <WorkCaseLayout workCase={workCase} nextCase={nextCase} />;
 }
