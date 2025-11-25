@@ -47,48 +47,74 @@ export const workCases: Record<string, WorkCase> = {
         title: "AppForType",
         slug: "appfortype",
         description:
-            "Creative mobile toolkit for storytelling — templates, editors, and a marketplace used by millions.",
-        tags: ["Product", "Mobile app", "Branding"],
-        heroKicker: "Creative mobile app",
+            "Category-defining mobile creative suite used by 4M+ creators to blend typography, collage, and photography.",
+        tags: ["Product", "Mobile App", "Growth"],
+        heroKicker: "Creative Mobile Suite",
         heroSummary:
-            "A photo and video editing toolkit that turns everyday content into expressive stories using typography, templates, and curated assets.",
+            "A mixed-media editor that bridged the gap between desktop design tools and mobile convenience. AppForType empowered millions of users to turn everyday photos into expressive stories using handcrafted typography and real-world textures.",
         role: "Founder, Product & Design",
-        type: "B2C mobile app",
-        timeframe: "Long-term product, multi-year",
+        type: "B2C Mobile App (iOS / Android)",
+        timeframe: "2016 — Present",
         services: [
-            "Product strategy",
-            "UX & UI design",
-            "Design system",
-            "Content ecosystem",
-            "Brand & narrative",
+            "Product Strategy",
+            "Full-cycle UX/UI",
+            "Content Ecosystem",
+            "Monetization Strategy",
+            "Brand Identity",
         ],
         sections: [
             {
                 id: "overview",
-                title: "Overview",
+                title: "The Vision",
                 body:
-                    "AppForType is a creative mobile app for people who want to edit photos and videos quickly without learning complex desktop tools. It combines text, templates, and visual assets into a simple, approachable editor that still feels powerful for advanced users.",
+                    "In the mid-2010s, mobile editing was limited to filters. To add expressive typography or create collages, creators had to rely on complex desktop software. AppForType was built to solve this friction: a tool designed specifically for 'mixed media' on mobile—combining photos, handwriting, and layout in a seamless, gesture-based interface.",
             },
             {
                 id: "challenge",
-                title: "Challenge",
+                title: "The Challenge",
                 body:
-                    "The challenge was to design an editor that feels light and inspiring on a small screen, while still supporting layers, typography, and a large library of templates. It needed to be fast to start, intuitive to explore, and scalable as the library and feature set grew.",
+                    "The main product challenge was to balance simplicity with depth. We needed to handle high-resolution image processing and complex layering on mobile devices without overwhelming the user. Additionally, we had to build a sustainable content engine—moving beyond a static utility app to a dynamic platform with weekly asset drops and a thriving marketplace.",
             },
             {
                 id: "approach",
-                title: "Approach",
+                title: "The Approach",
                 body:
-                    "The product was shaped around a few strong principles: quick entry into editing, clear structure of tools, and a template-first mindset. The design system used strong hierarchy, restrained color, and clear iconography to guide users through complex interactions. The marketplace was integrated into the editor so that content and tools felt like one system.",
+                    "We engineered a custom rendering engine that treated typography as 'stickers' rather than fonts, allowing for hand-lettered assets that couldn't be replicated by system text. We also developed the 'Sheer' feature—a computer-vision tool allowing users to photograph their own handwriting, remove the background instantly, and apply it as a digital layer. The UI was designed to be 'invisible', maximizing the canvas space and using gestures for manipulation.",
             },
             {
                 id: "outcome",
-                title: "Outcome",
+                title: "Impact",
                 body:
-                    "AppForType reached millions of installs and maintained high ratings, becoming a daily tool for creators who wanted to design quickly on mobile. The editor architecture and content system made it possible to continuously add new features and templates without losing clarity.",
+                    "AppForType grew organically to over 4 million downloads without paid acquisition, becoming a staple tool for influencers and small businesses. It was featured as 'App of the Day' by Apple multiple times globally. The scalable content model allowed us to partner with international lettering artists, creating a continuous revenue stream via In-App Purchases.",
             },
         ],
-        // images: [] // можно добавить по аналогии с Fuelet
+        // Не забудь добавить реальные скриншоты в папку /public/work/appfortype/
+        images: [
+            {
+                src: "/work/appfortype/appfortype-hero.png",
+                alt: "AppForType editor interface showing typography layers",
+                width: 1600,
+                height: 900,
+            },
+            {
+                src: "/work/appfortype/aft-scanner.jpg",
+                alt: "The 'Sheer' feature: scanning real handwriting into the app",
+                width: 1600,
+                height: 900,
+            },
+            {
+                src: "/work/appfortype/aft-shop.jpg",
+                alt: "In-app marketplace and content discovery",
+                width: 1600,
+                height: 900,
+            },
+            {
+                src: "/work/appfortype/aft-collages.jpg",
+                alt: "Examples of user-generated content and collages",
+                width: 1600,
+                height: 900,
+            },
+        ],
     },
 
     explyt: {
@@ -208,6 +234,14 @@ export const workCases: Record<string, WorkCase> = {
                 title: "Outcome",
                 body:
                     "The resulting tools improved situational awareness, reduced cognitive load for operators, and created a more consistent language across different parts of the system.",
+            },
+        ],
+        images: [
+            {
+                src: "/work/tra-robotics/tra-robotics-hero.png",
+                alt: "TRA Robotics focuses on automating physical workflows using robotic systems. My work centered on turning complex, technical operations into clear interfaces that operators and engineers can use confidently",
+                width: 1600,
+                height: 900,
             },
         ],
     },

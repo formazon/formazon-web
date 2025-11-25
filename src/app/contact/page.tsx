@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { PageShell } from "@/components/layout/PageShell";
 import { contactContent } from "@/lib/content/contact";
 import { ContactForm } from "@/components/contact/ContactForm";
+import { TextLink } from "@/components/ui/TextLink"; // 1. Импортируем компонент
 
 export const metadata: Metadata = {
     title: contactContent.meta.title,
@@ -29,12 +30,11 @@ export default function ContactPage() {
                 </p>
             </section>
 
-            {/* Main Content Grid: Form (Left) vs Info (Right) */}
+            {/* Main Content Grid */}
             <div className="grid gap-12 lg:grid-cols-[1.5fr_1fr]">
 
                 {/* Column 1: Contact Form */}
                 <section>
-                    {/* Визуальная обертка формы */}
                     <div className="rounded-2xl border border-border-subtle bg-surface-muted/30 p-6 sm:p-8">
                         <ContactForm />
                     </div>
@@ -50,12 +50,16 @@ export default function ContactPage() {
                             <p className="text-xs font-medium uppercase tracking-[0.2em] text-text-muted">
                                 {direct.label}
                             </p>
-                            <a
+
+                            {/* 2. Используем TextLink для email */}
+                            <TextLink
                                 href={`mailto:${direct.email}`}
-                                className="inline-block text-sm font-medium text-foreground underline underline-offset-4 transition-opacity hover:opacity-80"
+                                external={true} // mailto считается внешней ссылкой (нужен <a>, а не <Link>)
+                                className="text-sm"
                             >
                                 {direct.email}
-                            </a>
+                            </TextLink>
+
                             <p className="text-xs text-text-muted leading-relaxed">
                                 {direct.description}
                             </p>
@@ -67,18 +71,22 @@ export default function ContactPage() {
                                 {socials.label}
                             </p>
                             <ul className="space-y-2 text-sm text-foreground">
-                                {socials.links.map((link) => (
-                                    <li key={link.label}>
-                                        <a
-                                            href={link.href}
-                                            target={link.href.startsWith("http") ? "_blank" : undefined}
-                                            rel="noopener noreferrer"
-                                            className="underline underline-offset-4 transition-opacity hover:opacity-80"
-                                        >
-                                            {link.label}
-                                        </a>
-                                    </li>
-                                ))}
+                                {socials.links.map((link) => {
+                                    // Проверяем, внешняя ли ссылка (начинается с http)
+                                    const isExternal = link.href.startsWith("http");
+
+                                    return (
+                                        <li key={link.label}>
+                                            {/* 3. Используем TextLink с авто-определением external */}
+                                            <TextLink
+                                                href={link.href}
+                                                external={isExternal}
+                                            >
+                                                {link.label}
+                                            </TextLink>
+                                        </li>
+                                    );
+                                })}
                             </ul>
                         </div>
                     </div>

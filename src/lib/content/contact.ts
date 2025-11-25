@@ -13,14 +13,14 @@ export const contactContent = {
     },
     direct: {
         label: "Email",
-        email: "hello@formazon.com",
+        email: "mail@formazon.com",
         description: "The best way to start a conversation — especially if you already have context, documents, or links.",
     },
     socials: {
         label: "Other channels",
         links: [
-            { label: "Telegram", href: "https://t.me/yourtelegram" },
-            { label: "LinkedIn", href: "https://linkedin.com/in/yourprofile" },
+            { label: "Telegram", href: "https://t.me/formazon" },
+            { label: "LinkedIn", href: "https://linkedin.com/in/faridrafikov" },
             { label: "View work", href: "/work" },
         ],
     },

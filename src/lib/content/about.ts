@@ -21,12 +21,36 @@ export const aboutContent = {
         ],
         // Можно брать из work.ts, но часто для About нужны более короткие описания
         history: [
-            { name: "TRA Robotics", desc: "Industrial automation & robotics tools" },
-            { name: "AppForType", desc: "Creative mobile editor & content marketplace" },
-            { name: "Explyt", desc: "AI-powered testing platform for engineers" },
-            { name: "Fuelet", desc: "Fintech UX around clarity and trust" },
-            { name: "Jungle", desc: "Lightweight productivity & automation" },
-            { name: "Esprito", desc: "Brand & narrative systems" },
+            {
+                name: "TRA Robotics",
+                slug: "tra-robotics", // Добавили slug
+                desc: "Industrial automation & robotics tools"
+            },
+            {
+                name: "AppForType",
+                slug: "appfortype",
+                desc: "Creative mobile editor & content marketplace"
+            },
+            {
+                name: "Explyt",
+                slug: "explyt",
+                desc: "AI-powered testing platform for engineers"
+            },
+            {
+                name: "Fuelet",
+                slug: "fuelet",
+                desc: "Fintech UX around clarity and trust"
+            },
+            {
+                name: "Jungle",
+                slug: "jungle",
+                desc: "Lightweight productivity & automation"
+            },
+            {
+                name: "Esprito",
+                slug: "esprito",
+                desc: "Brand & narrative systems"
+            },
         ],
         services: [
             "Shaping the first version of a product",

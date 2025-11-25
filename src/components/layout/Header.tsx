@@ -36,8 +36,8 @@ export function Header() {
     }, [isOpen]);
 
     const activeNavItems = navItems.filter((item) => {
-        if (item.feature === "journal" && !journalEnabled) return false;
-        return true;
+        return !(item.feature === "journal" && !journalEnabled);
+
     });
 
     return (

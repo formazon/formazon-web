@@ -1,8 +1,8 @@
-// src/components/work/WorkListCard.tsx
 import Link from "next/link";
 import Image from "next/image";
 import type { WorkItem } from "@/lib/content/work";
 import { workCases } from "@/lib/content/work";
+import { Tag } from "@/components/ui/Tag"; // Импортируем новый компонент
 
 type WorkListCardProps = {
     item: WorkItem;
@@ -54,26 +54,25 @@ export function WorkCard({ item }: WorkListCardProps) {
                         {item.description}
                     </p>
 
-                    {/* Tags */}
+                    {/* ИСПОЛЬЗУЕМ НОВЫЙ КОМПОНЕНТ */}
                     {item.tags && item.tags.length > 0 && (
                         <div className="mt-4 flex flex-wrap gap-2">
                             {item.tags.map((tag) => (
-                                <span
-                                    key={tag}
-                                    className="
-                                        rounded-full border border-border-subtle bg-surface-muted/50
-                                        px-2.5 py-1 text-[10px] uppercase tracking-[0.16em] text-text-muted
-                                    "
-                                >
+                                <Tag key={tag}>
                                     {tag}
-                                </span>
+                                </Tag>
                             ))}
                         </div>
                     )}
                 </div>
 
                 {/* Call to action */}
-                <div className="mt-6 text-xs font-medium text-text-muted underline underline-offset-4 transition-colors group-hover:text-foreground">
+                <div className="
+                    mt-6 text-xs font-medium text-text-muted
+                    underline underline-offset-4 decoration-border-subtle
+                    transition-colors
+                    group-hover:text-foreground group-hover:decoration-foreground
+                ">
                     View case
                 </div>
             </div>
