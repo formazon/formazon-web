@@ -1,12 +1,12 @@
-// src/components/layout/Header.tsx
 "use client";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState, useEffect } from "react"; // 1. Добавили хуки
-import { Menu, X } from "lucide-react";       // 2. Добавили иконки
+import { useState, useEffect } from "react";
+import { Menu, X } from "lucide-react";
 import { journalEnabled } from "@/lib/config/features";
 import { ThemeToggle } from "./ThemeToggle";
+import { MenuItem } from "@/components/ui/MenuItem";
 
 const navItems = [
     { href: "/work", label: "Work" },
@@ -18,14 +18,12 @@ const navItems = [
 
 export function Header() {
     const pathname = usePathname();
-    const [isOpen, setIsOpen] = useState(false); // Состояние меню
+    const [isOpen, setIsOpen] = useState(false);
 
-    // Закрываем меню автоматически, если изменился путь (пользователь перешел по ссылке)
     useEffect(() => {
         setIsOpen(false);
     }, [pathname]);
 
-    // Блокируем скролл страницы, когда меню открыто (опционально, но хороший UX)
     useEffect(() => {
         if (isOpen) {
             document.body.style.overflow = "hidden";
@@ -37,47 +35,43 @@ export function Header() {
 
     const activeNavItems = navItems.filter((item) => {
         return !(item.feature === "journal" && !journalEnabled);
-
     });
 
     return (
-        // relative нужен, чтобы мобильное меню позиционировалось относительно хедера
-        <header className="relative border-b border-border-subtle bg-surface/80 backdrop-blur z-50">
-            <div className="mx-auto flex h-16 max-w-5xl items-center justify-between px-4 sm:px-6 lg:px-8">
-                {/* Logo */}
-                <Link
-                    href="/"
-                    className="text-sm font-semibold tracking-[0.2em] uppercase text-foreground z-50"
-                    onClick={() => setIsOpen(false)}
-                >
-                    Formazon
-                </Link>
+        <header className="relative bg-surface/80 backdrop-blur z-50">
+            {/* Основной контейнер с justify-between разнесет ЛЕВУЮ и ПРАВУЮ группы по краям */}
+            <div className="mx-auto flex h-16 items-center justify-between gutter">
 
-                {/* Right side */}
-                <div className="flex items-center gap-4">
-                    {/* Desktop Navigation (скрыта на мобильных sm:flex) */}
-                    <nav className="hidden gap-6 text-sm text-text-muted sm:flex">
-                        {activeNavItems.map((item) => {
-                            const isActive = pathname === item.href;
-                            return (
-                                <Link
-                                    key={item.href}
-                                    href={item.href}
-                                    className={
-                                        "transition-colors hover:text-foreground" +
-                                        (isActive ? " text-foreground" : "")
-                                    }
-                                >
-                                    {item.label}
-                                </Link>
-                            );
-                        })}
+                {/* --- ЛЕВАЯ ГРУППА: Логотип + Десктопное Меню --- */}
+                <div className="flex items-center gap-6"> {/* gap-6 отделит лого от меню */}
+                    {/* Logo */}
+                    <Link
+                        href="/"
+                        className="text-sm font-semibold tracking-[0.2em] uppercase text-foreground z-50"
+                        onClick={() => setIsOpen(false)}
+                    >
+                        F
+                    </Link>
+
+                    {/* Desktop Navigation */}
+                    <nav className="hidden items-center gap-1 sm:flex">
+                        {activeNavItems.map((item) => (
+                            <MenuItem
+                                key={item.href}
+                                href={item.href}
+                                label={item.label}
+                                isActive={pathname === item.href}
+                            />
+                        ))}
                     </nav>
+                </div>
 
-                    {/* Theme toggle (виден всегда) */}
+                {/* --- ПРАВАЯ ГРУППА: Тема + Мобильный бургер --- */}
+                <div className="flex items-center gap-2">
+                    {/* Theme toggle */}
                     <ThemeToggle />
 
-                    {/* Mobile Menu Button (видна только на мобильных sm:hidden) */}
+                    {/* Mobile Menu Button */}
                     <button
                         onClick={() => setIsOpen(!isOpen)}
                         aria-label="Toggle menu"
@@ -95,17 +89,20 @@ export function Header() {
             {/* Mobile Navigation Dropdown */}
             {isOpen && (
                 <div className="absolute left-0 top-16 h-[calc(100vh-4rem)] w-full bg-background border-b border-border-subtle px-4 py-6 sm:hidden">
-                    <nav className="flex flex-col gap-4 text-lg font-medium">
+                    <nav className="flex flex-col gap-2">
                         {activeNavItems.map((item) => {
                             const isActive = pathname === item.href;
                             return (
                                 <Link
                                     key={item.href}
                                     href={item.href}
-                                    className={
-                                        "block border-b border-border-subtle pb-4 transition-colors hover:text-foreground" +
-                                        (isActive ? " text-foreground" : " text-text-muted")
+                                    className={`
+                                        block px-4 py-3 rounded-xl text-lg font-medium transition-colors
+                                        ${isActive
+                                        ? "bg-surface-muted text-foreground"
+                                        : "text-text-muted hover:text-foreground"
                                     }
+                                    `}
                                 >
                                     {item.label}
                                 </Link>

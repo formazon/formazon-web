@@ -10,10 +10,11 @@ export function Tag({ children, className = "" }: TagProps) {
         <span
             className={`
                 inline-flex items-center rounded-full 
-                border border-border-subtle bg-surface-muted/50 
-                px-2.5 py-1 
-                text-[10px] font-medium uppercase tracking-[0.16em] text-text-muted
-                whitespace-nowrap
+                bg-surface-muted
+                px-4 py-3
+                text-sm font-medium uppercase tracking-[0.04rem]
+                transition-colors duration-300
+                hover:bg-foreground hover:text-background
                 ${className}
             `}
         >

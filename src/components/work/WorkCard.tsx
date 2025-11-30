@@ -16,15 +16,14 @@ export function WorkCard({ item }: WorkListCardProps) {
         <Link
             href={`/work/${item.slug}`}
             className="
-                group flex flex-col overflow-hidden rounded-2xl
-                border border-border-subtle bg-surface
-                transition-all duration-300
-                hover:border-text-muted/50 hover:bg-surface-muted/40
+                group flex flex-col overflow-hidden rounded-3xl
+                bg-surface transition-all duration-300
+                hover:border-text-muted/50
             "
         >
             {/* Preview image */}
             {previewImage && (
-                <div className="relative aspect-[16/9] w-full overflow-hidden bg-surface-muted">
+                <div className="relative aspect-[1/1] w-full overflow-hidden bg-surface-muted rounded-3xl">
                     <Image
                         src={previewImage.src}
                         alt={previewImage.alt}
@@ -37,26 +36,21 @@ export function WorkCard({ item }: WorkListCardProps) {
             )}
 
             {/* Text content */}
-            <div className="flex flex-1 flex-col justify-between p-5 sm:p-6">
-                <div className="space-y-3">
-                    {/* Label */}
-                    <p className="text-[10px] uppercase tracking-[0.2em] text-text-muted transition-colors group-hover:text-text-muted/80">
-                        Case study
-                    </p>
-
+            <div className="flex flex-1 flex-col justify-between">
+                <div className="space-y-4">
                     {/* Title */}
-                    <h2 className="text-lg font-semibold text-foreground transition-colors group-hover:text-foreground">
+                    <h2 className="text-2xl font-medium mt-6">
                         {item.title}
                     </h2>
 
                     {/* Description */}
-                    <p className="max-w-xl text-sm leading-relaxed text-text-muted">
+                    <p className="max-w-xl text-3xl font-medium leading-9">
                         {item.description}
                     </p>
 
                     {/* ИСПОЛЬЗУЕМ НОВЫЙ КОМПОНЕНТ */}
                     {item.tags && item.tags.length > 0 && (
-                        <div className="mt-4 flex flex-wrap gap-2">
+                        <div className="mt-6 flex flex-wrap gap-2">
                             {item.tags.map((tag) => (
                                 <Tag key={tag}>
                                     {tag}
@@ -64,16 +58,6 @@ export function WorkCard({ item }: WorkListCardProps) {
                             ))}
                         </div>
                     )}
-                </div>
-
-                {/* Call to action */}
-                <div className="
-                    mt-6 text-xs font-medium text-text-muted
-                    underline underline-offset-4 decoration-border-subtle
-                    transition-colors
-                    group-hover:text-foreground group-hover:decoration-foreground
-                ">
-                    View case
                 </div>
             </div>
         </Link>

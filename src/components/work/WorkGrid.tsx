@@ -11,10 +11,10 @@ type WorkGridProps = {
 export function WorkGrid({ items, renderItem, columns = 2 }: WorkGridProps) {
     const colsClass =
         columns === 3
-            ? "grid gap-6 md:grid-cols-3"
+            ? "grid gap-x-5 md:grid-cols-3"
             : columns === 1
-                ? "grid gap-6"
-                : "grid gap-6 md:grid-cols-2";
+                ? "grid gap-x-4 gap-y-20"
+                : "grid gap-x-4 gap-y-20 md:grid-cols-2";
 
     return (
         <div className={colsClass}>

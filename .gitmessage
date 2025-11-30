@@ -1,5 +1,5 @@
 # Commit message template for formazon.com
-# Format: <type>: <short summary>
+# Format: <type>(<scope>): <short summary>
 #
 # Types:
 #   feat    - new feature or functionality
@@ -13,6 +13,16 @@
 #   ci      - CI/CD configuration
 #   chore   - maintenance, setup, configs, cleanup
 #
+# Common Scopes (optional but recommended):
+#   (ui)      - shared components (Button, Tag, etc.)
+#   (layout)  - global layout (Header, Footer, PageShell)
+#   (home)    - home page specific
+#   (work)    - work/portfolio pages and logic
+#   (about)   - about page
+#   (contact) - contact page and form
+#   (content) - text content/data files (src/lib/content/*)
+#   (config)  - tailwind, next.config, eslint, etc.
+#
 # Rules:
 # - Use present tense, imperative mood: "add", "fix", "update"
 # - Keep the first line under 70 characters
@@ -20,16 +30,16 @@
 # - One logical change per commit when possible
 #
 # Examples:
-#   chore: initialize next.js project for formazon.com
-#   chore: setup tailwind css and base styles
-#   feat: add hero section to home page
-#   feat: implement work page with project cards
-#   fix: correct spacing in hero on mobile
-#   docs: add git workflow guide
+#   feat(home): add hero section
+#   feat(work): implement "read next" case logic
+#   refactor(ui): extract Button and TextLink components
+#   style(about): fix mobile padding issues
+#   chore(config): update tailwind theme tokens
+#   fix(contact): resolve form submission error
 #
 # -------------------- COMMIT MESSAGE BELOW --------------------
 
-<type>: <short summary>
+<type>(<scope>): <short summary>
 
 # Optional longer description:
 # - Explain what and why, not how.
