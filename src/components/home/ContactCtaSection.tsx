@@ -1,22 +1,25 @@
 // src/components/home/ContactCtaSection.tsx
 import { Button } from "@/components/ui/Button";
+import { H2Index } from "@/components/ui/H2Index";
+import { QuadroDot } from "@/components/ui/QuadroDot";
 
 export function ContactCtaSection() {
     return (
-        <section className="mt-20 border-t border-border-subtle pt-10">
+        <section className="mt-20 pt-10 pb-20">
+            <QuadroDot />
             <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
 
                 {/* Левый текстовый блок */}
                 <div className="space-y-4">
-                    <p className="text-xs font-medium uppercase tracking-[0.2em] text-text-muted">
+                    <H2Index index={1}>
                         Work with me
-                    </p>
+                    </H2Index>
 
-                    <h2 className="max-w-xl text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
+                    <h2 className="subtitle text-foreground max-w-xl">
                         Have a product to build, a team to support, or a story to shape?
                     </h2>
 
-                    <p className="max-w-xl text-sm leading-relaxed text-text-muted">
+                    <p className="body text-text-muted max-w-xl">
                         I work with founders and teams on product strategy, UX, AI features,
                         and brand narratives. If you have something in mind, let’s talk.
                     </p>

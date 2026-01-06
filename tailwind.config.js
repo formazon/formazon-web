@@ -10,6 +10,9 @@ module.exports = {
                 "plex-sans": ["var(--font-plex-sans)", "Arial", "Helvetica", "sans-serif"],
                 "plex-mono": ["var(--font-plex-mono)", "monospace"],
             },
+            colors: {
+                "black-40": "var(--color-black-40)",
+            },
         },
     },
     plugins: [],

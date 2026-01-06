@@ -44,7 +44,7 @@ export type WorkCase = WorkItem & {
 /** Объект со всеми кейсами по slug (один источник правды) */
 export const workCases: Record<string, WorkCase> = {
     appfortype: {
-        order: 10,
+        order: 20,
         title: "AppForType",
         slug: "appfortype",
         description:
@@ -240,16 +240,16 @@ export const workCases: Record<string, WorkCase> = {
         ],
         images: [
             {
-                src: "/work/tra-robotics/tra-robotics-hero.png",
+                src: "/work/tra-robotics/tra-robotics-1.jpg",
                 alt: "TRA Robotics focuses on automating physical workflows using robotic systems. My work centered on turning complex, technical operations into clear interfaces that operators and engineers can use confidently",
-                width: 1600,
-                height: 900,
+                width: 1920,
+                height: 1185,
             },
         ],
     },
 
     fuelet: {
-        order: 20,
+        order: 30,
         title: "Fuelet Wallet",
         slug: "fuelet",
         description:
@@ -292,10 +292,10 @@ export const workCases: Record<string, WorkCase> = {
         /** Пример подключения реальных изображений */
         images: [
             {
-                src: "/work/fuelet/fuelet-branding.png",
+                src: "/work/fuelet/fuelet-wallet-1.jpg",
                 alt: "Fuelet main dashboard with balances and recent activity",
-                width: 1600,
-                height: 900,
+                width: 1920,
+                height: 1185,
             },
             {
                 src: "/work/fuelet/fuelet-dashboard.png",
@@ -319,7 +319,7 @@ export const workCases: Record<string, WorkCase> = {
     },
 
     jungle: {
-        order: 30,
+        order: 10,
         title: "Jungle Robotics",
         slug: "jungle",
         description:
@@ -454,6 +454,56 @@ export const workCases: Record<string, WorkCase> = {
             },
         ],
     },
+
+    montessori: {
+        order: 70,
+        title: "Montessori Platform",
+        slug: "montessori",
+        description:
+            "Data analytics and learning management platform for organizing preschool and school-age children's education.",
+        tags: ["EdTech", "Analytics", "Product"],
+        heroKicker: "Education platform",
+        heroSummary:
+            "A platform for tracking, analyzing, and organizing the learning process for preschool and school-age children using data-driven insights and structured workflows.",
+        role: "Product & Design",
+        type: "EdTech Platform",
+        timeframe: "Project-based",
+        services: ["Product strategy", "UX design", "Data visualization"],
+        sections: [
+            {
+                id: "overview",
+                title: "Overview",
+                body:
+                    "Montessori Platform was built to help educators and parents track children's progress, organize learning activities, and make data-informed decisions about each child's development path.",
+            },
+            {
+                id: "challenge",
+                title: "Challenge",
+                body:
+                    "Education data is often fragmented and hard to interpret. The challenge was to create a system that surfaces meaningful insights without overwhelming teachers or reducing children to metrics.",
+            },
+            {
+                id: "approach",
+                title: "Approach",
+                body:
+                    "We focused on clear visualizations, simple input flows, and contextual guidance. The interface was designed to feel supportive rather than administrative, helping educators spend more time with children and less time on paperwork.",
+            },
+            {
+                id: "outcome",
+                title: "Outcome",
+                body:
+                    "The platform enabled schools to better understand individual learning patterns, communicate progress to parents, and adapt curricula based on real observations.",
+            },
+        ],
+        images: [
+            {
+                src: "/work/montessori/montessori-1.jpg",
+                alt: "Montessori Platform interface showing analytics and learning management",
+                width: 1440,
+                height: 889,
+            },
+        ],
+    },
 };
 
 /** Получить полный кейс по slug */
@@ -473,9 +523,9 @@ export const workItems: WorkItem[] = Object.values(workCases)
 
 // Какие из них считаем избранными для главной
 export const featuredWorkSlugs: string[] = [
+    "jungle",
     "appfortype",
     "fuelet",
-    "jungle",
     "tra-robotics",
     "explyt",
     "esprito",

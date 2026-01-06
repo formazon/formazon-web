@@ -3,6 +3,8 @@ import Link from "next/link";
 import { journalPosts } from "@/lib/content/journal";
 import { JournalPostCard } from "./JournalPostCard";
 import { journalEnabled } from "@/lib/config/features";
+import { H2Index } from "@/components/ui/H2Index";
+import { QuadroDot } from "@/components/ui/QuadroDot";
 
 export function JournalPreviewSection() {
     if (!journalEnabled) {
@@ -11,11 +13,12 @@ export function JournalPreviewSection() {
 
     return (
         <section className="mb-20 mt-20 space-y-6">
+            <QuadroDot />
             {/* Header */}
             <div className="flex items-baseline justify-between gap-4">
-                <h2 className="text-xs font-medium uppercase tracking-[0.2em] text-text-muted">
+                <H2Index index={1}>
                     Journal
-                </h2>
+                </H2Index>
 
                 <Link
                     href="/journal"

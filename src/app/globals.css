@@ -14,6 +14,7 @@
     --accent-soft: rgba(99, 102, 241, 0.12);
 
     --text-muted: #6b7280;        /* gray-500 */
+    --black-40: #A9A9A9;          /* Black 40 */
 }
 
 .dark {
@@ -30,6 +31,7 @@
     --accent-soft: rgba(129, 140, 248, 0.16);
 
     --text-muted: #a1a1aa;        /* zinc-400 */
+    --black-40: #A9A9A9;          /* Black 40 */
 }
 
 @theme inline {
@@ -47,6 +49,7 @@
     --color-accent-soft: var(--accent-soft);
 
     --color-text-muted: var(--text-muted);
+    --color-black-40: var(--black-40);
 }
 
 /* Fallback на system theme, если нет управляемой .dark/.light */
@@ -62,6 +65,7 @@
         --accent: #818cf8;
         --accent-soft: rgba(129, 140, 248, 0.16);
         --text-muted: #a1a1aa;
+        --black-40: #A9A9A9;
     }
 }
 

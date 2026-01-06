@@ -5,6 +5,8 @@ import { PageShell } from "@/components/layout/PageShell";
 import type { WorkCase, WorkItem } from "@/lib/content/work";
 import {WorkCard} from "@/components/work/WorkCard";
 import { Tag } from "@/components/ui/Tag";
+import { Shaper } from "@/components/ui/Shaper";
+import { H2Index } from "@/components/ui/H2Index";
 
 type WorkCaseLayoutProps = {
     workCase: WorkCase;
@@ -48,7 +50,7 @@ export function WorkCaseLayout({ workCase, nextCase }: WorkCaseLayoutProps) {
                             alt={`${title} avatar`}
                             width={32}
                             height={32}
-                            className="w-8 h-8 shrink-0"
+                            className="w-8 h-8 shrink-0 rounded"
                         />
                     )}
                 </div>
@@ -59,7 +61,11 @@ export function WorkCaseLayout({ workCase, nextCase }: WorkCaseLayoutProps) {
                 )}
                 {/* Tags */}
                 {tags && tags.length > 0 && (
-                    <div className="mt-0 flex flex-wrap gap-2">
+                    <div className="mt-0 flex flex-wrap gap-2 items-center">
+                        <Shaper />
+                        <span className="label-medium px-3 pt-[7px] pb-[7px]">
+                            Tags
+                        </span>
                         {tags.map((tag) => (
                             <Tag key={tag}>
                                 {tag}
@@ -72,22 +78,35 @@ export function WorkCaseLayout({ workCase, nextCase }: WorkCaseLayoutProps) {
             {/* Единый контейнер с контентом */}
             <div className="space-y-8">
                 {/* Первые два изображения на всю ширину */}
-                {firstTwoImages.map((image) => (
-                    <figure key={image.src} className="w-full">
-                        <Image
-                            src={image.src}
-                            alt={image.alt}
-                            width={image.width}
-                            height={image.height}
-                            className="h-auto w-full object-cover"
-                            priority={false}
-                        />
-                    </figure>
+                {firstTwoImages.map((image, index) => (
+                    <div key={image.src} className="mb-20">
+                        <figure className="w-full">
+                            <Image
+                                src={image.src}
+                                alt={image.alt}
+                                width={image.width}
+                                height={image.height}
+                                className="h-auto w-full object-cover rounded"
+                                priority={false}
+                            />
+                        </figure>
+                        {/* Добавляем заголовок и текст после первого изображения */}
+                        {index === 0 && (
+                            <>
+                                <H2Index index={1}>
+                                    Robotics as a Service
+                                </H2Index>
+                                <p className="body text-foreground mt-6 mb-20">
+                                    The main product challenge was to balance simplicity with depth. We needed to handle high-resolution image processing and complex layering on mobile devices without overwhelming the user. Additionally, we had to build a sustainable content engine—moving beyond a static utility app to a dynamic platform with weekly asset drops and a thriving marketplace.
+                                </p>
+                            </>
+                        )}
+                    </div>
                 ))}
 
                 {/* Первый абзац текста */}
                 {firstSection && (
-                    <p className="body text-black">
+                    <p className="body text-foreground">
                         {firstSection.body}
                     </p>
                 )}
@@ -95,8 +114,8 @@ export function WorkCaseLayout({ workCase, nextCase }: WorkCaseLayoutProps) {
 
             {/* НОВАЯ СЕКЦИЯ: Read Next */}
             {nextCase && (
-                <section className="mt-24 border-t border-border-subtle pt-12">
-                    <div className="mb-8 flex items-baseline justify-between">
+                <section className="mt-24 border-t border-border-subtle pt-12 pb-20">
+                    <div className="mb-20 flex items-baseline justify-between">
                         <h2 className="text-xs font-medium uppercase tracking-[0.2em] text-text-muted">
                             Up Next
                         </h2>

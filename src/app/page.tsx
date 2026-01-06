@@ -23,8 +23,8 @@ export default function HomePage() {
 I design and build digital products that combine clarity, structure, and thoughtful engineering. My work ranges from creative mobile apps and enterprise AI tools to robotics interfaces, brand systems, and product strategy.`}
             />
             <SelectedWorkSection />
-            <ServicesHomeSection />
             <AboutPreviewSection />
+            <ServicesHomeSection />
             <JournalPreviewSection />
             <ContactCtaSection />
         </PageShell>

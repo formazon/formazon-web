@@ -34,20 +34,20 @@ export function JournalPostCard({ post }: Props) {
             {/* Text content */}
             <div className="flex flex-1 flex-col justify-between p-5">
                 <div className="space-y-2">
-                    <p className="text-[10px] uppercase tracking-[0.15em] text-text-muted">
+                    <p className="label text-text-muted">
                         {post.tag ?? "Journal"}
                     </p>
 
-                    <h3 className="text-base font-medium text-foreground group-hover:text-foreground">
+                    <h3 className="subtitle-medium text-foreground group-hover:text-foreground">
                         {post.title}
                     </h3>
 
-                    <p className="text-sm text-text-muted">
+                    <p className="body text-text-muted">
                         {post.excerpt}
                     </p>
                 </div>
 
-                <p className="mt-4 text-xs text-text-muted">
+                <p className="mt-4 label text-text-muted">
                     {new Date(post.date).toLocaleDateString("en-US", {
                         month: "short",
                         day: "numeric",

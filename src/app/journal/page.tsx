@@ -20,16 +20,18 @@ export default function JournalPage() {
         <PageShell>
             {/* Intro */}
             <section className="mb-12 space-y-4">
-                <p className="text-xs font-medium uppercase tracking-[0.2em] text-text-muted">
+                <h1 className="h1 text-foreground">
                     Journal
-                </p>
-                <h1 className="max-w-3xl text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-                    Short notes on product, design, and AI.
                 </h1>
-                <p className="max-w-2xl text-sm text-text-muted">
-                    I use this journal to capture patterns, decisions, and observations from
-                    building products, interfaces, and systems.
-                </p>
+                <div className="space-y-4">
+                    <p className="subtitle text-foreground max-w-3xl">
+                        Short notes on product, design, and AI.
+                    </p>
+                    <p className="subtitle text-foreground max-w-2xl">
+                        I use this journal to capture patterns, decisions, and observations from
+                        building products, interfaces, and systems.
+                    </p>
+                </div>
             </section>
 
             {/* List of posts */}
