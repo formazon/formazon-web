@@ -38,6 +38,7 @@ export type WorkCase = WorkItem & {
     services?: string[];
     sections: WorkCaseSection[];
     images?: WorkCaseImage[];
+    avatar?: string; // Путь к аватарке проекта в /public, например /work/jungle.svg
 };
 
 /** Объект со всеми кейсами по slug (один источник правды) */
@@ -49,6 +50,7 @@ export const workCases: Record<string, WorkCase> = {
         description:
             "Category-defining mobile creative suite used by 4M+ creators to blend typography, collage, and photography.",
         tags: ["Product", "Mobile App", "Growth"],
+        avatar: "/work/appfortype.svg",
         heroKicker: "Creative Mobile Suite",
         heroSummary:
             "A mixed-media editor that bridged the gap between desktop design tools and mobile convenience. AppForType empowered millions of users to turn everyday photos into expressive stories using handcrafted typography and real-world textures.",
@@ -91,10 +93,10 @@ export const workCases: Record<string, WorkCase> = {
         // Не забудь добавить реальные скриншоты в папку /public/work/appfortype/
         images: [
             {
-                src: "/work/appfortype/appfortype-hero.png",
+                src: "/work/appfortype/appfortype-1.jpg",
                 alt: "AppForType editor interface showing typography layers",
                 width: 1600,
-                height: 900,
+                height: 987,
             },
             {
                 src: "/work/appfortype/aft-scanner.jpg",
@@ -118,7 +120,7 @@ export const workCases: Record<string, WorkCase> = {
     },
 
     explyt: {
-        order: 20,
+        order: 50,
         title: "Explyt",
         slug: "explyt",
         description:
@@ -192,7 +194,7 @@ export const workCases: Record<string, WorkCase> = {
     },
 
     "tra-robotics": {
-        order: 30,
+        order: 40,
         title: "TRA Robotics",
         slug: "tra-robotics",
         description:
@@ -247,12 +249,13 @@ export const workCases: Record<string, WorkCase> = {
     },
 
     fuelet: {
-        order: 40,
-        title: "Fuelet",
+        order: 20,
+        title: "Fuelet Wallet",
         slug: "fuelet",
         description:
             "Fintech product designed around clarity, trust, and simple user flows.",
         tags: ["Fintech", "Product"],
+        avatar: "/work/fuelet.svg",
         heroKicker: "Fintech UX",
         heroSummary:
             "A fintech experience focused on clarity, trust, and guided flows for non-technical users.",
@@ -316,12 +319,13 @@ export const workCases: Record<string, WorkCase> = {
     },
 
     jungle: {
-        order: 50,
-        title: "Jungle",
+        order: 30,
+        title: "Jungle Robotics",
         slug: "jungle",
         description:
             "Lightweight productivity and automation system aimed at simplifying daily workflows.",
         tags: ["Productivity", "Automation"],
+        avatar: "/work/jungle.svg",
         heroKicker: "Productivity & automation",
         heroSummary:
             "A tool for simplifying daily work through structured, lightweight automation.",
@@ -353,6 +357,32 @@ export const workCases: Record<string, WorkCase> = {
                 title: "Outcome",
                 body:
                     "The result was a tool that made automation feel more like configuring helpful behaviors than writing logic.",
+            },
+        ],
+        images: [
+            {
+                src: "/work/jungle/jungle-robotics-1.jpg",
+                alt: "Jungle Robotics interface showing automation flows",
+                width: 1920,
+                height: 1185,
+            },
+            {
+                src: "/work/jungle/jungle-robotics-2.jpg",
+                alt: "Jungle Robotics interface showing automation flows",
+                width: 1920,
+                height: 1185,
+            },
+            {
+                src: "/work/fuelet/fuelet-onboarding.png",
+                alt: "Fuelet onboarding flow with clear steps",
+                width: 1600,
+                height: 900,
+            },
+            {
+                src: "/work/fuelet/fuelet-transfer-flow.png",
+                alt: "Fuelet money transfer flow with guided confirmations",
+                width: 1600,
+                height: 900,
             },
         ],
     },
@@ -397,6 +427,32 @@ export const workCases: Record<string, WorkCase> = {
                     "The result was a cohesive identity that could be applied to interfaces, websites, decks, and communication without losing its core idea.",
             },
         ],
+        images: [
+            {
+                src: "/work/fuelet/fuelet-branding.png",
+                alt: "Fuelet main dashboard with balances and recent activity",
+                width: 1600,
+                height: 900,
+            },
+            {
+                src: "/work/fuelet/fuelet-dashboard.png",
+                alt: "Fuelet main dashboard with balances and recent activity",
+                width: 1600,
+                height: 900,
+            },
+            {
+                src: "/work/fuelet/fuelet-onboarding.png",
+                alt: "Fuelet onboarding flow with clear steps",
+                width: 1600,
+                height: 900,
+            },
+            {
+                src: "/work/fuelet/fuelet-transfer-flow.png",
+                alt: "Fuelet money transfer flow with guided confirmations",
+                width: 1600,
+                height: 900,
+            },
+        ],
     },
 };
 
@@ -418,9 +474,11 @@ export const workItems: WorkItem[] = Object.values(workCases)
 // Какие из них считаем избранными для главной
 export const featuredWorkSlugs: string[] = [
     "appfortype",
-    "explyt",
-    "tra-robotics",
     "fuelet",
+    "jungle",
+    "tra-robotics",
+    "explyt",
+    "esprito",
 ];
 
 // Избранные в том порядке, в каком указали в featuredWorkSlugs

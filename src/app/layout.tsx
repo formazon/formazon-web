@@ -37,7 +37,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                 <Header />
 
                 {/* Основной контент страницы */}
-                <main className="flex-1 pt-24 pb-20">
+                <main className="flex-1 pt-[88px] pb-20">
                     {children}
                 </main>
 

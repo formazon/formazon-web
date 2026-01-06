@@ -3,9 +3,11 @@
 :root {
     --background: #ffffff;
     --foreground: #272727;        /* Black */
+    --black: #272727;             /* Black color for borders, etc. */
 
     --surface: #ffffff;           /* карточки, хедер */
     --surface-muted: #f3f4f6;     /* slightly gray surface */
+    --tag-surface: #EBECF0;       /* tag background */
 
     --border-subtle: #e5e7eb;     /* light border */
     --accent: #6366f1;            /* indigo-500 */
@@ -17,10 +19,11 @@
 .dark {
     --background: #272727;        /* Black */
     --foreground: #ffffff;        /* White */
+    --black: #272727;             /* Black color for borders, etc. */
 
     --surface: #272727;           /* почти фон, но можно поднять */
     --surface-muted: #1a1a1d;     /* zinc-950-ish */
-
+    --tag-surface: #1a1a1d;       /* tag background dark */
 
     --border-subtle: #27272a;     /* zinc-800 */
     --accent: #818cf8;            /* indigo-400 */
@@ -32,9 +35,11 @@
 @theme inline {
     --color-background: var(--background);
     --color-foreground: var(--foreground);
+    --color-black: var(--black);
 
     --color-surface: var(--surface);
     --color-surface-muted: var(--surface-muted);
+    --color-tag-surface: var(--tag-surface);
 
     --color-border-subtle: var(--border-subtle);
 
@@ -49,8 +54,10 @@
     :root:not(.dark):not(.light) {
         --background: #272727;
         --foreground: #ffffff;
+        --black: #272727;
         --surface: #272727;
         --surface-muted: #1a1a1d;
+        --tag-surface: #1a1a1d;
         --border-subtle: #27272a;
         --accent: #818cf8;
         --accent-soft: rgba(129, 140, 248, 0.16);

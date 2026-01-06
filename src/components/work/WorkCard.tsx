@@ -16,14 +16,14 @@ export function WorkCard({ item }: WorkListCardProps) {
         <Link
             href={`/work/${item.slug}`}
             className="
-                group flex flex-col overflow-hidden rounded-lg
+                group flex flex-col overflow-hidden
                 bg-surface transition-all duration-300
                 hover:border-text-muted/50
             "
         >
             {/* Preview image */}
             {previewImage && (
-                <div className="relative aspect-[1.618/1] w-full overflow-hidden bg-surface-muted rounded-lg">
+                <div className="relative aspect-[1.618/1] w-full overflow-hidden bg-surface-muted rounded-sm">
                     <Image
                         src={previewImage.src}
                         alt={previewImage.alt}
@@ -39,7 +39,7 @@ export function WorkCard({ item }: WorkListCardProps) {
             <div className="flex flex-1 flex-col justify-between">
                 <div className="space-y-4">
                     {/* Title */}
-                    <h2 className="caption-medium mt-6">
+                    <h2 className="caption mt-6">
                         {item.title}
                     </h2>
 

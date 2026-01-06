@@ -9,12 +9,13 @@ export function Tag({ children, className = "" }: TagProps) {
     return (
         <span
             className={`
-                inline-flex items-center rounded-full 
-                bg-surface-muted
-                px-4 py-3
-                text-sm font-medium uppercase tracking-[0.04rem]
-                transition-colors duration-300
-                hover:bg-foreground hover:text-background
+                inline-flex items-center rounded-xs
+                bg-tag-surface
+                px-3 pt-[7px] pb-[7px]
+                label-medium
+                border border-transparent
+                transition-all duration-300
+                hover:bg-transparent hover:border-foreground
                 ${className}
             `}
         >

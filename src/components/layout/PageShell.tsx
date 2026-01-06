@@ -1,6 +1,7 @@
 // src/components/layout/PageShell.tsx
 import { ReactNode } from "react";
 import { Container } from "./Container";
+import { QuadroDot } from "@/components/ui/QuadroDot";
 
 interface PageShellProps {
     children: ReactNode;
@@ -21,6 +22,7 @@ export function PageShell({
                 `}
             >
                 {children}
+                <QuadroDot />
             </div>
         </Container>
     );
