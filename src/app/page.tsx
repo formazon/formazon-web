@@ -1,7 +1,6 @@
 // src/app/page.tsx
 import type { Metadata } from "next";
 import { HomeHero } from "@/components/home/HomeHero";
-import { HomeIntroStrip } from "@/components/home/HomeIntroStrip";
 import { SelectedWorkSection } from "@/components/home/SelectedWorkSection";
 import { AboutPreviewSection } from "@/components/home/AboutPreviewSection";
 import { JournalPreviewSection } from "@/components/home/JournalPreviewSection";
@@ -18,13 +17,11 @@ export default function HomePage() {
     return (
         <PageShell>
             <HomeHero
-                title="I build digital products, brands, and interfaces."
-                subtitle="I’m Farid Rafikov — a product founder and designer working across apps, AI platforms, and robotics-driven systems."
-                primaryCta={{ label: "See my work", href: "/work" }}
-                secondaryCta={{ label: "Work with me", href: "/contact" }}
-                highlightLine="Previously building: TRA Robotics, AppForType, Explyt, Fuelet, Jungle, Esprito"
+                title="Build, Product, Shine"
+                subtitle={`I'm Farid Rafikov — a product founder and designer working across apps, AI platforms, and robotics-driven systems.
+
+I design and build digital products that combine clarity, structure, and thoughtful engineering. My work ranges from creative mobile apps and enterprise AI tools to robotics interfaces, brand systems, and product strategy.`}
             />
-            <HomeIntroStrip />
             <SelectedWorkSection />
             <ServicesHomeSection />
             <AboutPreviewSection />

@@ -6,7 +6,6 @@ import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { journalEnabled } from "@/lib/config/features";
 import { ThemeToggle } from "./ThemeToggle";
-import { MenuItem } from "@/components/ui/MenuItem";
 
 const navItems = [
     { href: "/work", label: "Work" },
@@ -39,35 +38,65 @@ export function Header() {
 
     return (
         <header className="relative bg-surface/80 backdrop-blur z-50">
-            {/* Основной контейнер с justify-between разнесет ЛЕВУЮ и ПРАВУЮ группы по краям */}
             <div className="mx-auto flex h-16 items-center justify-between gutter">
+                {/* ЛЕВАЯ ГРУППА: Логотип */}
+                <Link
+                    href="/"
+                    className="label text-foreground hover:opacity-70 transition-opacity"
+                    onClick={() => setIsOpen(false)}
+                >
+                    formazon.com
+                </Link>
 
-                {/* --- ЛЕВАЯ ГРУППА: Логотип + Десктопное Меню --- */}
-                <div className="flex items-center gap-6"> {/* gap-6 отделит лого от меню */}
-                    {/* Logo */}
-                    <Link
-                        href="/"
-                        className="text-sm font-semibold tracking-[0.2em] uppercase text-foreground z-50"
-                        onClick={() => setIsOpen(false)}
-                    >
-                        F
-                    </Link>
-
-                    {/* Desktop Navigation */}
-                    <nav className="hidden items-center gap-1 sm:flex">
-                        {activeNavItems.map((item) => (
-                            <MenuItem
+                {/* ЦЕНТР: Десктопное Меню */}
+                <nav className="hidden items-center gap-6 sm:flex">
+                    {activeNavItems.map((item) => {
+                        const isActive = pathname === item.href;
+                        return (
+                            <Link
                                 key={item.href}
                                 href={item.href}
-                                label={item.label}
-                                isActive={pathname === item.href}
-                            />
-                        ))}
-                    </nav>
-                </div>
+                                className={`
+                                    caption-medium text-foreground normal-case
+                                    transition-all duration-200
+                                    hover:underline
+                                    ${isActive ? "underline" : ""}
+                                `}
+                            >
+                                {item.label}
+                            </Link>
+                        );
+                    })}
+                </nav>
 
-                {/* --- ПРАВАЯ ГРУППА: Тема + Мобильный бургер --- */}
-                <div className="flex items-center gap-2">
+                {/* ПРАВАЯ ГРУППА: Соцсети + Тема + Мобильный бургер */}
+                <div className="flex items-center gap-4">
+                    {/* Social Links - Desktop */}
+                    <div className="hidden items-center gap-6 sm:flex">
+                        <Link
+                            href="https://x.com/formazon"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="label text-foreground hover:opacity-70 transition-opacity"
+                        >
+                            X
+                        </Link>
+                        <Link
+                            href="https://www.linkedin.com/in/faridrafikov/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="label text-foreground hover:opacity-70 transition-opacity"
+                        >
+                            LinkedIn
+                        </Link>
+                        <Link
+                            href="mailto:mail@formazon.com"
+                            className="label text-foreground hover:opacity-70 transition-opacity"
+                        >
+                            Email
+                        </Link>
+                    </div>
+
                     {/* Theme toggle */}
                     <ThemeToggle />
 
@@ -108,6 +137,31 @@ export function Header() {
                                 </Link>
                             );
                         })}
+                        {/* Mobile Social Links */}
+                        <div className="flex flex-col gap-2 mt-4 pt-4 border-t border-border-subtle">
+                            <Link
+                                href="https://x.com/formazon"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="label text-foreground px-4 py-2"
+                            >
+                                X
+                            </Link>
+                            <Link
+                                href="https://www.linkedin.com/in/faridrafikov/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="label text-foreground px-4 py-2"
+                            >
+                                LinkedIn
+                            </Link>
+                            <Link
+                                href="mailto:mail@formazon.com"
+                                className="label text-foreground px-4 py-2"
+                            >
+                                Email
+                            </Link>
+                        </div>
                     </nav>
                 </div>
             )}

@@ -1,0 +1,28 @@
+export function LightIcon({ className }: { className?: string }) {
+    return (
+        <svg
+            width="32"
+            height="32"
+            viewBox="0 0 32 32"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className={className}
+        >
+            <path
+                d="M11.052 11.0408C12.1549 9.9379 13.5343 9.28042 14.9671 9.06699C15.1696 9.03682 15.2744 9.29541 15.1296 9.44022C13.0776 11.4921 13.0776 14.8188 15.1296 16.8707C17.1815 18.9224 20.5085 18.9225 22.5604 16.8707C22.7052 16.7259 22.9632 16.8301 22.9331 17.0327C22.7198 18.4656 22.0628 19.8451 20.9597 20.9481C18.2237 23.684 13.7879 23.684 11.052 20.9481C8.31601 18.2123 8.31601 13.7767 11.052 11.0408Z"
+                fill="currentColor"
+                stroke="currentColor"
+            />
+            <rect
+                x="14"
+                y="28"
+                width="2"
+                height="4"
+                rx="1"
+                transform="rotate(-90 14 28)"
+                fill="currentColor"
+            />
+        </svg>
+    );
+}
+

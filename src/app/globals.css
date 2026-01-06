@@ -2,7 +2,7 @@
 
 :root {
     --background: #ffffff;
-    --foreground: #020617;        /* slate-950 */
+    --foreground: #272727;        /* Black */
 
     --surface: #ffffff;           /* карточки, хедер */
     --surface-muted: #f3f4f6;     /* slightly gray surface */
@@ -15,10 +15,10 @@
 }
 
 .dark {
-    --background: #020617;        /* slate-950 */
-    --foreground: #e5e7eb;        /* zinc-200 */
+    --background: #272727;        /* Black */
+    --foreground: #ffffff;        /* White */
 
-    --surface: #020617;           /* почти фон, но можно поднять */
+    --surface: #272727;           /* почти фон, но можно поднять */
     --surface-muted: #1a1a1d;     /* zinc-950-ish */
 
 
@@ -47,10 +47,10 @@
 /* Fallback на system theme, если нет управляемой .dark/.light */
 @media (prefers-color-scheme: dark) {
     :root:not(.dark):not(.light) {
-        --background: #020617;
-        --foreground: #e5e7eb;
-        --surface: #020617;
-        --surface-muted: #09090b;
+        --background: #272727;
+        --foreground: #ffffff;
+        --surface: #272727;
+        --surface-muted: #1a1a1d;
         --border-subtle: #27272a;
         --accent: #818cf8;
         --accent-soft: rgba(129, 140, 248, 0.16);
@@ -60,9 +60,83 @@
 
 /* Базовые стили body */
 body {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: var(--font-plex-sans), Arial, Helvetica, sans-serif;
     @apply bg-background text-foreground antialiased;
 }
 
 .gutter { @apply px-4 sm:px-16; }
+
+/* Typography Styles */
+
+/* IBM Plex Sans */
+.h1 {
+    font-family: var(--font-plex-sans);
+    font-size: 64px;
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+.h2 {
+    font-family: var(--font-plex-sans);
+    font-size: 48px;
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+.h3 {
+    font-family: var(--font-plex-sans);
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+.subtitle {
+    font-family: var(--font-plex-sans);
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 1.4;
+}
+
+.subtitle-medium {
+    font-family: var(--font-plex-sans);
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+.body {
+    font-family: var(--font-plex-sans);
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+/* IBM Plex Mono */
+.caption-medium {
+    font-family: var(--font-plex-mono);
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+.caption {
+    font-family: var(--font-plex-mono);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.4;
+}
+
+.label-medium {
+    font-family: var(--font-plex-mono);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+.label {
+    font-family: var(--font-plex-mono);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.4;
+}
 

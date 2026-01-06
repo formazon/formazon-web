@@ -3,35 +3,45 @@ import Link from "next/link";
 
 export function Footer() {
     return (
-        <footer className="border-t border-border-subtle bg-surface">
-            <div className="mx-auto flex flex-col gap-4 gutter py-6 text-xs text-text-muted sm:flex-row sm:items-center sm:justify-between">
+        <footer className="bg-surface">
+            <div className="mx-auto flex h-16 items-center justify-between gutter">
+                {/* ЛЕВАЯ ГРУППА: Privacy Policy */}
+                <Link
+                    href="/privacy-policy"
+                    className="label text-foreground hover:opacity-70 transition-opacity"
+                >
+                    Privacy Policy
+                </Link>
 
-                {/* Copyright */}
-                <p className="text-text-muted">
+                {/* ЦЕНТР: Copyright */}
+                <p className="label-medium text-foreground">
                     © {new Date().getFullYear()} Formazon. All rights reserved.
                 </p>
 
-                {/* Links */}
-                <div className="flex gap-4">
+                {/* ПРАВАЯ ГРУППА: Social Links */}
+                <div className="flex items-center gap-6">
                     <Link
-                        href="/contact"
-                        className="transition-colors hover:text-foreground"
+                        href="https://x.com/formazon"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="label text-foreground hover:opacity-70 transition-opacity"
                     >
-                        Contact
+                        X
                     </Link>
-
-                    <a
-                        href="mailto:you@example.com"
-                        className="transition-colors hover:text-foreground"
+                    <Link
+                        href="https://www.linkedin.com/in/faridrafikov/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="label text-foreground hover:opacity-70 transition-opacity"
+                    >
+                        LinkedIn
+                    </Link>
+                    <Link
+                        href="mailto:mail@formazon.com"
+                        className="label text-foreground hover:opacity-70 transition-opacity"
                     >
                         Email
-                    </a>
-                      <a
-                        href="https://linkedin.com/..."
-                        className="transition-colors hover:text-foreground"
-                      >
-                        LinkedIn
-                      </a>
+                    </Link>
                 </div>
             </div>
         </footer>

@@ -2,7 +2,8 @@
 
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
-import { Moon, Sun } from "lucide-react";
+import { DarkIcon } from "@/components/ui/DarkIcon";
+import { LightIcon } from "@/components/ui/LightIcon";
 
 export function ThemeToggle() {
     const { theme, setTheme } = useTheme();
@@ -14,7 +15,7 @@ export function ThemeToggle() {
     // Чтобы избежать сдвига верстки (layout shift) при загрузке,
     // можно вернуть заглушку того же размера, вместо null.
     if (!mounted) {
-        return <div className="h-8 w-8" />;
+        return <div className="h-10 w-10" />;
     }
 
     const isDark = theme === "dark";
@@ -24,16 +25,16 @@ export function ThemeToggle() {
             onClick={() => setTheme(isDark ? "light" : "dark")}
             aria-label="Toggle theme"
             className="
-                rounded-lg p-2
+                rounded-lg p-1
                 text-text-muted
                 transition-colors
-                hover:bg-surface-muted hover:text-foreground
+                hover:text-foreground
             "
         >
             {isDark ? (
-                <Sun className="h-4 w-4" />
+                <DarkIcon className="h-8 w-8" />
             ) : (
-                <Moon className="h-4 w-4" />
+                <LightIcon className="h-8 w-8" />
             )}
         </button>
     );

@@ -5,7 +5,12 @@ module.exports = {
         "./src/**/*.{ts,tsx}",
     ],
     theme: {
-        extend: {},
+        extend: {
+            fontFamily: {
+                "plex-sans": ["var(--font-plex-sans)", "Arial", "Helvetica", "sans-serif"],
+                "plex-mono": ["var(--font-plex-mono)", "monospace"],
+            },
+        },
     },
     plugins: [],
 };
