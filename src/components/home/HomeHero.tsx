@@ -27,7 +27,7 @@ export function HomeHero({
     return (
         <section className="mb-16 space-y-8">
             <div className="space-y-6">
-                <h1 className="h1">
+                <h1 className="h1 max-w-4xl">
                     {title}
                 </h1>
                 <div className="space-y-4">
@@ -40,34 +40,23 @@ export function HomeHero({
                 
                 {/* Stacked Project Logos */}
                 <div 
-                    className="relative mt-8 h-16 w-[240px]"
+                    className="relative mt-8 h-16 w-60"
                     onMouseEnter={() => setIsHovered(true)}
                     onMouseLeave={() => setIsHovered(false)}
                 >
-                    {/* White circular background with border */}
-                    <div 
-                        className="absolute top-1/2 -translate-y-1/2 w-[64px] h-[64px] rounded-full bg-white transition-all duration-300 ease-out"
+                {projects.map((project, index) => (
+                    <Link
+                        key={project.slug}
+                        href={`/work/${project.slug}`}
+                        className="absolute top-0 left-0 w-16 h-16 transition-all duration-300 ease-out"
                         style={{
-                            left: isHovered 
-                                ? `${32 + (projects.length - 1) * 40}px` 
-                                : `${32 + (projects.length - 1) * 25}px`,
-                            transform: 'translate(-50%, -50%)',
-                            zIndex: 0,
-                            boxShadow: '0 0 0 2px white',
+                            transform: isHovered 
+                                ? `translateX(${index * 80}px)` 
+                                : `translateX(${index * 50}px)`,
+                            zIndex: index + 1,
                         }}
-                    />
-                    {projects.map((project, index) => (
-                        <Link
-                            key={project.slug}
-                            href={`/work/${project.slug}`}
-                            className="absolute top-0 left-0 w-16 h-16 transition-all duration-300 ease-out"
-                            style={{
-                                transform: isHovered 
-                                    ? `translateX(${index * 80}px)` 
-                                    : `translateX(${index * 50}px)`,
-                                zIndex: index + 1,
-                            }}
-                        >
+                    >
+                        <div className="relative w-16 h-16 rounded-full bg-white border-2 border-white flex items-center justify-center">
                             <Image
                                 src={project.logo}
                                 alt={project.slug}
@@ -75,8 +64,9 @@ export function HomeHero({
                                 height={64}
                                 className="w-16 h-16"
                             />
-                        </Link>
-                    ))}
+                        </div>
+                    </Link>
+                ))}
                 </div>
             </div>
         </section>

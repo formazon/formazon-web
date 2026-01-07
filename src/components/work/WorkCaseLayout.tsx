@@ -7,6 +7,7 @@ import {WorkCard} from "@/components/work/WorkCard";
 import { Tag } from "@/components/ui/Tag";
 import { Shaper } from "@/components/ui/Shaper";
 import { H2Index } from "@/components/ui/H2Index";
+import { QuadroDot } from "../ui/QuadroDot";
 
 type WorkCaseLayoutProps = {
     workCase: WorkCase;
@@ -41,16 +42,16 @@ export function WorkCaseLayout({ workCase, nextCase }: WorkCaseLayoutProps) {
             {/* Hero */}
             <header className="mb-20 space-y-4">
                 <div className="flex items-start gap-1">
-                    <h1 className="h1 mb-6">
+                    <h1 className="h1 mb-6 mr-2">
                         {title}
                     </h1>
                     {avatar && (
                         <Image
                             src={avatar}
                             alt={`${title} avatar`}
-                            width={32}
-                            height={32}
-                            className="w-8 h-8 shrink-0 rounded"
+                            width={64}
+                            height={64}
+                            className="w-12 h-12 shrink-0 rounded"
                         />
                     )}
                 </div>
@@ -76,7 +77,7 @@ export function WorkCaseLayout({ workCase, nextCase }: WorkCaseLayoutProps) {
             </header>
 
             {/* Единый контейнер с контентом */}
-            <div className="space-y-8">
+            <div className="space-y-8 mb-20">
                 {/* Первые два изображения на всю ширину */}
                 {firstTwoImages.map((image, index) => (
                     <div key={image.src} className="mb-20">
@@ -112,11 +113,13 @@ export function WorkCaseLayout({ workCase, nextCase }: WorkCaseLayoutProps) {
                 )}
             </div>
 
+            <QuadroDot />
+
             {/* НОВАЯ СЕКЦИЯ: Read Next */}
             {nextCase && (
-                <section className="mt-24 border-t border-border-subtle pt-12 pb-20">
-                    <div className="mb-20 flex items-baseline justify-between">
-                        <h2 className="label-medium uppercase tracking-[0.2em] text-text-muted">
+                <section className="mt-10 pt-12 pb-20">
+                    <div className="mb-10 flex items-baseline justify-between">
+                        <h2 className="label-medium">
                             Up Next
                         </h2>
                         <Link

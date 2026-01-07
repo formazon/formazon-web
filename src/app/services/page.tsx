@@ -34,7 +34,7 @@ export default function ServicesPage() {
                 {services.map((service) => (
                     <article
                         key={service.title}
-                        className="flex flex-col rounded-2xl border border-border-subtle bg-surface-muted p-5 transition-colors hover:border-text-muted/30"
+                        className="flex flex-col rounded-sm border border-border-subtle bg-surface-muted p-5 transition-colors hover:border-text-muted/30"
                     >
                         <header className="mb-3 space-y-1">
                             <h2 className="subtitle-medium">
@@ -62,7 +62,7 @@ export default function ServicesPage() {
             </section>
 
             {/* How we can work together */}
-            <section className="border-t border-border-subtle pt-10">
+            <section className="pt-10">
                 <h2 className="mb-6 label-medium">
                     How I usually work
                 </h2>
@@ -93,7 +93,7 @@ export default function ServicesPage() {
                     </div>
                 </div>
 
-                <div className="mt-8">
+                <div className="mt-8 mb-10">
                     <Button href="/contact" variant="outline">
                         Talk about a project
                     </Button>

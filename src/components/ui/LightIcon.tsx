@@ -13,15 +13,6 @@ export function LightIcon({ className }: { className?: string }) {
                 fill="currentColor"
                 stroke="currentColor"
             />
-            <rect
-                x="14"
-                y="28"
-                width="2"
-                height="4"
-                rx="1"
-                transform="rotate(-90 14 28)"
-                fill="currentColor"
-            />
         </svg>
     );
 }

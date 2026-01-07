@@ -17,7 +17,7 @@ export default function HomePage() {
     return (
         <PageShell>
             <HomeHero
-                title="Build, Product, Shine"
+                title="Design, Product, and Growth"
                 subtitle={`I'm Farid Rafikov — a product founder and designer working across apps, AI platforms, and robotics-driven systems.
 
 I design and build digital products that combine clarity, structure, and thoughtful engineering. My work ranges from creative mobile apps and enterprise AI tools to robotics interfaces, brand systems, and product strategy.`}

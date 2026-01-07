@@ -44,7 +44,7 @@ export default function WorkPage() {
 
             {/* Сетка кейсов */}
             <section>
-                <div className="grid grid-cols-1 gap-x-4 gap-y-20 md:grid-cols-2">
+                <div className="grid grid-cols-1 gap-x-4 gap-y-20 md:grid-cols-2 mb-20">
                     {items}
                 </div>
             </section>
