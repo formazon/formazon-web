@@ -8,8 +8,8 @@ export function ServicesHomeSection() {
     return (
         <section className="mb-16 space-y-6">
             <QuadroDot />
-            <H2Index index={1}>
-                What I do
+            <H2Index index={3}>
+                Services
             </H2Index>
 
             <div className="grid gap-6 md:grid-cols-2">

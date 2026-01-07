@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import type { JournalPost } from "@/lib/content/journal";
 import { journalEntries } from "@/lib/content/journal";
+import { Tag } from "../ui/Tag";
 
 type Props = {
     post: JournalPost;
@@ -16,11 +17,11 @@ export function JournalPostCard({ post }: Props) {
     return (
         <Link
             href={`/journal/${post.slug}`}
-            className="group flex flex-col overflow-hidden rounded-2xl border border-border-subtle bg-surface-muted transition hover:bg-surface"
+            className="group flex flex-col overflow-hidden transition hover:bg-surface"
         >
             {/* Cover image */}
             {coverImage && (
-                <div className="relative aspect-[16/9] w-full overflow-hidden">
+                <div className="relative aspect-[1.618/1] w-full overflow-hidden rounded-sm">
                     <Image
                         src={coverImage.src}
                         alt={coverImage.alt}
@@ -32,28 +33,34 @@ export function JournalPostCard({ post }: Props) {
             )}
 
             {/* Text content */}
-            <div className="flex flex-1 flex-col justify-between p-5">
+            <div 
+                className="flex flex-1 flex-col justify-between py-5 px-0 border-0"
+                style={{ boxSizing: 'content-box', borderColor: 'transparent', borderStyle: 'none', borderImage: 'none' }}
+            >
                 <div className="space-y-2">
-                    <p className="label text-text-muted">
-                        {post.tag ?? "Journal"}
-                    </p>
-
-                    <h3 className="subtitle-medium text-foreground group-hover:text-foreground">
+                    <h3 className="subtitle-medium">
                         {post.title}
                     </h3>
 
-                    <p className="body text-text-muted">
+                    <p className="text-text-muted">
                         {post.excerpt}
                     </p>
                 </div>
 
-                <p className="mt-4 label text-text-muted">
-                    {new Date(post.date).toLocaleDateString("en-US", {
-                        month: "short",
-                        day: "numeric",
-                        year: "numeric",
-                    })}
-                </p>
+                <div className="mt-4 flex items-center gap-4">
+                    {post.tag && (
+                        <Tag>{post.tag ?? "Journal"}</Tag>
+                    )}
+                    <p className="label text-text-muted">
+                        {new Date(post.date).toLocaleDateString("en-US", {
+                            month: "short",
+                            day: "numeric",
+                            year: "numeric",
+                        })}
+                    </p>
+                </div>
+
+
             </div>
         </Link>
     );

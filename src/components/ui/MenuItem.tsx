@@ -14,7 +14,7 @@ export function MenuItem({ href, label, isActive, onClick }: MenuItemProps) {
             onClick={onClick}
             className={`
                 bg-surface-muted px-4 py-2 rounded-full 
-                text-xs font-medium uppercase 
+                label-medium uppercase 
                 transition-all duration-200
                 hover:bg-foreground hover:text-background
                 ${isActive

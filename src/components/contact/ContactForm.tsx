@@ -26,8 +26,8 @@ export function ContactForm() {
 
     if (status === "success") {
         return (
-            <div className="rounded-2xl border border-green-500/20 bg-green-500/10 p-6 text-sm text-green-500">
-                <p className="font-medium">{form.successMessage}</p>
+            <div className="rounded-2xl border border-green-500/20 bg-green-500/10 p-6 caption text-green-500">
+                <p className="caption-medium">{form.successMessage}</p>
             </div>
         );
     }
@@ -36,7 +36,7 @@ export function ContactForm() {
         <form onSubmit={handleSubmit} className="space-y-4">
             {/* Name Input */}
             <div className="space-y-1.5">
-                <label htmlFor="name" className="text-xs font-medium text-text-muted">
+                <label htmlFor="name" className="label-medium text-text-muted">
                     {form.nameLabel}
                 </label>
                 <input
@@ -45,13 +45,13 @@ export function ContactForm() {
                     id="name"
                     name="name"
                     placeholder={form.namePlaceholder}
-                    className="w-full rounded-lg border border-border-subtle bg-surface px-3 py-2 text-sm text-foreground placeholder:text-text-muted/50 focus:border-foreground focus:outline-none focus:ring-1 focus:ring-foreground transition-colors"
+                    className="w-full rounded-lg border border-border-subtle bg-surface px-3 py-2 caption text-foreground placeholder:text-text-muted/50 focus:border-foreground focus:outline-none focus:ring-1 focus:ring-foreground transition-colors"
                 />
             </div>
 
             {/* Email Input */}
             <div className="space-y-1.5">
-                <label htmlFor="email" className="text-xs font-medium text-text-muted">
+                <label htmlFor="email" className="label-medium text-text-muted">
                     {form.emailLabel}
                 </label>
                 <input
@@ -60,13 +60,13 @@ export function ContactForm() {
                     id="email"
                     name="email"
                     placeholder={form.emailPlaceholder}
-                    className="w-full rounded-lg border border-border-subtle bg-surface px-3 py-2 text-sm text-foreground placeholder:text-text-muted/50 focus:border-foreground focus:outline-none focus:ring-1 focus:ring-foreground transition-colors"
+                    className="w-full rounded-lg border border-border-subtle bg-surface px-3 py-2 caption text-foreground placeholder:text-text-muted/50 focus:border-foreground focus:outline-none focus:ring-1 focus:ring-foreground transition-colors"
                 />
             </div>
 
             {/* Message Input */}
             <div className="space-y-1.5">
-                <label htmlFor="message" className="text-xs font-medium text-text-muted">
+                <label htmlFor="message" className="label-medium text-text-muted">
                     {form.messageLabel}
                 </label>
                 <textarea
@@ -75,7 +75,7 @@ export function ContactForm() {
                     name="message"
                     rows={5}
                     placeholder={form.messagePlaceholder}
-                    className="w-full resize-none rounded-lg border border-border-subtle bg-surface px-3 py-2 text-sm text-foreground placeholder:text-text-muted/50 focus:border-foreground focus:outline-none focus:ring-1 focus:ring-foreground transition-colors"
+                    className="w-full resize-none rounded-lg border border-border-subtle bg-surface px-3 py-2 caption text-foreground placeholder:text-text-muted/50 focus:border-foreground focus:outline-none focus:ring-1 focus:ring-foreground transition-colors"
                 />
             </div>
 
@@ -87,7 +87,7 @@ export function ContactForm() {
             </div>
 
             {status === "error" && (
-                <p className="text-xs text-red-500">{form.errorMessage}</p>
+                <p className="label text-red-500">{form.errorMessage}</p>
             )}
         </form>
     );

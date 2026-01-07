@@ -17,7 +17,7 @@ export function Button({
                            ...props
                        }: ButtonProps) {
     // 1. Базовые стили (размер, шрифт, скругление, центровка)
-    const baseStyles = "inline-flex items-center justify-center rounded-full px-5 py-2 text-xs font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-foreground/20 disabled:opacity-50 disabled:pointer-events-none";
+    const baseStyles = "inline-flex items-center justify-center rounded-full px-5 py-2 label-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-foreground/20 disabled:opacity-50 disabled:pointer-events-none";
 
     // 2. Варианты стилей на токенах
     const variants = {

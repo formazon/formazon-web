@@ -17,15 +17,15 @@ export default function ContactPage() {
         <PageShell>
             {/* Intro */}
             <section className="mb-12 space-y-4">
-                <p className="text-xs font-medium uppercase tracking-[0.2em] text-text-muted">
+                <p className="caption">
                     {intro.label}
                 </p>
 
-                <h1 className="max-w-3xl text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+                <h1 className="h1 max-w-4xl">
                     {intro.title}
                 </h1>
 
-                <p className="max-w-2xl text-sm leading-relaxed text-text-muted">
+                <p className="max-w-2xl">
                     {intro.description}
                 </p>
             </section>
@@ -47,7 +47,7 @@ export default function ContactPage() {
                     <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-1">
                         {/* Email */}
                         <div className="space-y-3">
-                            <p className="text-xs font-medium uppercase tracking-[0.2em] text-text-muted">
+                            <p className="label-medium">
                                 {direct.label}
                             </p>
 
@@ -55,22 +55,22 @@ export default function ContactPage() {
                             <TextLink
                                 href={`mailto:${direct.email}`}
                                 external={true} // mailto считается внешней ссылкой (нужен <a>, а не <Link>)
-                                className="text-sm"
+                                className="caption"
                             >
                                 {direct.email}
                             </TextLink>
 
-                            <p className="text-xs text-text-muted leading-relaxed">
+                            <p className="label">
                                 {direct.description}
                             </p>
                         </div>
 
                         {/* Socials */}
                         <div className="space-y-3">
-                            <p className="text-xs font-medium uppercase tracking-[0.2em] text-text-muted">
+                            <p className="label-medium">
                                 {socials.label}
                             </p>
-                            <ul className="space-y-2 text-sm text-foreground">
+                            <ul className="space-y-2 caption">
                                 {socials.links.map((link) => {
                                     // Проверяем, внешняя ли ссылка (начинается с http)
                                     const isExternal = link.href.startsWith("http");
@@ -92,22 +92,22 @@ export default function ContactPage() {
                     </div>
 
                     {/* Guidelines (What to include) */}
-                    <div className="border-t border-border-subtle pt-8 space-y-4 text-sm">
-                        <p className="text-xs font-medium uppercase tracking-[0.2em] text-text-muted">
+                    <div className="border-t border-border-subtle pt-8 space-y-4">
+                        <p className="label-medium">
                             {guidelines.label}
                         </p>
 
-                        <p className="text-text-muted">
+                        <p className="caption">
                             {guidelines.intro}
                         </p>
 
-                        <ul className="space-y-1 text-text-muted text-xs">
+                        <ul className="space-y-1 label">
                             {guidelines.points.map((point) => (
                                 <li key={point}>• {point}</li>
                             ))}
                         </ul>
 
-                        <p className="pt-2 text-[11px] text-text-muted/70 italic">
+                        <p className="pt-2 label">
                             {guidelines.privacy}
                         </p>
                     </div>

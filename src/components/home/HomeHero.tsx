@@ -27,12 +27,12 @@ export function HomeHero({
     return (
         <section className="mb-16 space-y-8">
             <div className="space-y-6">
-                <h1 className="h1 text-foreground">
+                <h1 className="h1">
                     {title}
                 </h1>
                 <div className="space-y-4">
                     {paragraphs.map((paragraph, index) => (
-                        <p key={index} className="subtitle text-foreground max-w-3xl">
+                        <p key={index} className="subtitle max-w-3xl">
                             {paragraph.trim()}
                         </p>
                     ))}

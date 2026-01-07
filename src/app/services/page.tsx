@@ -15,13 +15,13 @@ export default function ServicesPage() {
         <PageShell>
             {/* Intro / hero */}
             <section className="mb-12 space-y-4">
-                <p className="text-xs font-medium uppercase tracking-[0.2em] text-text-muted">
+                <p className="caption">
                     Services
                 </p>
-                <h1 className="max-w-3xl text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+                <h1 className="h1 max-w-4xl">
                     I help shape products, interfaces, and brands around real constraints.
                 </h1>
-                <p className="max-w-2xl text-sm leading-relaxed text-text-muted">
+                <p className="max-w-2xl">
                     Most of my work happens at the intersection of product definition,
                     interface design, and narrative. I usually join as a founder, product
                     partner, or design lead — to bring focus to what&apos;s being built and
@@ -37,19 +37,19 @@ export default function ServicesPage() {
                         className="flex flex-col rounded-2xl border border-border-subtle bg-surface-muted p-5 transition-colors hover:border-text-muted/30"
                     >
                         <header className="mb-3 space-y-1">
-                            <h2 className="text-sm font-semibold text-foreground">
+                            <h2 className="subtitle-medium">
                                 {service.title}
                             </h2>
                             {service.subtitle && (
-                                <p className="text-xs text-text-muted">{service.subtitle}</p>
+                                <p className="label">{service.subtitle}</p>
                             )}
                         </header>
 
-                        <p className="mb-4 text-sm leading-relaxed text-text-muted">
+                        <p className="mb-4">
                             {service.description}
                         </p>
 
-                        <ul className="mt-auto space-y-1.5 text-xs text-text-muted">
+                        <ul className="mt-auto space-y-1.5 label">
                             {service.bullets.map((bullet) => (
                                 <li key={bullet} className="flex gap-2 items-start">
                                     <span className="mt-[6px] h-[3px] w-[12px] shrink-0 rounded-full bg-border-subtle" />
@@ -63,30 +63,30 @@ export default function ServicesPage() {
 
             {/* How we can work together */}
             <section className="border-t border-border-subtle pt-10">
-                <h2 className="mb-6 text-xs font-medium uppercase tracking-[0.2em] text-text-muted">
+                <h2 className="mb-6 label-medium">
                     How I usually work
                 </h2>
 
-                <div className="grid gap-8 md:grid-cols-3 text-xs text-text-muted">
+                <div className="grid gap-8 md:grid-cols-3 label">
                     <div className="space-y-2">
-                        <p className="font-medium text-foreground">Focused projects</p>
-                        <p className="leading-relaxed">
+                        <p className="label-medium">Focused projects</p>
+                        <p className="body">
                             A clear scope and timeline around a specific outcome: a new
                             product, redesign, investor deck, or a key release.
                         </p>
                     </div>
 
                     <div className="space-y-2">
-                        <p className="font-medium text-foreground">Ongoing product partner</p>
-                        <p className="leading-relaxed">
+                        <p className="label-medium">Ongoing product partner</p>
+                        <p className="body">
                             Long-term collaboration where I help shape direction, interfaces,
                             and story as the product evolves.
                         </p>
                     </div>
 
                     <div className="space-y-2">
-                        <p className="font-medium text-foreground">Early conversations</p>
-                        <p className="leading-relaxed">
+                        <p className="label-medium">Early conversations</p>
+                        <p className="body">
                             If you&apos;re not sure about the scope yet, we can start with a short
                             call and a lightweight audit of what you already have.
                         </p>

@@ -16,13 +16,13 @@ export function JournalPreviewSection() {
             <QuadroDot />
             {/* Header */}
             <div className="flex items-baseline justify-between gap-4">
-                <H2Index index={1}>
+                <H2Index index={4}>
                     Journal
                 </H2Index>
 
                 <Link
                     href="/journal"
-                    className="text-xs text-text-muted underline underline-offset-4 transition-colors hover:text-foreground"
+                    className="label underline underline-offset-4 transition-colors hover:text-foreground"
                 >
                     View all
                 </Link>

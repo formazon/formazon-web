@@ -42,7 +42,7 @@ export function Header() {
                 {/* ЛЕВАЯ ГРУППА: Логотип */}
                 <Link
                     href="/"
-                    className="label text-foreground hover:opacity-70 transition-opacity"
+                    className="label hover:opacity-70 transition-opacity"
                     onClick={() => setIsOpen(false)}
                 >
                     formazon.com
@@ -57,7 +57,7 @@ export function Header() {
                                 key={item.href}
                                 href={item.href}
                                 className={`
-                                    caption-medium text-foreground normal-case
+                                    caption-medium normal-case
                                     transition-all duration-200
                                     hover:underline
                                     ${isActive ? "underline" : ""}
@@ -77,7 +77,7 @@ export function Header() {
                             href="https://x.com/formazon"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="label text-foreground hover:opacity-70 transition-opacity"
+                            className="label hover:opacity-70 transition-opacity"
                         >
                             X
                         </Link>
@@ -85,13 +85,13 @@ export function Header() {
                             href="https://www.linkedin.com/in/faridrafikov/"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="label text-foreground hover:opacity-70 transition-opacity"
+                            className="label hover:opacity-70 transition-opacity"
                         >
                             LinkedIn
                         </Link>
                         <Link
                             href="mailto:mail@formazon.com"
-                            className="label text-foreground hover:opacity-70 transition-opacity"
+                            className="label hover:opacity-70 transition-opacity"
                         >
                             Email
                         </Link>
@@ -126,7 +126,7 @@ export function Header() {
                                     key={item.href}
                                     href={item.href}
                                     className={`
-                                        block px-4 py-3 rounded-xl text-lg font-medium transition-colors
+                                        block px-4 py-3 rounded-xl subtitle transition-colors
                                         ${isActive
                                         ? "bg-surface-muted text-foreground"
                                         : "text-text-muted hover:text-foreground"
@@ -143,7 +143,7 @@ export function Header() {
                                 href="https://x.com/formazon"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="label text-foreground px-4 py-2"
+                                className="label px-4 py-2"
                             >
                                 X
                             </Link>
@@ -151,13 +151,13 @@ export function Header() {
                                 href="https://www.linkedin.com/in/faridrafikov/"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="label text-foreground px-4 py-2"
+                                className="label px-4 py-2"
                             >
                                 LinkedIn
                             </Link>
                             <Link
                                 href="mailto:mail@formazon.com"
-                                className="label text-foreground px-4 py-2"
+                                className="label px-4 py-2"
                             >
                                 Email
                             </Link>

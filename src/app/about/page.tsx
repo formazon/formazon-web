@@ -15,22 +15,25 @@ export default function AboutPage() {
 
     return (
         <PageShell>
-            {/* ... Intro и Story (без изменений) ... */}
-
-            <section className="mb-16 grid gap-10 md:grid-cols-[minmax(0,2fr)_minmax(0,1.4fr)]">
-                {/* Story */}
-                <div className="space-y-5 text-sm leading-relaxed text-text-muted">
+            <section className="mb-16 grid gap-10 md:grid-cols-[minmax(0,2fr)_minmax(0,1.4fr)]">                
+                <div className="space-y-5">
+                    <p className="caption">
+                        About
+                    </p>
+                    <h1 className="h1">
+                        Farid Rafikov
+                    </h1>
                     {story.map((paragraph, index) => (
                         <p key={index}>{paragraph}</p>
                     ))}
                 </div>
 
                 {/* Snapshot Sidebar */}
-                <aside className="space-y-6 rounded-2xl border border-border-subtle bg-surface-muted p-5 text-xs text-text-muted">
+                <aside className="space-y-6 rounded-sm border border-border-subtle p-5">
 
                     {/* Profile (без изменений) ... */}
                     <div className="space-y-2">
-                        <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-text-muted">
+                        <p className="label-medium">
                             Snapshot
                         </p>
                         <ul className="space-y-1.5">
@@ -45,7 +48,7 @@ export default function AboutPage() {
 
                     {/* History - ОБНОВЛЕННЫЙ БЛОК */}
                     <div className="space-y-2">
-                        <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-text-muted">
+                        <p className="label">
                             Previously building
                         </p>
                         <ul className="space-y-1.5">
@@ -57,7 +60,7 @@ export default function AboutPage() {
                                             {item.name}
                                         </TextLink>
                                     ) : (
-                                        <span className="text-foreground font-medium">{item.name}</span>
+                                        <span className="label-medium">{item.name}</span>
                                     )}
 
                                     <span className="text-right opacity-80">{item.desc}</span>
@@ -68,7 +71,7 @@ export default function AboutPage() {
 
                     {/* How I can help (без изменений) ... */}
                     <div className="space-y-2">
-                        <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-text-muted">
+                        <p className="label-medium">
                             How I can help
                         </p>
                         <ul className="space-y-1.5 list-disc list-inside marker:text-text-muted/50">
@@ -78,18 +81,6 @@ export default function AboutPage() {
                         </ul>
                     </div>
                 </aside>
-            </section>
-
-            {/* ... Way of working и CTA (без изменений) ... */}
-
-            {/* Way of working */}
-            <section className="mb-16 space-y-4 border-t border-border-subtle pt-10">
-                {/* ... код ... */}
-            </section>
-
-            {/* CTA */}
-            <section className="border-t border-border-subtle pt-10">
-                {/* ... код ... */}
             </section>
         </PageShell>
     );

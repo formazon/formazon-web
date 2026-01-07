@@ -30,7 +30,7 @@ export function WorkCaseLayout({ workCase, nextCase }: WorkCaseLayoutProps) {
     return (
         <PageShell>
             {/* Breadcrumb */}
-            <nav className="mb-6 caption text-foreground">
+            <nav className="mb-6 caption">
                 <Link href="/work" className="hover:opacity-70 transition-opacity">
                     Work
                 </Link>
@@ -41,7 +41,7 @@ export function WorkCaseLayout({ workCase, nextCase }: WorkCaseLayoutProps) {
             {/* Hero */}
             <header className="mb-20 space-y-4">
                 <div className="flex items-start gap-1">
-                    <h1 className="h1 text-foreground mb-6">
+                    <h1 className="h1 mb-6">
                         {title}
                     </h1>
                     {avatar && (
@@ -55,7 +55,7 @@ export function WorkCaseLayout({ workCase, nextCase }: WorkCaseLayoutProps) {
                     )}
                 </div>
                 {heroSummary && (
-                    <p className="subtitle text-foreground mb-20">
+                    <p className="subtitle mb-20">
                         {heroSummary}
                     </p>
                 )}
@@ -96,7 +96,7 @@ export function WorkCaseLayout({ workCase, nextCase }: WorkCaseLayoutProps) {
                                 <H2Index index={1}>
                                     Robotics as a Service
                                 </H2Index>
-                                <p className="body text-foreground mt-6 mb-20">
+                                <p className="mt-6 mb-20">
                                     The main product challenge was to balance simplicity with depth. We needed to handle high-resolution image processing and complex layering on mobile devices without overwhelming the user. Additionally, we had to build a sustainable content engine—moving beyond a static utility app to a dynamic platform with weekly asset drops and a thriving marketplace.
                                 </p>
                             </>
@@ -106,7 +106,7 @@ export function WorkCaseLayout({ workCase, nextCase }: WorkCaseLayoutProps) {
 
                 {/* Первый абзац текста */}
                 {firstSection && (
-                    <p className="body text-foreground">
+                    <p>
                         {firstSection.body}
                     </p>
                 )}
@@ -116,12 +116,12 @@ export function WorkCaseLayout({ workCase, nextCase }: WorkCaseLayoutProps) {
             {nextCase && (
                 <section className="mt-24 border-t border-border-subtle pt-12 pb-20">
                     <div className="mb-20 flex items-baseline justify-between">
-                        <h2 className="text-xs font-medium uppercase tracking-[0.2em] text-text-muted">
+                        <h2 className="label-medium uppercase tracking-[0.2em] text-text-muted">
                             Up Next
                         </h2>
                         <Link
                             href="/work"
-                            className="text-xs text-text-muted underline underline-offset-4 hover:text-foreground transition-colors"
+                            className="label text-text-muted underline underline-offset-4 hover:text-foreground transition-colors"
                         >
                             View all work
                         </Link>

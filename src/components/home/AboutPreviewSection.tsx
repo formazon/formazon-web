@@ -11,11 +11,11 @@ export function AboutPreviewSection() {
 
                 {/* Левый блок — заголовок */}
                 <div className="space-y-4">
-                    <H2Index index={1}>
+                    <H2Index index={2}>
                         About
                     </H2Index>
 
-                    <h2 className="subtitle text-foreground max-w-xl">
+                    <h2 className="subtitle max-w-xl">
                         I’m a product founder and designer building digital tools, brands,
                         and interfaces across apps, AI platforms, and robotics systems.
                     </h2>
@@ -34,7 +34,7 @@ export function AboutPreviewSection() {
                         Read more
                     </Button>
 
-                    <p className="text-xs text-text-muted">
+                    <p className="label">
                         Background, philosophy and experience
                     </p>
                 </div>

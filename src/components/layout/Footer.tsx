@@ -8,13 +8,13 @@ export function Footer() {
                 {/* ЛЕВАЯ ГРУППА: Privacy Policy */}
                 <Link
                     href="/privacy-policy"
-                    className="label text-foreground hover:opacity-70 transition-opacity"
+                    className="label hover:opacity-70 transition-opacity"
                 >
                     Privacy Policy
                 </Link>
 
                 {/* ЦЕНТР: Copyright */}
-                <p className="label-medium text-foreground">
+                <p className="label-medium">
                     © {new Date().getFullYear()} Formazon. All rights reserved.
                 </p>
 
@@ -24,7 +24,7 @@ export function Footer() {
                         href="https://x.com/formazon"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="label text-foreground hover:opacity-70 transition-opacity"
+                        className="label hover:opacity-70 transition-opacity"
                     >
                         X
                     </Link>
@@ -32,13 +32,13 @@ export function Footer() {
                         href="https://www.linkedin.com/in/faridrafikov/"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="label text-foreground hover:opacity-70 transition-opacity"
+                        className="label hover:opacity-70 transition-opacity"
                     >
                         LinkedIn
                     </Link>
                     <Link
                         href="mailto:mail@formazon.com"
-                        className="label text-foreground hover:opacity-70 transition-opacity"
+                        className="label hover:opacity-70 transition-opacity"
                     >
                         Email
                     </Link>

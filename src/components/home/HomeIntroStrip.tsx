@@ -3,7 +3,7 @@
 export function HomeIntroStrip() {
     return (
         <section className="mb-16 mt-4">
-            <p className="max-w-2xl text-sm leading-relaxed text-text-muted">
+            <p className="max-w-2xl">
                 I design and build digital products that combine clarity, structure, and
                 thoughtful engineering. My work ranges from creative mobile apps and
                 enterprise AI tools to robotics interfaces, brand systems, and product

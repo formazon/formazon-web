@@ -23,7 +23,7 @@ export default function WorkPage() {
         // Добавляем QuadroDot после каждых двух карточек (после индексов 1, 3, 5...)
         if ((index + 1) % 2 === 0 && index < workItems.length - 1) {
             items.push(
-                <div key={`quadro-${index}`} className="col-span-2">
+                <div key={`quadro-${index}`} className="col-span-1 md:col-span-2">
                     <QuadroDot />
                 </div>
             );
@@ -34,14 +34,17 @@ export default function WorkPage() {
         <PageShell>
             {/* Intro / hero для списка работ */}
             <section className="mb-12 space-y-4">
-                <h1 className="h1 text-foreground">
+                <p className="caption">
                     Work
+                </p>
+                <h1 className="h1 max-w-4xl">
+                    Mobile apps, AI platforms, robotics tools, fintech products, and brand systems.
                 </h1>
             </section>
 
             {/* Сетка кейсов */}
             <section>
-                <div className="grid gap-x-4 gap-y-20 md:grid-cols-2">
+                <div className="grid grid-cols-1 gap-x-4 gap-y-20 md:grid-cols-2">
                     {items}
                 </div>
             </section>

@@ -14,7 +14,7 @@ export function TextLink({
                              className = "",
                              external = false
                          }: TextLinkProps) {
-    const styles = "font-medium text-foreground underline underline-offset-4 decoration-border-subtle transition-all hover:decoration-foreground hover:opacity-80";
+    const styles = "caption-medium text-foreground underline underline-offset-4 decoration-border-subtle transition-all hover:decoration-foreground hover:opacity-80";
 
     const combinedClassName = `${styles} ${className}`;
 
