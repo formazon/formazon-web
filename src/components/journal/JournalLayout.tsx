@@ -5,6 +5,7 @@ import { PageShell } from "@/components/layout/PageShell";
 import type { JournalEntry, JournalPost } from "@/lib/content/journal";
 import { Tag } from "@/components/ui/Tag";
 import { QuadroDot } from "@/components/ui/QuadroDot";
+import { JournalNavigationCard } from "./JournalNavigationCard";
 
 type JournalLayoutProps = {
     entry: JournalEntry;
@@ -73,53 +74,23 @@ export function JournalLayout({ entry, previous, next }: JournalLayoutProps) {
                 <QuadroDot />
                 <div className="grid gap-4 md:grid-cols-2 mt-8">
                     {previous && (
-                        <Link
+                        <JournalNavigationCard
+                            post={previous}
+                            direction="previous"
                             href={`/journal/${previous.slug}`}
-                            className="group flex flex-col justify-between rounded-2xl border border-border-subtle bg-surface-muted p-4 transition-all hover:border-text-muted/50 hover:bg-surface-muted/80"
-                        >
-                            <div className="mb-2 label-medium uppercase tracking-[0.2em] text-text-muted transition-colors group-hover:text-text-muted/80">
-                                ← Previous
-                            </div>
-                            <div className="space-y-1">
-                                <p className="subtitle-medium transition-colors">
-                                    {previous.title}
-                                </p>
-                                <p className="label text-text-muted">
-                                    {new Date(previous.date).toLocaleDateString("en-US", {
-                                        month: "short",
-                                        day: "numeric",
-                                        year: "numeric",
-                                    })}
-                                </p>
-                            </div>
-                        </Link>
+                        />
                     )}
 
                     {next && (
-                        <Link
+                        <JournalNavigationCard
+                            post={next}
+                            direction="next"
                             href={`/journal/${next.slug}`}
-                            className="group flex flex-col justify-between rounded-2xl border border-border-subtle bg-surface-muted p-4 text-right transition-all hover:border-text-muted/50 hover:bg-surface-muted/80"
-                        >
-                            <div className="mb-2 label-medium uppercase tracking-[0.2em] text-text-muted transition-colors group-hover:text-text-muted/80">
-                                Next →
-                            </div>
-                            <div className="space-y-1">
-                                <p className="subtitle-medium transition-colors">
-                                    {next.title}
-                                </p>
-                                <p className="label text-text-muted">
-                                    {new Date(next.date).toLocaleDateString("en-US", {
-                                        month: "short",
-                                        day: "numeric",
-                                        year: "numeric",
-                                    })}
-                                </p>
-                            </div>
-                        </Link>
+                        />
                     )}
                 </div>
 
-                <div className="mt-6 label">
+                <div className="mt-10 label mb-10">
                     <Link
                         href="/journal"
                         className="text-text-muted underline underline-offset-4 transition-colors hover:text-foreground"
