@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { journalEnabled } from "@/lib/config/features";
 import { ThemeToggle } from "./ThemeToggle";
+import { Dot } from "@/components/ui/Dot";
 
 const navItems = [
     { href: "/work", label: "Work" },
@@ -56,14 +57,13 @@ export function Header() {
                             <Link
                                 key={item.href}
                                 href={item.href}
-                                className={`
-                                    caption-medium normal-case
-                                    transition-all duration-200
-                                    hover:underline
-                                    ${isActive ? "underline" : ""}
-                                `}
+                                className="group relative inline-block caption-medium normal-case transition-all duration-200"
                             >
-                                {item.label}
+                                <span className="relative z-10">{item.label}</span>
+                                <div className={`absolute top-full left-0 mt-1 w-full flex justify-between transition-all duration-200 ${isActive ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-1 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto"}`}>
+                                    <Dot />
+                                    <Dot />
+                                </div>
                             </Link>
                         );
                     })}
