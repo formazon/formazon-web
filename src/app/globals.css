@@ -72,10 +72,16 @@
 /* Базовые стили body */
 body {
     font-family: var(--font-plex-sans), Arial, Helvetica, sans-serif;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 400;
     line-height: 1.5;
     @apply bg-background text-foreground antialiased;
+}
+
+@media (min-width: 640px) {
+    body {
+        font-size: 20px;
+    }
 }
 
 .gutter { @apply px-4 sm:px-16; }
@@ -85,72 +91,115 @@ body {
 /* IBM Plex Sans */
 .h1 {
     font-family: var(--font-plex-sans);
-    font-size: 64px;
+    font-size: 40px;
     font-weight: 500;
     line-height: 1.2;
 }
 
 .h2 {
     font-family: var(--font-plex-sans);
-    font-size: 48px;
+    font-size: 32px;
     font-weight: 500;
     line-height: 1.2;
 }
 
 .h3 {
     font-family: var(--font-plex-sans);
-    font-size: 32px;
+    font-size: 24px;
     font-weight: 500;
     line-height: 1.2;
 }
 
 .subtitle {
     font-family: var(--font-plex-sans);
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 400;
     line-height: 1.4;
 }
 
 .subtitle-medium {
     font-family: var(--font-plex-sans);
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 500;
     line-height: 1.4;
 }
 
 .body {
     font-family: var(--font-plex-sans);
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 400;
     line-height: 1.5;
+}
+
+@media (min-width: 640px) {
+    .h1 {
+        font-size: 64px;
+    }
+    
+    .h2 {
+        font-size: 48px;
+    }
+    
+    .h3 {
+        font-size: 32px;
+    }
+    
+    .subtitle {
+        font-size: 24px;
+    }
+    
+    .subtitle-medium {
+        font-size: 24px;
+    }
+    
+    .body {
+        font-size: 20px;
+    }
 }
 
 /* IBM Plex Mono */
 .caption-medium {
     font-family: var(--font-plex-mono);
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 500;
     line-height: 1.4;
 }
 
 .caption {
     font-family: var(--font-plex-mono);
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 400;
     line-height: 1.4;
 }
 
 .label-medium {
     font-family: var(--font-plex-mono);
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 500;
     line-height: 1.4;
 }
 
 .label {
     font-family: var(--font-plex-mono);
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 400;
     line-height: 1.4;
 }
 
+@media (min-width: 640px) {
+    .caption-medium {
+        font-size: 16px;
+    }
+    
+    .caption {
+        font-size: 16px;
+    }
+    
+    .label-medium {
+        font-size: 14px;
+    }
+    
+    .label {
+        font-size: 14px;
+    }
+}

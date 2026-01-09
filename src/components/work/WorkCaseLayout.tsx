@@ -41,7 +41,7 @@ export function WorkCaseLayout({ workCase, nextCase }: WorkCaseLayoutProps) {
 
             {/* Hero */}
             <header className="mb-20 space-y-4">
-                <div className="flex items-start gap-4">
+                <div className="flex items-start gap-2.5 sm:gap-4">
                     <h1 className="h1 mb-6">
                         {title}
                     </h1>
@@ -51,7 +51,7 @@ export function WorkCaseLayout({ workCase, nextCase }: WorkCaseLayoutProps) {
                             alt={`${title} avatar`}
                             width={64}
                             height={64}
-                            className="w-16 h-16 mt-1"
+                            className="w-11 h-11 sm:w-16 sm:h-16 mt-1"
                         />
                     )}
                 </div>
