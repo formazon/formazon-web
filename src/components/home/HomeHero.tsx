@@ -14,6 +14,7 @@ const projects = [
     { slug: "appfortype", logo: "/work/appfortype.svg" },
     { slug: "jungle", logo: "/work/jungle.svg" },
     { slug: "fuelet", logo: "/work/fuelet.svg" },
+    { slug: "tra-robotics", logo: "/work/tra-robotics.svg" },
 ];
 
 export function HomeHero({
@@ -40,7 +41,7 @@ export function HomeHero({
                 
                 {/* Stacked Project Logos */}
                 <div 
-                    className="relative mt-8 h-16 w-60"
+                    className="relative mt-8 h-16 w-72"
                     onMouseEnter={() => setIsHovered(true)}
                     onMouseLeave={() => setIsHovered(false)}
                 >
@@ -48,21 +49,21 @@ export function HomeHero({
                     <Link
                         key={project.slug}
                         href={`/work/${project.slug}`}
-                        className="absolute top-0 left-0 w-16 h-16 transition-all duration-300 ease-out"
+                        className="absolute top-0 left-0 w-17 h-17 transition-all duration-300 ease-out"
                         style={{
                             transform: isHovered 
-                                ? `translateX(${index * 80}px)` 
+                                ? `translateX(${index * 72}px)` 
                                 : `translateX(${index * 50}px)`,
                             zIndex: index + 1,
                         }}
                     >
-                        <div className="relative w-16 h-16 rounded-full bg-white border-2 border-white flex items-center justify-center">
+                        <div className="relative w-17 h-17 rounded-full bg-white border-2 border-white flex items-center justify-center">
                             <Image
                                 src={project.logo}
                                 alt={project.slug}
-                                width={64}
-                                height={64}
-                                className="w-16 h-16"
+                                width={68}
+                                height={68}
+                                className="w-17 h-17"
                             />
                         </div>
                     </Link>

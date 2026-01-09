@@ -200,6 +200,7 @@ export const workCases: Record<string, WorkCase> = {
         description:
             "Industrial automation and robotics tools with clear interfaces for control, monitoring, and workflows.",
         tags: ["Robotics", "Systems", "UX"],
+        avatar: "/work/tra-robotics.svg",
         heroKicker: "Robotics automation",
         heroSummary:
             "Interfaces and workflows for industrial robotics — making complex systems operable, monitorable, and understandable for real teams in the field.",
@@ -244,6 +245,42 @@ export const workCases: Record<string, WorkCase> = {
                 alt: "TRA Robotics focuses on automating physical workflows using robotic systems. My work centered on turning complex, technical operations into clear interfaces that operators and engineers can use confidently",
                 width: 1920,
                 height: 1185,
+            },
+            {
+                src: "/work/tra-robotics/tra-robotics-2.jpg",
+                alt: "TRA Robotics focuses on automating physical workflows using robotic systems. My work centered on turning complex, technical operations into clear interfaces that operators and engineers can use confidently",
+                width: 1920,
+                height: 1185,
+            },
+            {
+                src: "/work/tra-robotics/tra-robotics-3.jpg",
+                alt: "TRA Robotics focuses on automating physical workflows using robotic systems. My work centered on turning complex, technical operations into clear interfaces that operators and engineers can use confidently",
+                width: 1920,
+                height: 1185,
+            },
+            {
+                src: "/work/tra-robotics/tra-robotics-4.jpg",
+                alt: "TRA Robotics focuses on automating physical workflows using robotic systems. My work centered on turning complex, technical operations into clear interfaces that operators and engineers can use confidently",
+                width: 1920,
+                height: 1185,
+            },
+            {
+                src: "/work/tra-robotics/tra-robotics-5.jpg",
+                alt: "TRA Robotics focuses on automating physical workflows using robotic systems. My work centered on turning complex, technical operations into clear interfaces that operators and engineers can use confidently",
+                width: 1920,
+                height: 1185,
+            },
+            {
+                src: "/work/tra-robotics/tra-robotics-6.jpg",
+                alt: "TRA Robotics focuses on automating physical workflows using robotic systems. My work centered on turning complex, technical operations into clear interfaces that operators and engineers can use confidently",
+                width: 1185,
+                height: 960,
+            },
+            {
+                src: "/work/tra-robotics/tra-robotics-7.jpg",
+                alt: "TRA Robotics focuses on automating physical workflows using robotic systems. My work centered on turning complex, technical operations into clear interfaces that operators and engineers can use confidently",
+                width: 1185,
+                height: 960,
             },
         ],
     },

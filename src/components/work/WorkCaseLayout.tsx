@@ -24,8 +24,8 @@ export function WorkCaseLayout({ workCase, nextCase }: WorkCaseLayoutProps) {
         avatar,
     } = workCase;
 
-    // Объединяем контент: берем первые два изображения и первый абзац текста
-    const firstTwoImages = images?.slice(0, 2) || [];
+    // Все изображения для вывода
+    const allImages = images || [];
     const firstSection = sections?.[0];
 
     return (
@@ -41,8 +41,8 @@ export function WorkCaseLayout({ workCase, nextCase }: WorkCaseLayoutProps) {
 
             {/* Hero */}
             <header className="mb-20 space-y-4">
-                <div className="flex items-start gap-1">
-                    <h1 className="h1 mb-6 mr-2">
+                <div className="flex items-start gap-4">
+                    <h1 className="h1 mb-6">
                         {title}
                     </h1>
                     {avatar && (
@@ -51,7 +51,7 @@ export function WorkCaseLayout({ workCase, nextCase }: WorkCaseLayoutProps) {
                             alt={`${title} avatar`}
                             width={64}
                             height={64}
-                            className="w-12 h-12 shrink-0 rounded"
+                            className="w-16 h-16 mt-1"
                         />
                     )}
                 </div>
@@ -78,32 +78,79 @@ export function WorkCaseLayout({ workCase, nextCase }: WorkCaseLayoutProps) {
 
             {/* Единый контейнер с контентом */}
             <div className="space-y-8 mb-20">
-                {/* Первые два изображения на всю ширину */}
-                {firstTwoImages.map((image, index) => (
-                    <div key={image.src} className="mb-20">
-                        <figure className="w-full">
-                            <Image
-                                src={image.src}
-                                alt={image.alt}
-                                width={image.width}
-                                height={image.height}
-                                className="h-auto w-full object-cover rounded"
-                                priority={false}
-                            />
-                        </figure>
-                        {/* Добавляем заголовок и текст после первого изображения */}
-                        {index === 0 && (
-                            <>
-                                <H2Index index={1}>
-                                    Robotics as a Service
-                                </H2Index>
-                                <p className="mt-6 mb-20">
-                                    The main product challenge was to balance simplicity with depth. We needed to handle high-resolution image processing and complex layering on mobile devices without overwhelming the user. Additionally, we had to build a sustainable content engine—moving beyond a static utility app to a dynamic platform with weekly asset drops and a thriving marketplace.
-                                </p>
-                            </>
-                        )}
-                    </div>
-                ))}
+                {/* Все изображения на всю ширину */}
+                {allImages.map((image, index) => {
+                    // Проверяем, нужно ли группировать текущее изображение со следующим
+                    const nextImage = allImages[index + 1];
+                    const shouldGroup = 
+                        image.src.includes('tra-robotics-6.jpg') && 
+                        nextImage?.src.includes('tra-robotics-7.jpg');
+                    
+                    // Если это второе изображение в группе, пропускаем его (оно уже отображено)
+                    const isSecondInGroup = 
+                        index > 0 && 
+                        allImages[index - 1].src.includes('tra-robotics-6.jpg') &&
+                        image.src.includes('tra-robotics-7.jpg');
+                    
+                    if (isSecondInGroup) {
+                        return null;
+                    }
+
+                    return (
+                        <div key={image.src} className="mb-20">
+                            {shouldGroup ? (
+                                // Два изображения рядом
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <figure className="w-full">
+                                        <Image
+                                            src={image.src}
+                                            alt={image.alt}
+                                            width={image.width}
+                                            height={image.height}
+                                            className="h-auto w-full object-cover rounded"
+                                            priority={false}
+                                        />
+                                    </figure>
+                                    {nextImage && (
+                                        <figure className="w-full">
+                                            <Image
+                                                src={nextImage.src}
+                                                alt={nextImage.alt}
+                                                width={nextImage.width}
+                                                height={nextImage.height}
+                                                className="h-auto w-full object-cover rounded"
+                                                priority={false}
+                                            />
+                                        </figure>
+                                    )}
+                                </div>
+                            ) : (
+                                // Одно изображение на всю ширину
+                                <figure className="w-full">
+                                    <Image
+                                        src={image.src}
+                                        alt={image.alt}
+                                        width={image.width}
+                                        height={image.height}
+                                        className="h-auto w-full object-cover rounded"
+                                        priority={false}
+                                    />
+                                </figure>
+                            )}
+                            {/* Добавляем заголовок и текст после первого изображения */}
+                            {index === 0 && (
+                                <>
+                                    <H2Index index={1}>
+                                        Robotics as a Service
+                                    </H2Index>
+                                    <p className="mt-6 mb-20">
+                                        The main product challenge was to balance simplicity with depth. We needed to handle high-resolution image processing and complex layering on mobile devices without overwhelming the user. Additionally, we had to build a sustainable content engine—moving beyond a static utility app to a dynamic platform with weekly asset drops and a thriving marketplace.
+                                    </p>
+                                </>
+                            )}
+                        </div>
+                    );
+                })}
 
                 {/* Первый абзац текста */}
                 {firstSection && (
