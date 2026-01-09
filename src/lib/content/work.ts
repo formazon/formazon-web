@@ -282,6 +282,36 @@ export const workCases: Record<string, WorkCase> = {
                 width: 1185,
                 height: 960,
             },
+            {
+                src: "/work/tra-robotics/tra-robotics-8.jpg",
+                alt: "TRA Robotics focuses on automating physical workflows using robotic systems. My work centered on turning complex, technical operations into clear interfaces that operators and engineers can use confidently",
+                width: 1185,
+                height: 960,
+            },
+            {
+                src: "/work/tra-robotics/tra-robotics-9.jpg",
+                alt: "TRA Robotics focuses on automating physical workflows using robotic systems. My work centered on turning complex, technical operations into clear interfaces that operators and engineers can use confidently",
+                width: 1185,
+                height: 960,
+            },
+            {
+                src: "/work/tra-robotics/tra-robotics-10.jpg",
+                alt: "TRA Robotics focuses on automating physical workflows using robotic systems. My work centered on turning complex, technical operations into clear interfaces that operators and engineers can use confidently",
+                width: 1185,
+                height: 960,
+            },
+            {
+                src: "/work/tra-robotics/tra-robotics-11.jpg",
+                alt: "TRA Robotics focuses on automating physical workflows using robotic systems. My work centered on turning complex, technical operations into clear interfaces that operators and engineers can use confidently",
+                width: 1185,
+                height: 960,
+            },
+            {
+                src: "/work/tra-robotics/tra-robotics-12.jpg",
+                alt: "TRA Robotics focuses on automating physical workflows using robotic systems. My work centered on turning complex, technical operations into clear interfaces that operators and engineers can use confidently",
+                width: 1920,
+                height: 1185,
+            },
         ],
     },
 
@@ -410,16 +440,16 @@ export const workCases: Record<string, WorkCase> = {
                 height: 1185,
             },
             {
-                src: "/work/fuelet/fuelet-onboarding.png",
-                alt: "Fuelet onboarding flow with clear steps",
-                width: 1600,
-                height: 900,
+                src: "/work/jungle/jungle-robotics-3.jpg",
+                alt: "Jungle Robotics interface showing automation flows",
+                width: 1920,
+                height: 1185,
             },
             {
-                src: "/work/fuelet/fuelet-transfer-flow.png",
-                alt: "Fuelet money transfer flow with guided confirmations",
-                width: 1600,
-                height: 900,
+                src: "/work/jungle/jungle-robotics-4.jpg",
+                alt: "Jungle Robotics interface showing automation flows",
+                width: 1920,
+                height: 1185,
             },
         ],
     },
@@ -536,8 +566,8 @@ export const workCases: Record<string, WorkCase> = {
             {
                 src: "/work/montessori/montessori-1.jpg",
                 alt: "Montessori Platform interface showing analytics and learning management",
-                width: 1440,
-                height: 889,
+                width: 1920,
+                height: 1185,
             },
         ],
     },
@@ -581,4 +611,30 @@ export function getRandomWorkCase(currentSlug: string): WorkItem | undefined {
 
     const randomIndex = Math.floor(Math.random() * otherItems.length);
     return otherItems[randomIndex];
+}
+
+/**
+ * Возвращает соседние работы для навигации на основе order:
+ * - previous: работа с меньшим order (предыдущая в списке)
+ * - next: работа с большим order (следующая в списке)
+ */
+export function getWorkNeighbors(currentSlug: string): {
+    previous?: WorkItem;
+    next?: WorkItem;
+} {
+    const sortedItems = [...workItems].sort((a, b) => {
+        const aOrder = workCases[a.slug]?.order ?? 999;
+        const bOrder = workCases[b.slug]?.order ?? 999;
+        return aOrder - bOrder;
+    });
+
+    const currentIndex = sortedItems.findIndex((item) => item.slug === currentSlug);
+    if (currentIndex === -1) {
+        return {};
+    }
+
+    const previous = currentIndex > 0 ? sortedItems[currentIndex - 1] : undefined;
+    const next = currentIndex < sortedItems.length - 1 ? sortedItems[currentIndex + 1] : undefined;
+
+    return { previous, next };
 }

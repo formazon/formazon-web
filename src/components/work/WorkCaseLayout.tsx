@@ -11,10 +11,11 @@ import { QuadroDot } from "../ui/QuadroDot";
 
 type WorkCaseLayoutProps = {
     workCase: WorkCase;
+    previousCase?: WorkItem;
     nextCase?: WorkItem;
 };
 
-export function WorkCaseLayout({ workCase, nextCase }: WorkCaseLayoutProps) {
+export function WorkCaseLayout({ workCase, previousCase, nextCase }: WorkCaseLayoutProps) {
     const {
         title,
         heroSummary,
@@ -82,15 +83,21 @@ export function WorkCaseLayout({ workCase, nextCase }: WorkCaseLayoutProps) {
                 {allImages.map((image, index) => {
                     // Проверяем, нужно ли группировать текущее изображение со следующим
                     const nextImage = allImages[index + 1];
-                    const shouldGroup = 
-                        image.src.includes('tra-robotics-6.jpg') && 
-                        nextImage?.src.includes('tra-robotics-7.jpg');
+                    
+                    // Определяем пары изображений для группировки (tra-robotics)
+                    const shouldGroup = nextImage && (
+                        (image.src.includes('tra-robotics-6.jpg') && nextImage.src.includes('tra-robotics-7.jpg')) ||
+                        (image.src.includes('tra-robotics-8.jpg') && nextImage.src.includes('tra-robotics-9.jpg')) ||
+                        (image.src.includes('tra-robotics-10.jpg') && nextImage.src.includes('tra-robotics-11.jpg'))
+                    );
                     
                     // Если это второе изображение в группе, пропускаем его (оно уже отображено)
-                    const isSecondInGroup = 
-                        index > 0 && 
-                        allImages[index - 1].src.includes('tra-robotics-6.jpg') &&
-                        image.src.includes('tra-robotics-7.jpg');
+                    const prevImage = index > 0 ? allImages[index - 1] : null;
+                    const isSecondInGroup = prevImage && (
+                        (prevImage.src.includes('tra-robotics-6.jpg') && image.src.includes('tra-robotics-7.jpg')) ||
+                        (prevImage.src.includes('tra-robotics-8.jpg') && image.src.includes('tra-robotics-9.jpg')) ||
+                        (prevImage.src.includes('tra-robotics-10.jpg') && image.src.includes('tra-robotics-11.jpg'))
+                    );
                     
                     if (isSecondInGroup) {
                         return null;
@@ -162,12 +169,12 @@ export function WorkCaseLayout({ workCase, nextCase }: WorkCaseLayoutProps) {
 
             <QuadroDot />
 
-            {/* НОВАЯ СЕКЦИЯ: Read Next */}
-            {nextCase && (
+            {/* НОВАЯ СЕКЦИЯ: Previous & Next */}
+            {(previousCase || nextCase) && (
                 <section className="mt-10 pt-12 pb-20">
                     <div className="mb-10 flex items-baseline justify-between">
                         <h2 className="label-medium">
-                            Up Next
+                            {previousCase && nextCase ? "More Work" : "Up Next"}
                         </h2>
                         <Link
                             href="/work"
@@ -177,9 +184,9 @@ export function WorkCaseLayout({ workCase, nextCase }: WorkCaseLayoutProps) {
                         </Link>
                     </div>
 
-                    <div className="grid md:grid-cols-2">
-                        {/* Показываем карточку. Можно растянуть на всю ширину или ограничить половиной */}
-                        <WorkCard item={nextCase} />
+                    <div className="grid md:grid-cols-2 gap-4">
+                        {previousCase && <WorkCard item={previousCase} />}
+                        {nextCase && <WorkCard item={nextCase} />}
                     </div>
                 </section>
             )}

@@ -2,7 +2,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { WorkCaseLayout } from "@/components/work/WorkCaseLayout";
-import { getWorkCase, getRandomWorkCase, workCases } from "@/lib/content/work"; // Добавили импорт
+import { getWorkCase, getWorkNeighbors, workCases } from "@/lib/content/work";
 
 type Props = {
     params: Promise<{ slug: string }>;
@@ -35,9 +35,9 @@ export default async function WorkCasePage({ params }: Props) {
         return notFound();
     }
 
-    // Получаем следующий случайный проект
-    const nextCase = getRandomWorkCase(slug);
+    // Получаем предыдущий и следующий проекты
+    const { previous, next } = getWorkNeighbors(slug);
 
-    // Передаем nextCase в лэйаут
-    return <WorkCaseLayout workCase={workCase} nextCase={nextCase} />;
+    // Передаем previous и next в лэйаут
+    return <WorkCaseLayout workCase={workCase} previousCase={previous} nextCase={next} />;
 }
