@@ -84,19 +84,25 @@ export function WorkCaseLayout({ workCase, previousCase, nextCase }: WorkCaseLay
                     // Проверяем, нужно ли группировать текущее изображение со следующим
                     const nextImage = allImages[index + 1];
                     
-                    // Определяем пары изображений для группировки (tra-robotics)
+                    // Определяем пары изображений для группировки
                     const shouldGroup = nextImage && (
+                        // tra-robotics
                         (image.src.includes('tra-robotics-6.jpg') && nextImage.src.includes('tra-robotics-7.jpg')) ||
                         (image.src.includes('tra-robotics-8.jpg') && nextImage.src.includes('tra-robotics-9.jpg')) ||
-                        (image.src.includes('tra-robotics-10.jpg') && nextImage.src.includes('tra-robotics-11.jpg'))
+                        (image.src.includes('tra-robotics-10.jpg') && nextImage.src.includes('tra-robotics-11.jpg')) ||
+                        // jungle
+                        (image.src.includes('jungle-robotics-4.jpg') && nextImage.src.includes('jungle-robotics-5.jpg'))
                     );
                     
                     // Если это второе изображение в группе, пропускаем его (оно уже отображено)
                     const prevImage = index > 0 ? allImages[index - 1] : null;
                     const isSecondInGroup = prevImage && (
+                        // tra-robotics
                         (prevImage.src.includes('tra-robotics-6.jpg') && image.src.includes('tra-robotics-7.jpg')) ||
                         (prevImage.src.includes('tra-robotics-8.jpg') && image.src.includes('tra-robotics-9.jpg')) ||
-                        (prevImage.src.includes('tra-robotics-10.jpg') && image.src.includes('tra-robotics-11.jpg'))
+                        (prevImage.src.includes('tra-robotics-10.jpg') && image.src.includes('tra-robotics-11.jpg')) ||
+                        // jungle
+                        (prevImage.src.includes('jungle-robotics-4.jpg') && image.src.includes('jungle-robotics-5.jpg'))
                     );
                     
                     if (isSecondInGroup) {

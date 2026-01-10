@@ -448,8 +448,20 @@ export const workCases: Record<string, WorkCase> = {
             {
                 src: "/work/jungle/jungle-robotics-4.jpg",
                 alt: "Jungle Robotics interface showing automation flows",
-                width: 1920,
+                width: 960,
                 height: 1185,
+            },
+            {
+                src: "/work/jungle/jungle-robotics-5.jpg",
+                alt: "Jungle Robotics interface showing automation flows",
+                width: 960,
+                height: 1185,
+            },
+            {
+                src: "/work/jungle/jungle-robotics-6.jpg",
+                alt: "Jungle Robotics interface showing automation flows",
+                width: 1920,
+                height: 1800,
             },
         ],
     },
