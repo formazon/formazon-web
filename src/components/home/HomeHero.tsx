@@ -3,8 +3,8 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState, MouseEvent } from "react";
-import { workCases } from "@/lib/content/work";
+import { useState, MouseEvent, useEffect, useRef } from "react";
+import { WorkPreviewCard } from "@/components/ui/WorkPreviewCard";
 
 export type HomeHeroProps = {
     title: string;
@@ -27,6 +27,23 @@ export function HomeHero({
     const [isHovered, setIsHovered] = useState(false);
     const [hoveredProject, setHoveredProject] = useState<string | null>(null);
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+    const containerRef = useRef<HTMLDivElement>(null);
+
+    // Скрываем карточку при скролле
+    useEffect(() => {
+        const handleScroll = () => {
+            setHoveredProject(null);
+            setIsHovered(false);
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        window.addEventListener('wheel', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+            window.removeEventListener('wheel', handleScroll);
+        };
+    }, []);
 
     return (
         <section className="mb-16 space-y-8">
@@ -44,6 +61,7 @@ export function HomeHero({
                 
                 {/* Stacked Project Logos */}
                 <div 
+                    ref={containerRef}
                     className="relative mt-8 h-16 w-72"
                     onMouseEnter={() => setIsHovered(true)}
                     onMouseLeave={() => {
@@ -52,10 +70,23 @@ export function HomeHero({
                     }}
                     onMouseMove={(e: MouseEvent<HTMLDivElement>) => {
                         setMousePosition({ x: e.clientX, y: e.clientY });
+                        // Проверяем, что курсор все еще в зоне контейнера
+                        if (containerRef.current) {
+                            const rect = containerRef.current.getBoundingClientRect();
+                            const isInBounds = 
+                                e.clientX >= rect.left && 
+                                e.clientX <= rect.right && 
+                                e.clientY >= rect.top && 
+                                e.clientY <= rect.bottom;
+                            
+                            if (!isInBounds) {
+                                setHoveredProject(null);
+                                setIsHovered(false);
+                            }
+                        }
                     }}
                 >
                 {projects.map((project, index) => {
-                    const workCase = workCases[project.slug];
                     return (
                         <div
                             key={project.slug}
@@ -88,8 +119,8 @@ export function HomeHero({
                 })}
                 </div>
                 
-                {/* Tooltip */}
-                {hoveredProject && workCases[hoveredProject] && (
+                {/* Work Preview Card */}
+                {hoveredProject && (
                     <div
                         className="fixed z-50 pointer-events-none"
                         style={{
@@ -97,14 +128,7 @@ export function HomeHero({
                             top: `${mousePosition.y + 16}px`,
                         }}
                     >
-                        <div className="bg-foreground/80 backdrop-blur-sm rounded-sm p-3 max-w-xs">
-                            <p className="label-medium text-background mb-1">
-                                {workCases[hoveredProject].title}
-                            </p>
-                            <p className="label text-background/80">
-                                {workCases[hoveredProject].description}
-                            </p>
-                        </div>
+                        <WorkPreviewCard workSlug={hoveredProject} />
                     </div>
                 )}
             </div>

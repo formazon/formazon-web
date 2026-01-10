@@ -1,12 +1,15 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { useState, useEffect } from "react";
+import { useState, useEffect, MouseEvent } from "react";
 import { Menu, X } from "lucide-react";
 import { journalEnabled } from "@/lib/config/features";
+import { workItems, workCases } from "@/lib/content/work";
 import { ThemeToggle } from "./ThemeToggle";
 import { Dot } from "@/components/ui/Dot";
+import { WorkPreviewCard } from "@/components/ui/WorkPreviewCard";
 
 const navItems = [
     { href: "/work", label: "Work" },
@@ -19,6 +22,9 @@ const navItems = [
 export function Header() {
     const pathname = usePathname();
     const [isOpen, setIsOpen] = useState(false);
+    const [isWorkHovered, setIsWorkHovered] = useState(false);
+    const [hoveredWorkSlug, setHoveredWorkSlug] = useState<string | null>(null);
+    const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
     useEffect(() => {
         setIsOpen(false);
@@ -53,6 +59,80 @@ export function Header() {
                 <nav className="hidden items-center gap-6 sm:flex">
                     {activeNavItems.map((item) => {
                         const isActive = pathname === item.href;
+                        const isWork = item.href === "/work";
+                        
+                        if (isWork) {
+                            return (
+                                <div
+                                    key={item.href}
+                                    className="relative"
+                                    onMouseEnter={() => setIsWorkHovered(true)}
+                                    onMouseLeave={() => {
+                                        setIsWorkHovered(false);
+                                        setHoveredWorkSlug(null);
+                                    }}
+                                    onMouseMove={(e: MouseEvent<HTMLDivElement>) => {
+                                        setMousePosition({ x: e.clientX, y: e.clientY });
+                                    }}
+                                >
+                                    <Link
+                                        href={item.href}
+                                        className="group relative inline-block caption-medium normal-case transition-all duration-200"
+                                    >
+                                        <span className="relative z-10">{item.label}</span>
+                                        {!isWork && (
+                                            <div className={`absolute top-full left-0 mt-1 w-full flex justify-between transition-all duration-200 ${isActive ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-1 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto"}`}>
+                                                <Dot />
+                                                <Dot />
+                                            </div>
+                                        )}
+                                    </Link>
+                                    
+                                    {/* Невидимая зона для плавного перехода */}
+                                    {isWorkHovered && (
+                                        <div 
+                                            className="absolute top-full left-0 w-full h-1"
+                                            onMouseEnter={() => setIsWorkHovered(true)}
+                                        />
+                                    )}
+                                    
+                                    {/* Выпадающее меню работ */}
+                                    {isWorkHovered && (
+                                        <div 
+                                            className="absolute top-full left-0 pt-0"
+                                            onMouseEnter={() => setIsWorkHovered(true)}
+                                            onMouseLeave={() => {
+                                                setIsWorkHovered(false);
+                                                setHoveredWorkSlug(null);
+                                            }}
+                                        >
+                                            <div 
+                                                className="bg-foreground/95 backdrop-blur-sm rounded-sm min-w-[200px]">
+                                                <ul>
+                                                    {workItems.map((workItem) => {
+                                                        const workCase = workCases[workItem.slug];
+                                                        const previewImage = workCase?.images?.[0] ?? null;
+                                                        return (
+                                                            <li key={workItem.slug}>
+                                                                <Link
+                                                                    href={`/work/${workItem.slug}`}
+                                                                    className="block px-3 pt-0.5 pb-1.5 hover:bg-background/10 transition-colors"
+                                                                    onMouseEnter={() => setHoveredWorkSlug(workItem.slug)}
+                                                                    onMouseLeave={() => setHoveredWorkSlug(null)}
+                                                                >
+                                                                    <span className="label-medium text-background">{workItem.title}</span>
+                                                                </Link>
+                                                            </li>
+                                                        );
+                                                    })}
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    )}
+                                </div>
+                            );
+                        }
+                        
                         return (
                             <Link
                                 key={item.href}
@@ -68,6 +148,19 @@ export function Header() {
                         );
                     })}
                 </nav>
+                
+                {/* Превью карточки работы рядом с курсором */}
+                {hoveredWorkSlug && workCases[hoveredWorkSlug] && (
+                    <div
+                        className="fixed z-50 pointer-events-none"
+                        style={{
+                            left: `${mousePosition.x + 16}px`,
+                            top: `${mousePosition.y + 16}px`,
+                        }}
+                    >
+                        <WorkPreviewCard workSlug={hoveredWorkSlug} />
+                    </div>
+                )}
 
                 {/* ПРАВАЯ ГРУППА: Соцсети + Тема + Мобильный бургер */}
                 <div className="flex items-center gap-4">
