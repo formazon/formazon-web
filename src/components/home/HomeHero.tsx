@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState, MouseEvent, useEffect, useRef } from "react";
 import { WorkPreviewCard } from "@/components/ui/WorkPreviewCard";
+import { TypingText } from "@/components/ui/TypingText";
 
 export type HomeHeroProps = {
     title: string;
@@ -49,7 +50,7 @@ export function HomeHero({
         <section className="mb-16 space-y-8">
             <div className="space-y-6">
                 <h1 className="h1 max-w-4xl">
-                    {title}
+                    <TypingText text={title} typingSpeed={75} showCursor={true} cursorCharacter="|" />
                 </h1>
                 <div className="space-y-4">
                     {paragraphs.map((paragraph, index) => (

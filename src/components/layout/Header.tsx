@@ -25,6 +25,7 @@ export function Header() {
     const [isWorkHovered, setIsWorkHovered] = useState(false);
     const [hoveredWorkSlug, setHoveredWorkSlug] = useState<string | null>(null);
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+    const [isScrolled, setIsScrolled] = useState(false);
 
     useEffect(() => {
         setIsOpen(false);
@@ -39,24 +40,42 @@ export function Header() {
         return () => { document.body.style.overflow = "unset"; };
     }, [isOpen]);
 
+    useEffect(() => {
+        const handleScroll = () => {
+            setIsScrolled(window.scrollY > 0);
+        };
+
+        window.addEventListener("scroll", handleScroll);
+        // Проверяем сразу при монтировании
+        handleScroll();
+
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
+    }, []);
+
     const activeNavItems = navItems.filter((item) => {
         return !(item.feature === "journal" && !journalEnabled);
     });
 
     return (
-        <header className="relative bg-surface/80 backdrop-blur z-50">
+        <header className="sticky top-0 z-50">
             <div className="mx-auto flex h-16 items-center justify-between gutter">
                 {/* ЛЕВАЯ ГРУППА: Логотип */}
                 <Link
                     href="/"
-                    className="label hover:opacity-70 transition-opacity"
+                    className={`label hover:opacity-70 transition-all duration-200 ${
+                        isScrolled ? "bg-surface/80 backdrop-blur rounded-sm px-3 py-[9px]" : ""
+                    }`}
                     onClick={() => setIsOpen(false)}
                 >
                     formazon.com
                 </Link>
 
                 {/* ЦЕНТР: Десктопное Меню */}
-                <nav className="hidden items-center gap-6 sm:flex">
+                <nav className={`hidden items-center gap-6 sm:flex transition-all duration-200 ${
+                    isScrolled ? "bg-surface/80 backdrop-blur rounded-sm px-3 py-2" : ""
+                }`}>
                     {activeNavItems.map((item) => {
                         const isActive = pathname === item.href;
                         const isWork = item.href === "/work";
@@ -65,7 +84,7 @@ export function Header() {
                             return (
                                 <div
                                     key={item.href}
-                                    className="relative"
+                                    className="relative inline-flex"
                                     onMouseEnter={() => setIsWorkHovered(true)}
                                     onMouseLeave={() => {
                                         setIsWorkHovered(false);
@@ -99,7 +118,7 @@ export function Header() {
                                     {/* Выпадающее меню работ */}
                                     {isWorkHovered && (
                                         <div 
-                                            className="absolute top-full left-0 pt-0"
+                                            className="absolute top-full -left-3 pt-2"
                                             onMouseEnter={() => setIsWorkHovered(true)}
                                             onMouseLeave={() => {
                                                 setIsWorkHovered(false);
@@ -107,7 +126,7 @@ export function Header() {
                                             }}
                                         >
                                             <div 
-                                                className="bg-foreground/95 backdrop-blur-sm rounded-sm min-w-[200px]">
+                                                className="bg-foreground backdrop-blur-sm rounded-sm min-w-[200px]">
                                                 <ul>
                                                     {workItems.map((workItem) => {
                                                         const workCase = workCases[workItem.slug];
@@ -140,7 +159,7 @@ export function Header() {
                                 className="group relative inline-block caption-medium normal-case transition-all duration-200"
                             >
                                 <span className="relative z-10">{item.label}</span>
-                                <div className={`absolute top-full left-0 mt-1 w-full flex justify-between transition-all duration-200 ${isActive ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-1 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto"}`}>
+                                <div className={`absolute top-full left-0 mt-0 w-full flex justify-between transition-all duration-200 ${isActive ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-1 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto"}`}>
                                     <Dot />
                                     <Dot />
                                 </div>
@@ -163,7 +182,9 @@ export function Header() {
                 )}
 
                 {/* ПРАВАЯ ГРУППА: Соцсети + Тема + Мобильный бургер */}
-                <div className="flex items-center gap-4">
+                <div className={`flex items-center gap-4 transition-all duration-200 ${
+                    isScrolled ? "bg-surface/80 backdrop-blur rounded-sm pl-3 pr-1.5 py-0" : ""
+                }`}>
                     {/* Social Links - Desktop */}
                     <div className="hidden items-center gap-6 sm:flex">
                         <Link

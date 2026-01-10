@@ -57,7 +57,7 @@ export function WorkCaseLayout({ workCase, previousCase, nextCase }: WorkCaseLay
                     )}
                 </div>
                 {heroSummary && (
-                    <p className="subtitle mb-20">
+                    <p className="subtitle mb-20 max-w-3xl">
                         {heroSummary}
                     </p>
                 )}
@@ -155,10 +155,12 @@ export function WorkCaseLayout({ workCase, previousCase, nextCase }: WorkCaseLay
                             {/* Добавляем заголовок и текст после первого изображения */}
                             {index === 0 && (
                                 <>
-                                    <H2Index index={1}>
-                                        Robotics as a Service
-                                    </H2Index>
-                                    <p className="mt-6 mb-20">
+                                    <div className="max-w-3xl">
+                                        <H2Index index={1}>
+                                            Robotics as a Service
+                                        </H2Index>
+                                    </div>
+                                    <p className="mt-6 mb-20 max-w-3xl">
                                         The main product challenge was to balance simplicity with depth. We needed to handle high-resolution image processing and complex layering on mobile devices without overwhelming the user. Additionally, we had to build a sustainable content engine—moving beyond a static utility app to a dynamic platform with weekly asset drops and a thriving marketplace.
                                     </p>
                                 </>
@@ -167,10 +169,12 @@ export function WorkCaseLayout({ workCase, previousCase, nextCase }: WorkCaseLay
                             {/* Добавляем заголовок и текст после изображения tra-robotics-5.jpg */}
                             {image.src.includes('tra-robotics-5.jpg') && (
                                 <>
-                                    <H2Index index={2}>
-                                        Branding
-                                    </H2Index>
-                                    <p className="mt-6 mb-20">
+                                    <div className="max-w-3xl">
+                                        <H2Index index={2}>
+                                            Branding
+                                        </H2Index>
+                                    </div>
+                                    <p className="mt-6 mb-20 max-w-3xl">
                                         The visual identity for TRA Robotics reflects the precision and reliability of industrial automation. The brand system balances technical clarity with approachable design, creating a language that communicates trust and innovation. Typography and color choices emphasize clarity and focus, while the logo and mark system provide flexibility across different contexts and applications.
                                     </p>
                                 </>
@@ -182,10 +186,12 @@ export function WorkCaseLayout({ workCase, previousCase, nextCase }: WorkCaseLay
                 {/* Первый абзац текста */}
                 {firstSection && (
                     <>
-                        <H2Index index={3}>
-                            Internal Portal
-                        </H2Index>
-                        <p className="mt-6">
+                        <div className="max-w-3xl">
+                            <H2Index index={3}>
+                                Internal Portal
+                            </H2Index>
+                        </div>
+                        <p className="mt-6 max-w-3xl">
                             {firstSection.body} The internal portal serves as the central hub for team communication and system management, reinforcing the brand through consistent visual language and user experience. Internal communication tools were designed to facilitate seamless collaboration while maintaining the clarity and precision that defines the TRA Robotics brand.
                         </p>
                     </>
