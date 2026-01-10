@@ -91,7 +91,8 @@ export function WorkCaseLayout({ workCase, previousCase, nextCase }: WorkCaseLay
                         (image.src.includes('tra-robotics-8.jpg') && nextImage.src.includes('tra-robotics-9.jpg')) ||
                         (image.src.includes('tra-robotics-10.jpg') && nextImage.src.includes('tra-robotics-11.jpg')) ||
                         // jungle
-                        (image.src.includes('jungle-robotics-4.jpg') && nextImage.src.includes('jungle-robotics-5.jpg'))
+                        (image.src.includes('jungle-robotics-4.jpg') && nextImage.src.includes('jungle-robotics-5.jpg')) ||
+                        (image.src.includes('jungle-robotics-13.jpg') && nextImage.src.includes('jungle-robotics-14.jpg'))
                     );
                     
                     // Если это второе изображение в группе, пропускаем его (оно уже отображено)
@@ -102,7 +103,8 @@ export function WorkCaseLayout({ workCase, previousCase, nextCase }: WorkCaseLay
                         (prevImage.src.includes('tra-robotics-8.jpg') && image.src.includes('tra-robotics-9.jpg')) ||
                         (prevImage.src.includes('tra-robotics-10.jpg') && image.src.includes('tra-robotics-11.jpg')) ||
                         // jungle
-                        (prevImage.src.includes('jungle-robotics-4.jpg') && image.src.includes('jungle-robotics-5.jpg'))
+                        (prevImage.src.includes('jungle-robotics-4.jpg') && image.src.includes('jungle-robotics-5.jpg')) ||
+                        (prevImage.src.includes('jungle-robotics-13.jpg') && image.src.includes('jungle-robotics-14.jpg'))
                     );
                     
                     if (isSecondInGroup) {

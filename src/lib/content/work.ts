@@ -44,7 +44,7 @@ export type WorkCase = WorkItem & {
 /** Объект со всеми кейсами по slug (один источник правды) */
 export const workCases: Record<string, WorkCase> = {
     appfortype: {
-        order: 20,
+        order: 40,
         title: "AppForType",
         slug: "appfortype",
         description:
@@ -194,7 +194,7 @@ export const workCases: Record<string, WorkCase> = {
     },
 
     "tra-robotics": {
-        order: 40,
+        order: 20,
         title: "TRA Robotics",
         slug: "tra-robotics",
         description:
@@ -461,7 +461,55 @@ export const workCases: Record<string, WorkCase> = {
                 src: "/work/jungle/jungle-robotics-6.jpg",
                 alt: "Jungle Robotics interface showing automation flows",
                 width: 1920,
+                height: 1185,
+            },
+            {
+                src: "/work/jungle/jungle-robotics-7.jpg",
+                alt: "Jungle Robotics interface showing automation flows",
+                width: 1920,
+                height: 1185,
+            },
+            {
+                src: "/work/jungle/jungle-robotics-8.jpg",
+                alt: "Jungle Robotics interface showing automation flows",
+                width: 1920,
                 height: 1800,
+            },
+            {
+                src: "/work/jungle/jungle-robotics-9.jpg",
+                alt: "Jungle Robotics interface showing automation flows",
+                width: 1920,
+                height: 1185,
+            },
+            {
+                src: "/work/jungle/jungle-robotics-10.jpg",
+                alt: "Jungle Robotics interface showing automation flows",
+                width: 1920,
+                height: 1185,
+            },
+            {
+                src: "/work/jungle/jungle-robotics-11.jpg",
+                alt: "Jungle Robotics interface showing automation flows",
+                width: 1920,
+                height: 1185,
+            },             
+            {
+                src: "/work/jungle/jungle-robotics-12.jpg",
+                alt: "Jungle Robotics interface showing automation flows",
+                width: 1920,
+                height: 1185,
+            },           
+            {
+                src: "/work/jungle/jungle-robotics-13.jpg",
+                alt: "Jungle Robotics interface showing automation flows",
+                width: 960,
+                height: 1185,
+            },
+            {
+                src: "/work/jungle/jungle-robotics-14.jpg",
+                alt: "Jungle Robotics interface showing automation flows",
+                width: 960,
+                height: 1185,
             },
         ],
     },
