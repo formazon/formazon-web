@@ -167,10 +167,10 @@ export const workCases: Record<string, WorkCase> = {
         ],
         images: [
             {
-                src: "/work/explyt/explyt-branding.png",
+                src: "/work/explyt/explyt-1.jpg",
                 alt: "Explyt main dashboard with balances and recent activity",
-                width: 1600,
-                height: 900,
+                width: 1920,
+                height: 1185,
             },
             {
                 src: "/work/explyt/explyt-dashboard.png",
@@ -253,6 +253,12 @@ export const workCases: Record<string, WorkCase> = {
                 height: 1185,
             },
             {
+                src: "/work/tra-robotics/tra-robotics-5.jpg",
+                alt: "TRA Robotics focuses on automating physical workflows using robotic systems. My work centered on turning complex, technical operations into clear interfaces that operators and engineers can use confidently",
+                width: 1920,
+                height: 1185,
+            },
+            {
                 src: "/work/tra-robotics/tra-robotics-3.jpg",
                 alt: "TRA Robotics focuses on automating physical workflows using robotic systems. My work centered on turning complex, technical operations into clear interfaces that operators and engineers can use confidently",
                 width: 1920,
@@ -260,12 +266,6 @@ export const workCases: Record<string, WorkCase> = {
             },
             {
                 src: "/work/tra-robotics/tra-robotics-4.jpg",
-                alt: "TRA Robotics focuses on automating physical workflows using robotic systems. My work centered on turning complex, technical operations into clear interfaces that operators and engineers can use confidently",
-                width: 1920,
-                height: 1185,
-            },
-            {
-                src: "/work/tra-robotics/tra-robotics-5.jpg",
                 alt: "TRA Robotics focuses on automating physical workflows using robotic systems. My work centered on turning complex, technical operations into clear interfaces that operators and engineers can use confidently",
                 width: 1920,
                 height: 1185,
@@ -496,10 +496,10 @@ export const workCases: Record<string, WorkCase> = {
         ],
         images: [
             {
-                src: "/work/fuelet/fuelet-branding.png",
+                src: "/work/esprito/esprito-1.jpg",
                 alt: "Fuelet main dashboard with balances and recent activity",
-                width: 1600,
-                height: 900,
+                width: 1920,
+                height: 1185,
             },
             {
                 src: "/work/fuelet/fuelet-dashboard.png",

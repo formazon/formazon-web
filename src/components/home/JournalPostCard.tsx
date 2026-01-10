@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import type { JournalPost } from "@/lib/content/journal";
 import { journalEntries } from "@/lib/content/journal";
+import { journalEnabled } from "@/lib/config/features";
 import { Tag } from "../ui/Tag";
 
 type Props = {
@@ -14,11 +15,8 @@ export function JournalPostCard({ post }: Props) {
     const fullEntry = journalEntries[post.slug];
     const coverImage = fullEntry?.coverImage ?? null;
 
-    return (
-        <Link
-            href={`/journal/${post.slug}`}
-            className="group flex flex-col overflow-hidden transition hover:bg-surface"
-        >
+    const content = (
+        <>
             {/* Cover image */}
             {coverImage && (
                 <div className="relative aspect-[1.618/1] w-full overflow-hidden rounded-sm">
@@ -59,9 +57,24 @@ export function JournalPostCard({ post }: Props) {
                         })}
                     </p>
                 </div>
-
-
             </div>
+        </>
+    );
+
+    if (!journalEnabled) {
+        return (
+            <div className="group flex flex-col overflow-hidden transition">
+                {content}
+            </div>
+        );
+    }
+
+    return (
+        <Link
+            href={`/journal/${post.slug}`}
+            className="group flex flex-col overflow-hidden transition hover:bg-surface"
+        >
+            {content}
         </Link>
     );
 }

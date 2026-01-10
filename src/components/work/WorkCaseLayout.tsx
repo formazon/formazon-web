@@ -155,15 +155,32 @@ export function WorkCaseLayout({ workCase, previousCase, nextCase }: WorkCaseLay
                                     </p>
                                 </>
                             )}
+                            
+                            {/* Добавляем заголовок и текст после изображения tra-robotics-5.jpg */}
+                            {image.src.includes('tra-robotics-5.jpg') && (
+                                <>
+                                    <H2Index index={2}>
+                                        Branding
+                                    </H2Index>
+                                    <p className="mt-6 mb-20">
+                                        The visual identity for TRA Robotics reflects the precision and reliability of industrial automation. The brand system balances technical clarity with approachable design, creating a language that communicates trust and innovation. Typography and color choices emphasize clarity and focus, while the logo and mark system provide flexibility across different contexts and applications.
+                                    </p>
+                                </>
+                            )}
                         </div>
                     );
                 })}
 
                 {/* Первый абзац текста */}
                 {firstSection && (
-                    <p>
-                        {firstSection.body}
-                    </p>
+                    <>
+                        <H2Index index={3}>
+                            Internal Portal
+                        </H2Index>
+                        <p className="mt-6">
+                            {firstSection.body} The internal portal serves as the central hub for team communication and system management, reinforcing the brand through consistent visual language and user experience. Internal communication tools were designed to facilitate seamless collaboration while maintaining the clarity and precision that defines the TRA Robotics brand.
+                        </p>
+                    </>
                 )}
             </div>
 
