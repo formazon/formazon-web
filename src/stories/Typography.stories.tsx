@@ -47,6 +47,18 @@ export const BodyText: Story = {
         </p>
         <p className="label text-text-muted mt-2">IBM Plex Sans • 18px/20px • 400 • 1.5</p>
       </div>
+      <div>
+        <p className="body-18">
+          Body 18 text. This style is used for paragraphs with a fixed 18px font size. It provides consistent typography across different screen sizes.
+        </p>
+        <p className="label text-text-muted mt-2">IBM Plex Sans • 18px • 400 • 1.5</p>
+      </div>
+      <div>
+        <p className="body-18-medium">
+          Body 18 Medium text. This style uses the same 18px font size but with medium weight (500) for emphasis.
+        </p>
+        <p className="label text-text-muted mt-2">IBM Plex Sans • 18px • 500 • 1.5</p>
+      </div>
     </div>
   ),
 };
@@ -105,6 +117,18 @@ export const AllStyles: Story = {
               The quick brown fox jumps over the lazy dog. This is body text used for paragraphs and longer content blocks. It provides comfortable reading experience with appropriate line height.
             </p>
             <p className="label text-text-muted mt-2">.body</p>
+          </div>
+          <div>
+            <p className="body-18">
+              The quick brown fox jumps over the lazy dog. This is body-18 text with a fixed 18px font size for consistent typography.
+            </p>
+            <p className="label text-text-muted mt-2">.body-18</p>
+          </div>
+          <div>
+            <p className="body-18-medium">
+              The quick brown fox jumps over the lazy dog. This is body-18-medium text with medium weight for emphasis.
+            </p>
+            <p className="label text-text-muted mt-2">.body-18-medium</p>
           </div>
         </div>
       </section>
