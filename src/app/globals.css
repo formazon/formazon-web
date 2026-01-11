@@ -126,8 +126,26 @@ body {
 
 .body {
     font-family: var(--font-plex-sans);
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 400;
+    line-height: 1.5;
+}
+
+.body-16 {
+    font-family: var(--font-plex-sans);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+li.body-16 {
+    margin-bottom: 0px;
+}
+
+.body-16-medium {
+    font-family: var(--font-plex-sans);
+    font-size: 16px;
+    font-weight: 500;
     line-height: 1.5;
 }
 
@@ -154,6 +172,14 @@ body {
     
     .body {
         font-size: 20px;
+    }
+    
+    .body-16 {
+        font-size: 16px;
+    }
+    
+    .body-16-medium {
+        font-size: 16px;
     }
 }
 
