@@ -40,6 +40,7 @@ export type WorkCaseImage = {
 /** Полный кейс = WorkItem + мета + секции + (опционально) картинки */
 export type WorkCase = WorkItem & {
     order?: number;
+    featured?: boolean; // Показывать на главной странице
     heroKicker?: string;
     heroSummary?: string;
     role?: string;
@@ -55,6 +56,7 @@ export type WorkCase = WorkItem & {
 export const workCases: Record<string, WorkCase> = {
     appfortype: {
         order: 40,
+        featured: true,
         title: "AppForType",
         slug: "appfortype",
         description:
@@ -131,6 +133,7 @@ export const workCases: Record<string, WorkCase> = {
 
     explyt: {
         order: 50,
+        featured: false,
         title: "Explyt",
         slug: "explyt",
         description:
@@ -205,6 +208,7 @@ export const workCases: Record<string, WorkCase> = {
 
     "tra-robotics": {
         order: 20,
+        featured: true,
         title: "TRA Robotics",
         slug: "tra-robotics",
         description:
@@ -338,6 +342,7 @@ export const workCases: Record<string, WorkCase> = {
 
     fuelet: {
         order: 30,
+        featured: true,
         title: "Fuelet Wallet",
         slug: "fuelet",
         description:
@@ -408,6 +413,7 @@ export const workCases: Record<string, WorkCase> = {
 
     jungle: {
         order: 10,
+        featured: true,
         title: "Jungle Robotics",
         slug: "jungle",
         description:
@@ -539,6 +545,7 @@ export const workCases: Record<string, WorkCase> = {
 
     esprito: {
         order: 60,
+        featured: false,
         title: "Esprito",
         slug: "esprito",
         description:
@@ -671,20 +678,16 @@ export const workItems: WorkItem[] = Object.values(workCases)
         tags,
     }));
 
-// Какие из них считаем избранными для главной
-export const featuredWorkSlugs: string[] = [
-    "jungle",
-    "appfortype",
-    "fuelet",
-    "tra-robotics",
-    "explyt",
-    "esprito",
-];
-
-// Избранные в том порядке, в каком указали в featuredWorkSlugs
-export const featuredWorkItems: WorkItem[] = featuredWorkSlugs
-    .map((slug) => workItems.find((item) => item.slug === slug))
-    .filter((item): item is WorkItem => Boolean(item));
+// Избранные проекты для главной (с featured: true), отсортированные по order
+export const featuredWorkItems: WorkItem[] = Object.values(workCases)
+    .filter((case_) => case_.featured === true)
+    .sort((a, b) => (a.order ?? 999) - (b.order ?? 999))
+    .map(({ title, slug, description, tags }) => ({
+        title,
+        slug,
+        description,
+        tags,
+    }));
 
 export function getRandomWorkCase(currentSlug: string): WorkItem | undefined {
     // Сразу фильтруем workItems, не создавая лишних промежуточных переменных
