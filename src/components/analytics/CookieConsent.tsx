@@ -12,7 +12,7 @@ export function CookieConsent() {
     }
 
     return (
-        <div className="fixed bottom-1 right-1 z-50 max-w-sm rounded-sm border border-border-subtle/50 bg-foreground/80 backdrop-blur dark:bg-background/80 p-4 shadow-lg">
+        <div className="fixed bottom-1 right-1 z-50 max-w-sm rounded-sm bg-foreground/80 backdrop-blur dark:bg-background/80 p-4 shadow-lg">
             <div className="flex flex-col gap-4">
                 <p className="label text-background dark:text-foreground">
                     We use cookies and similar technologies to analyze site usage and improve your experience. 

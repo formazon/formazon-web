@@ -293,6 +293,7 @@ export const workCases: Record<string, WorkCase> = {
                 alt: "TRA Robotics focuses on automating physical workflows using robotic systems. My work centered on turning complex, technical operations into clear interfaces that operators and engineers can use confidently",
                 width: 1185,
                 height: 960,
+                groupWithNext: true,
             },
             {
                 src: "/work/tra-robotics/tra-robotics-7.jpg",
@@ -305,6 +306,7 @@ export const workCases: Record<string, WorkCase> = {
                 alt: "TRA Robotics focuses on automating physical workflows using robotic systems. My work centered on turning complex, technical operations into clear interfaces that operators and engineers can use confidently",
                 width: 1185,
                 height: 960,
+                groupWithNext: true,
             },
             {
                 src: "/work/tra-robotics/tra-robotics-9.jpg",
@@ -316,7 +318,8 @@ export const workCases: Record<string, WorkCase> = {
                 src: "/work/tra-robotics/tra-robotics-10.jpg",
                 alt: "TRA Robotics focuses on automating physical workflows using robotic systems. My work centered on turning complex, technical operations into clear interfaces that operators and engineers can use confidently",
                 width: 1185,
-                height: 960,
+                height: 960,    
+                groupWithNext: true,
             },
             {
                 src: "/work/tra-robotics/tra-robotics-11.jpg",

@@ -47,15 +47,17 @@ export function WorkCaseLayout({ workCase, previousCase, nextCase }: WorkCaseLay
                         {title}
                     </h1>
                     {avatar && (
-                        <Image
-                            src={avatar}
-                            alt={`${title} avatar`}
-                            width={64}
-                            height={64}
-                            className={`w-11 h-11 sm:w-16 sm:h-16 mt-1 ${avatar.includes('fuelet.svg') ? 'dark:brightness-0 dark:invert' : ''}`}
-                            style={avatar.includes('fuelet.svg') ? { filter: 'none' } : undefined}
-                        />
+                        <div className={avatar.includes('fuelet.svg') ? 'text-foreground' : ''}>
+                            <Image
+                                src={avatar}
+                                alt={`${title} avatar`}
+                                width={64}
+                                height={64}
+                                className="w-11 h-11 sm:w-16 sm:h-16 mt-1"
+                            />
+                        </div>
                     )}
+                    
                 </div>
                 {heroSummary && (
                     <p className="subtitle mb-20 max-w-3xl">
