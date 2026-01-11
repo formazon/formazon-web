@@ -84,32 +84,26 @@ export function WorkCaseLayout({ workCase, previousCase, nextCase }: WorkCaseLay
                 {allImages.map((image, index) => {
                     // Проверяем, нужно ли группировать текущее изображение со следующим
                     const nextImage = allImages[index + 1];
-                    
-                    // Определяем пары изображений для группировки
-                    const shouldGroup = nextImage && (
-                        // tra-robotics
-                        (image.src.includes('tra-robotics-6.jpg') && nextImage.src.includes('tra-robotics-7.jpg')) ||
-                        (image.src.includes('tra-robotics-8.jpg') && nextImage.src.includes('tra-robotics-9.jpg')) ||
-                        (image.src.includes('tra-robotics-10.jpg') && nextImage.src.includes('tra-robotics-11.jpg')) ||
-                        // jungle
-                        (image.src.includes('jungle-robotics-4.jpg') && nextImage.src.includes('jungle-robotics-5.jpg')) ||
-                        (image.src.includes('jungle-robotics-13.jpg') && nextImage.src.includes('jungle-robotics-14.jpg'))
-                    );
+                    const shouldGroup = image.groupWithNext && nextImage;
                     
                     // Если это второе изображение в группе, пропускаем его (оно уже отображено)
                     const prevImage = index > 0 ? allImages[index - 1] : null;
-                    const isSecondInGroup = prevImage && (
-                        // tra-robotics
-                        (prevImage.src.includes('tra-robotics-6.jpg') && image.src.includes('tra-robotics-7.jpg')) ||
-                        (prevImage.src.includes('tra-robotics-8.jpg') && image.src.includes('tra-robotics-9.jpg')) ||
-                        (prevImage.src.includes('tra-robotics-10.jpg') && image.src.includes('tra-robotics-11.jpg')) ||
-                        // jungle
-                        (prevImage.src.includes('jungle-robotics-4.jpg') && image.src.includes('jungle-robotics-5.jpg')) ||
-                        (prevImage.src.includes('jungle-robotics-13.jpg') && image.src.includes('jungle-robotics-14.jpg'))
-                    );
+                    const isSecondInGroup = prevImage?.groupWithNext === true;
                     
                     if (isSecondInGroup) {
                         return null;
+                    }
+
+                    // Подсчитываем индекс для H2Index (учитывая только отображенные изображения с контентом)
+                    let contentIndex = 0;
+                    for (let i = 0; i <= index; i++) {
+                        const img = allImages[i];
+                        if (i > 0 && allImages[i - 1]?.groupWithNext) {
+                            continue; // Пропускаем второе изображение в группе
+                        }
+                        if (img?.content) {
+                            contentIndex++;
+                        }
                     }
 
                     return (
@@ -124,7 +118,7 @@ export function WorkCaseLayout({ workCase, previousCase, nextCase }: WorkCaseLay
                                             width={image.width}
                                             height={image.height}
                                             className="h-auto w-full object-cover rounded"
-                                            priority={false}
+                                            priority={index === 0}
                                         />
                                     </figure>
                                     {nextImage && (
@@ -149,35 +143,25 @@ export function WorkCaseLayout({ workCase, previousCase, nextCase }: WorkCaseLay
                                         width={image.width}
                                         height={image.height}
                                         className="h-auto w-full object-cover rounded"
-                                        priority={false}
+                                        priority={index === 0}
                                     />
                                 </figure>
                             )}
-                            {/* Добавляем заголовок и текст после первого изображения */}
-                            {index === 0 && (
+                            {/* Добавляем контент после изображения, если он есть */}
+                            {image.content && (
                                 <>
-                                    <div className="max-w-3xl">
-                                        <H2Index index={1}>
-                                            Robotics as a Service
-                                        </H2Index>
-                                    </div>
-                                    <p className="mt-6 mb-20 max-w-3xl">
-                                        The main product challenge was to balance simplicity with depth. We needed to handle high-resolution image processing and complex layering on mobile devices without overwhelming the user. Additionally, we had to build a sustainable content engine—moving beyond a static utility app to a dynamic platform with weekly asset drops and a thriving marketplace.
-                                    </p>
-                                </>
-                            )}
-                            
-                            {/* Добавляем заголовок и текст после изображения tra-robotics-5.jpg */}
-                            {image.src.includes('tra-robotics-5.jpg') && (
-                                <>
-                                    <div className="max-w-3xl">
-                                        <H2Index index={2}>
-                                            Branding
-                                        </H2Index>
-                                    </div>
-                                    <p className="mt-6 mb-20 max-w-3xl">
-                                        The visual identity for TRA Robotics reflects the precision and reliability of industrial automation. The brand system balances technical clarity with approachable design, creating a language that communicates trust and innovation. Typography and color choices emphasize clarity and focus, while the logo and mark system provide flexibility across different contexts and applications.
-                                    </p>
+                                    {image.content.title && (
+                                        <div className="max-w-3xl">
+                                            <H2Index index={contentIndex}>
+                                                {image.content.title}
+                                            </H2Index>
+                                        </div>
+                                    )}
+                                    {image.content.body && (
+                                        <p className="mt-6 mb-20 max-w-3xl">
+                                            {image.content.body}
+                                        </p>
+                                    )}
                                 </>
                             )}
                         </div>
@@ -188,12 +172,12 @@ export function WorkCaseLayout({ workCase, previousCase, nextCase }: WorkCaseLay
                 {firstSection && (
                     <>
                         <div className="max-w-3xl">
-                            <H2Index index={3}>
-                                Internal Portal
+                            <H2Index index={allImages.filter(img => img.content).length + 1}>
+                                {firstSection.title || "Overview"}
                             </H2Index>
                         </div>
                         <p className="mt-6 max-w-3xl">
-                            {firstSection.body} The internal portal serves as the central hub for team communication and system management, reinforcing the brand through consistent visual language and user experience. Internal communication tools were designed to facilitate seamless collaboration while maintaining the clarity and precision that defines the TRA Robotics brand.
+                            {firstSection.body}
                         </p>
                     </>
                 )}

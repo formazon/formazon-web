@@ -4,6 +4,7 @@
 import { useState, FormEvent } from "react";
 import { contactContent } from "@/lib/content/contact";
 import { Button } from "@/components/ui/Button";
+import { Input, Textarea } from "@/components/ui/Input";
 
 export function ContactForm() {
     const { form } = contactContent;
@@ -13,15 +14,33 @@ export function ContactForm() {
         e.preventDefault();
         setStatus("submitting");
 
-        // Имитация задержки сети
-        // В реальности здесь будет fetch('/api/send', { ... }) или Formspree
-        setTimeout(() => {
-            // Успешная отправка
-            setStatus("success");
+        const formData = new FormData(e.currentTarget);
+        const data = {
+            name: formData.get("name") as string,
+            email: formData.get("email") as string,
+            message: formData.get("message") as string,
+        };
 
-            // Если нужно сбросить форму через время:
-            // setTimeout(() => setStatus("idle"), 5000);
-        }, 1500);
+        try {
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            });
+
+            if (!response.ok) {
+                const error = await response.json();
+                throw new Error(error.error || 'Failed to send message');
+            }
+
+            setStatus("success");
+            e.currentTarget.reset();
+        } catch (error) {
+            console.error('Form submission error:', error);
+            setStatus("error");
+        }
     }
 
     if (status === "success") {
@@ -35,49 +54,34 @@ export function ContactForm() {
     return (
         <form onSubmit={handleSubmit} className="space-y-4">
             {/* Name Input */}
-            <div className="space-y-1.5">
-                <label htmlFor="name" className="label-medium text-text-muted">
-                    {form.nameLabel}
-                </label>
-                <input
-                    required
-                    type="text"
-                    id="name"
-                    name="name"
-                    placeholder={form.namePlaceholder}
-                    className="w-full rounded-lg border border-border-subtle bg-surface px-3 py-2 caption text-foreground placeholder:text-text-muted/50 focus:border-foreground focus:outline-none focus:ring-1 focus:ring-foreground transition-colors"
-                />
-            </div>
+            <Input
+                required
+                type="text"
+                id="name"
+                name="name"
+                label={form.nameLabel}
+                placeholder={form.namePlaceholder}
+            />
 
             {/* Email Input */}
-            <div className="space-y-1.5">
-                <label htmlFor="email" className="label-medium text-text-muted">
-                    {form.emailLabel}
-                </label>
-                <input
-                    required
-                    type="email"
-                    id="email"
-                    name="email"
-                    placeholder={form.emailPlaceholder}
-                    className="w-full rounded-lg border border-border-subtle bg-surface px-3 py-2 caption text-foreground placeholder:text-text-muted/50 focus:border-foreground focus:outline-none focus:ring-1 focus:ring-foreground transition-colors"
-                />
-            </div>
+            <Input
+                required
+                type="email"
+                id="email"
+                name="email"
+                label={form.emailLabel}
+                placeholder={form.emailPlaceholder}
+            />
 
             {/* Message Input */}
-            <div className="space-y-1.5">
-                <label htmlFor="message" className="label-medium text-text-muted">
-                    {form.messageLabel}
-                </label>
-                <textarea
-                    required
-                    id="message"
-                    name="message"
-                    rows={5}
-                    placeholder={form.messagePlaceholder}
-                    className="w-full resize-none rounded-lg border border-border-subtle bg-surface px-3 py-2 caption text-foreground placeholder:text-text-muted/50 focus:border-foreground focus:outline-none focus:ring-1 focus:ring-foreground transition-colors"
-                />
-            </div>
+            <Textarea
+                required
+                id="message"
+                name="message"
+                label={form.messageLabel}
+                placeholder={form.messagePlaceholder}
+                rows={5}
+            />
 
             {/* Submit Button */}
             <div className="pt-2">

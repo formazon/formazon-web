@@ -18,6 +18,12 @@ export type WorkCaseSection = {
     body: string;
 };
 
+/** Тип для текстового контента, который отображается после изображения */
+export type WorkCaseImageContent = {
+    title?: string;
+    body?: string;
+};
+
 /** Тип для картинок кейса */
 export type WorkCaseImage = {
     /** Путь к картинке в /public, например /work/fuelet-dashboard.png */
@@ -25,6 +31,10 @@ export type WorkCaseImage = {
     alt: string;
     width: number;
     height: number;
+    /** Если true, это изображение группируется со следующим */
+    groupWithNext?: boolean;
+    /** Контент, который отображается после этого изображения */
+    content?: WorkCaseImageContent;
 };
 
 /** Полный кейс = WorkItem + мета + секции + (опционально) картинки */
@@ -245,6 +255,10 @@ export const workCases: Record<string, WorkCase> = {
                 alt: "TRA Robotics focuses on automating physical workflows using robotic systems. My work centered on turning complex, technical operations into clear interfaces that operators and engineers can use confidently",
                 width: 1920,
                 height: 1185,
+                content: {
+                    title: "Robotics as a Service",
+                    body: "The main product challenge was to balance simplicity with depth. We needed to handle high-resolution image processing and complex layering on mobile devices without overwhelming the user. Additionally, we had to build a sustainable content engine—moving beyond a static utility app to a dynamic platform with weekly asset drops and a thriving marketplace.",
+                },
             },
             {
                 src: "/work/tra-robotics/tra-robotics-2.jpg",
@@ -257,6 +271,10 @@ export const workCases: Record<string, WorkCase> = {
                 alt: "TRA Robotics focuses on automating physical workflows using robotic systems. My work centered on turning complex, technical operations into clear interfaces that operators and engineers can use confidently",
                 width: 1920,
                 height: 1185,
+                content: {
+                    title: "Branding",
+                    body: "The visual identity for TRA Robotics reflects the precision and reliability of industrial automation. The brand system balances technical clarity with approachable design, creating a language that communicates trust and innovation. Typography and color choices emphasize clarity and focus, while the logo and mark system provide flexibility across different contexts and applications.",
+                },
             },
             {
                 src: "/work/tra-robotics/tra-robotics-3.jpg",
@@ -450,6 +468,7 @@ export const workCases: Record<string, WorkCase> = {
                 alt: "Jungle Robotics interface showing automation flows",
                 width: 960,
                 height: 1185,
+                groupWithNext: true,
             },
             {
                 src: "/work/jungle/jungle-robotics-5.jpg",
@@ -504,6 +523,7 @@ export const workCases: Record<string, WorkCase> = {
                 alt: "Jungle Robotics interface showing automation flows",
                 width: 960,
                 height: 1185,
+                groupWithNext: true,
             },
             {
                 src: "/work/jungle/jungle-robotics-14.jpg",

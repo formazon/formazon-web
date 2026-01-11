@@ -53,6 +53,7 @@ export function JournalLayout({ entry, previous, next }: JournalLayoutProps) {
                         width={coverImage.width}
                         height={coverImage.height}
                         className="h-auto w-full object-cover"
+                        priority
                     />
                 </div>
             )}

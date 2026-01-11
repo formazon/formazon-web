@@ -31,10 +31,7 @@ export function JournalPostCard({ post }: Props) {
             )}
 
             {/* Text content */}
-            <div 
-                className="flex flex-1 flex-col justify-between py-5 px-0 border-0"
-                style={{ boxSizing: 'content-box', borderColor: 'transparent', borderStyle: 'none', borderImage: 'none' }}
-            >
+            <div className="flex flex-1 flex-col justify-between py-5 px-0">
                 <div className="space-y-2">
                     <h3 className="subtitle-medium">
                         {post.title}
