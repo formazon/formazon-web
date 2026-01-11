@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { PageShell } from "@/components/layout/PageShell";
 import { aboutContent } from "@/lib/content/about";
 import {TextLink} from "@/components/ui/TextLink";
+import { TypingText } from "@/components/ui/TypingText";
 
 export const metadata: Metadata = {
     title: "About — Formazon",
@@ -21,7 +22,7 @@ export default function AboutPage() {
                         About
                     </p>
                     <h1 className="h1">
-                        Farid Rafikov
+                        <TypingText text="Farid Rafikov" />
                     </h1>
                     {story.map((paragraph, index) => (
                         <p key={index}>{paragraph}</p>
