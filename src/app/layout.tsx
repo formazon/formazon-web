@@ -6,6 +6,10 @@ import { IBM_Plex_Sans, IBM_Plex_Mono } from "next/font/google";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
+import { CookieConsentProvider } from "@/components/providers/CookieConsentProvider";
+import { CookieConsent } from "@/components/analytics/CookieConsent";
+import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
+import { YandexMetrika } from "@/components/analytics/YandexMetrika";
 
 const ibmPlexSans = IBM_Plex_Sans({
     weight: ["400", "500"],
@@ -33,16 +37,21 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         */}
         <body className="bg-background text-foreground antialiased font-plex-sans">
         <ThemeProvider>
-            <div className="min-h-screen flex flex-col">
-                <Header />
+            <CookieConsentProvider>
+                <GoogleAnalytics />
+                <YandexMetrika />
+                <div className="min-h-screen flex flex-col">
+                    <Header />
 
-                {/* Основной контент страницы */}
-                <main className="flex-1 pt-[88px] pb-20">
-                    {children}
-                </main>
+                    {/* Основной контент страницы */}
+                    <main className="flex-1 pt-[88px] pb-20">
+                        {children}
+                    </main>
 
-                <Footer />
-            </div>
+                    <Footer />
+                </div>
+                <CookieConsent />
+            </CookieConsentProvider>
         </ThemeProvider>
         </body>
         </html>

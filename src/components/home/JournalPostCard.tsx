@@ -50,13 +50,13 @@ export function JournalPostCard({ post }: Props) {
                         <Tag>{post.tag ?? "Journal"}</Tag>
                     )}
                     <p className="label text-text-muted">
-                        {new Date(post.date).toLocaleDateString("en-US", {
-                            month: "short",
-                            day: "numeric",
-                            year: "numeric",
-                        })}
-                    </p>
-                </div>
+                    {new Date(post.date).toLocaleDateString("en-US", {
+                        month: "short",
+                        day: "numeric",
+                        year: "numeric",
+                    })}
+                </p>
+            </div>
             </div>
         </>
     );

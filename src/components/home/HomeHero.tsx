@@ -105,13 +105,13 @@ export function HomeHero({
                                 href={`/work/${project.slug}`}
                                 className="block w-17 h-17 pr-6"
                             >
-                                <div className="relative w-17 h-17 rounded-full bg-white border-2 border-white flex items-center justify-center">
+                                <div className="relative w-17 h-17 rounded-full bg-white border-2 border-white dark:border-background flex items-center justify-center">
                                     <Image
                                         src={project.logo}
                                         alt={project.slug}
                                         width={68}
                                         height={68}
-                                        className="w-17 h-17"
+                                        className={`w-17 h-17 ${project.slug === 'fuelet' ? 'color-foreground' : ''}`}
                                     />
                                 </div>
                             </Link>
