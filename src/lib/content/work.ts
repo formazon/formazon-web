@@ -391,23 +391,44 @@ export const workCases: Record<string, WorkCase> = {
                 height: 1185,
             },
             {
-                src: "/work/fuelet/fuelet-dashboard.png",
+                src: "/work/fuelet/fuelet-wallet-2.jpg",
                 alt: "Fuelet main dashboard with balances and recent activity",
-                width: 1600,
-                height: 900,
+                width: 1920,
+                height: 1185,
             },
             {
-                src: "/work/fuelet/fuelet-onboarding.png",
+                src: "/work/fuelet/fuelet-wallet-3.jpg",
                 alt: "Fuelet onboarding flow with clear steps",
-                width: 1600,
-                height: 900,
+                width: 960,
+                height: 1185,
+                groupWithNext: true,
             },
             {
-                src: "/work/fuelet/fuelet-transfer-flow.png",
+                src: "/work/fuelet/fuelet-wallet-4.jpg",
                 alt: "Fuelet money transfer flow with guided confirmations",
-                width: 1600,
-                height: 900,
+                width: 960,
+                height: 1185,
             },
+            {
+                src: "/work/fuelet/fuelet-wallet-5.jpg",
+                alt: "Fuelet money transfer flow with guided confirmations",
+                width: 1920,
+                height: 1185,
+            },
+            {
+                src: "/work/fuelet/fuelet-wallet-6.jpg",
+                alt: "Fuelet money transfer flow with guided confirmations",
+                width: 960,
+                height: 1185,
+                groupWithNext: true,
+            },
+            {
+                src: "/work/fuelet/fuelet-wallet-7.jpg",
+                alt: "Fuelet money transfer flow with guided confirmations",
+                width: 960,
+                height: 1185,
+                
+            }
         ],
     },
 

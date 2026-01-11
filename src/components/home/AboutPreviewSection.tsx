@@ -22,7 +22,7 @@ export function AboutPreviewSection() {
 
                     <p className="body text-text-muted max-w-xl">
                         My work sits at the intersection of product clarity, interface
-                        design, and engineering. Over the last 15+ years I’ve built and led
+                        design, and engineering. Over the last 20+ years I’ve built and led
                         projects such as AppForType, Explyt, TRA Robotics, Fuelet, Jungle,
                         and Esprito.
                     </p>
