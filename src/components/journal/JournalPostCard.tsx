@@ -1,4 +1,4 @@
-// src/components/home/JournalPostCard.tsx
+// src/components/journal/JournalPostCard.tsx
 import Link from "next/link";
 import Image from "next/image";
 import type { JournalPost } from "@/lib/content/journal";

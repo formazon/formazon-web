@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { PageShell } from "@/components/layout/PageShell";
 import { journalPosts } from "@/lib/content/journal";
-import { JournalPostCard } from "@/components/home/JournalPostCard";
+import { JournalPostCard } from "@/components/journal/JournalPostCard";
 import { journalEnabled } from "@/lib/config/features";
 
 export const metadata: Metadata = {

@@ -1,7 +1,7 @@
 // src/components/home/JournalPreviewSection.tsx
 import Link from "next/link";
 import { journalPosts } from "@/lib/content/journal";
-import { JournalPostCard } from "./JournalPostCard";
+import { JournalPostCard } from "@/components/journal/JournalPostCard";
 import { journalEnabled } from "@/lib/config/features";
 import { H2Index } from "@/components/ui/H2Index";
 import { QuadroDot } from "@/components/ui/QuadroDot";

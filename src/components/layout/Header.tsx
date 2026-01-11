@@ -10,6 +10,7 @@ import { workItems, workCases } from "@/lib/content/work";
 import { ThemeToggle } from "./ThemeToggle";
 import { Dot } from "@/components/ui/Dot";
 import { WorkPreviewCard } from "@/components/ui/WorkPreviewCard";
+import { WorkDropdownMenu } from "@/components/ui/WorkDropdownMenu";
 
 const navItems = [
     { href: "/work", label: "Work" },
@@ -117,36 +118,16 @@ export function Header() {
                                     
                                     {/* Выпадающее меню работ */}
                                     {isWorkHovered && (
-                                        <div 
-                                            className="absolute top-full -left-3 pt-2"
+                                        <WorkDropdownMenu
+                                            workItems={workItems}
+                                            onItemHover={setHoveredWorkSlug}
+                                            onItemLeave={() => setHoveredWorkSlug(null)}
                                             onMouseEnter={() => setIsWorkHovered(true)}
                                             onMouseLeave={() => {
                                                 setIsWorkHovered(false);
                                                 setHoveredWorkSlug(null);
                                             }}
-                                        >
-                                            <div 
-                                                className="bg-foreground backdrop-blur-sm rounded-sm min-w-[200px]">
-                                                <ul>
-                                                    {workItems.map((workItem) => {
-                                                        const workCase = workCases[workItem.slug];
-                                                        const previewImage = workCase?.images?.[0] ?? null;
-                                                        return (
-                                                            <li key={workItem.slug}>
-                                                                <Link
-                                                                    href={`/work/${workItem.slug}`}
-                                                                    className="block px-3 pt-0.5 pb-1.5 hover:bg-background/10 transition-colors"
-                                                                    onMouseEnter={() => setHoveredWorkSlug(workItem.slug)}
-                                                                    onMouseLeave={() => setHoveredWorkSlug(null)}
-                                                                >
-                                                                    <span className="label-medium text-background">{workItem.title}</span>
-                                                                </Link>
-                                                            </li>
-                                                        );
-                                                    })}
-                                                </ul>
-                                            </div>
-                                        </div>
+                                        />
                                     )}
                                 </div>
                             );
