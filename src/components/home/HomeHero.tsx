@@ -4,6 +4,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState, MouseEvent, useEffect, useRef } from "react";
+import { useTheme } from "next-themes";
 import { WorkPreviewCard } from "@/components/ui/WorkPreviewCard";
 import { TypingText } from "@/components/ui/TypingText";
 
@@ -23,6 +24,9 @@ export function HomeHero({
                              title,
                              subtitle,
                          }: HomeHeroProps) {
+    const { resolvedTheme } = useTheme();
+    const isDark = resolvedTheme === "dark";
+    
     // Разделяем subtitle на два абзаца
     const paragraphs = subtitle.split('\n\n').filter(p => p.trim());
     const [isHovered, setIsHovered] = useState(false);
@@ -111,7 +115,8 @@ export function HomeHero({
                                         alt={project.slug}
                                         width={68}
                                         height={68}
-                                        className={`w-17 h-17 ${project.slug === 'fuelet' ? 'color-foreground' : ''}`}
+                                        className={`w-17 h-17`}
+                                        // style={{ filter: project.slug === 'fuelet' && isDark ? 'invert(1)' : 'none' }}
                                     />
                                 </div>
                             </Link>

@@ -1,6 +1,9 @@
+"use client";
+
 // src/components/work/WorkCaseLayout.tsx
 import Link from "next/link";
 import Image from "next/image";
+import { useTheme } from "next-themes";
 import { PageShell } from "@/components/layout/PageShell";
 import type { WorkCase, WorkItem } from "@/lib/content/work";
 import {WorkCard} from "@/components/work/WorkCard";
@@ -16,6 +19,9 @@ type WorkCaseLayoutProps = {
 };
 
 export function WorkCaseLayout({ workCase, previousCase, nextCase }: WorkCaseLayoutProps) {
+    const { resolvedTheme } = useTheme();
+    const isDark = resolvedTheme === "dark";
+    
     const {
         title,
         heroSummary,
@@ -47,15 +53,26 @@ export function WorkCaseLayout({ workCase, previousCase, nextCase }: WorkCaseLay
                         {title}
                     </h1>
                     {avatar && (
-                        <div className={avatar.includes('fuelet.svg') ? 'text-foreground' : ''}>
+                        workCase.slug === 'appfortype' ? (
+                            <div className="relative rounded-full dark:bg-white mt-1">
+                                <Image
+                                    src={avatar}
+                                    alt={`${title} avatar`}
+                                    width={64}
+                                    height={64}
+                                    className="w-11 h-11 sm:w-16 sm:h-16"
+                                />
+                            </div>
+                        ) : (
                             <Image
                                 src={avatar}
                                 alt={`${title} avatar`}
                                 width={64}
                                 height={64}
                                 className="w-11 h-11 sm:w-16 sm:h-16 mt-1"
+                                style={{ filter: workCase.slug === 'fuelet' && isDark ? 'invert(1)' : 'none' }}
                             />
-                        </div>
+                        )
                     )}
                     
                 </div>

@@ -60,13 +60,13 @@ export function Header() {
     });
 
     return (
-        <header className="sticky top-0 z-50">
-            <div className="mx-auto flex h-16 items-center justify-between gutter">
+        <header className="sticky top-0 z-50 bg-surface sm:bg-transparent">
+            <div className="mx-auto flex h-14 sm:h-16 items-center justify-between gutter">
                 {/* ЛЕВАЯ ГРУППА: Логотип */}
                 <Link
                     href="/"
                     className={`label hover:opacity-70 transition-all duration-200 ${
-                        isScrolled ? "bg-surface/80 backdrop-blur rounded-sm px-3 py-[9px]" : ""
+                        isScrolled ? "bg-surface/80 backdrop-blur rounded-sm sm:px-3 sm:py-[9px]" : ""
                     }`}
                     onClick={() => setIsOpen(false)}
                 >
@@ -163,8 +163,8 @@ export function Header() {
                 )}
 
                 {/* ПРАВАЯ ГРУППА: Соцсети + Тема + Мобильный бургер */}
-                <div className={`flex items-center gap-4 transition-all duration-200 ${
-                    isScrolled ? "bg-surface/80 backdrop-blur rounded-sm pl-3 pr-1.5 py-0" : ""
+                <div className={`flex items-center gap-2 sm:gap-4 transition-all duration-200 ${
+                    isScrolled ? "bg-surface/80 backdrop-blur rounded-sm  pl-2 sm:pl-3 sm:pr-1.5 py-0" : ""
                 }`}>
                     {/* Social Links - Desktop */}
                     <div className="hidden items-center gap-6 sm:flex">
@@ -199,7 +199,7 @@ export function Header() {
                     <button
                         onClick={() => setIsOpen(!isOpen)}
                         aria-label="Toggle menu"
-                        className="rounded-lg p-2 text-text-muted hover:bg-surface-muted hover:text-foreground sm:hidden"
+                        className="rounded-lg p-2 text-text-muted hover:text-foreground sm:hidden"
                     >
                         {isOpen ? (
                             <X className="h-5 w-5" />
@@ -212,7 +212,7 @@ export function Header() {
 
             {/* Mobile Navigation Dropdown */}
             {isOpen && (
-                <div className="absolute left-0 top-16 h-[calc(100vh-4rem)] w-full bg-background border-b border-border-subtle px-4 py-6 sm:hidden">
+                <div className="absolute left-0 top-14 h-[calc(100vh-4rem)] w-full bg-background border-b border-border-subtle px-4 py-6 sm:hidden">
                     <nav className="flex flex-col gap-2">
                         {activeNavItems.map((item) => {
                             const isActive = pathname === item.href;
@@ -221,7 +221,7 @@ export function Header() {
                                     key={item.href}
                                     href={item.href}
                                     className={`
-                                        block px-4 py-3 rounded-xl subtitle transition-colors
+                                        block px-0 py-3 subtitle-medium transition-colors text-center
                                         ${isActive
                                         ? "bg-surface-muted text-foreground"
                                         : "text-text-muted hover:text-foreground"
@@ -233,7 +233,7 @@ export function Header() {
                             );
                         })}
                         {/* Mobile Social Links */}
-                        <div className="flex flex-col gap-2 mt-4 pt-4 border-t border-border-subtle">
+                        <div className="flex flex-col gap-2 mt-4 pt-4 border-t border-border-subtle text-center">
                             <Link
                                 href="https://x.com/formazon"
                                 target="_blank"
