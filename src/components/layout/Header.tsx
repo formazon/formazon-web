@@ -74,7 +74,7 @@ export function Header() {
                 </Link>
 
                 {/* ЦЕНТР: Десктопное Меню */}
-                <nav className={`hidden items-center gap-6 sm:flex transition-all duration-200 ${
+                <nav className={`hidden items-center gap-6 sm:flex transition-all duration-200 absolute left-1/2 -translate-x-1/2 ${
                     isScrolled ? "bg-surface/80 backdrop-blur rounded-sm px-3 py-2" : ""
                 }`}>
                     {activeNavItems.map((item) => {
