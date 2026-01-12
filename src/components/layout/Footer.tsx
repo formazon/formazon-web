@@ -1,13 +1,8 @@
 // src/components/layout/Footer.tsx
 import Link from "next/link";
+import { socialLinks } from "@/lib/config/navigation";
 
 const linkClassName = "label-medium hover:opacity-70 transition-opacity";
-
-const socialLinks = [
-    { href: "https://x.com/formazon", label: "X", external: true },
-    { href: "https://www.linkedin.com/in/faridrafikov/", label: "LinkedIn", external: true },
-    { href: "mailto:mail@formazon.com", label: "Email", external: false },
-];
 
 export function Footer() {
     return (

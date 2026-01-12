@@ -1,4 +1,5 @@
 // src/components/ui/Button.tsx
+import { useMemo } from "react";
 import Link from "next/link";
 import { ReactNode, ButtonHTMLAttributes } from "react";
 
@@ -9,6 +10,14 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     className?: string;
 }
 
+const baseStyles = "inline-flex items-center justify-center rounded-sm px-4 py-2 label-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-foreground/20 disabled:opacity-50 disabled:pointer-events-none";
+
+const variants = {
+    primary: "bg-foreground text-background hover:opacity-90",
+    outline: "border border-border-subtle text-text-muted hover:border-foreground hover:text-foreground hover:bg-surface-muted/50",
+    ghost:   "text-text-muted hover:text-foreground hover:bg-surface-muted/50",
+} as const;
+
 export function Button({
                            children,
                            href,
@@ -16,18 +25,11 @@ export function Button({
                            className = "",
                            ...props
                        }: ButtonProps) {
-    // 1. Базовые стили (размер, шрифт, скругление, центровка)
-    const baseStyles = "inline-flex items-center justify-center rounded-sm px-4 py-2 label-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-foreground/20 disabled:opacity-50 disabled:pointer-events-none";
-
-    // 2. Варианты стилей на токенах
-    const variants = {
-        primary: "bg-foreground text-background hover:opacity-90",
-        outline: "border border-border-subtle text-text-muted hover:border-foreground hover:text-foreground hover:bg-surface-muted/50",
-        ghost:   "text-text-muted hover:text-foreground hover:bg-surface-muted/50", // для простых кнопок без рамок
-    };
-
-    // Собираем итоговый класс
-    const combinedClassName = `${baseStyles} ${variants[variant]} ${className}`;
+    // Memoize className calculation
+    const combinedClassName = useMemo(
+        () => `${baseStyles} ${variants[variant]} ${className}`,
+        [variant, className]
+    );
 
     // 3. Логика рендера: Link или button
     if (href) {

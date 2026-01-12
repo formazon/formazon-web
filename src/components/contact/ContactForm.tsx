@@ -1,16 +1,18 @@
 // src/components/contact/ContactForm.tsx
 "use client";
 
-import { useState, FormEvent } from "react";
+import { useState, FormEvent, useCallback } from "react";
 import { contactContent } from "@/lib/content/contact";
 import { Button } from "@/components/ui/Button";
 import { Input, Textarea } from "@/components/ui/Input";
 
+type FormStatus = "idle" | "submitting" | "success" | "error";
+
 export function ContactForm() {
     const { form } = contactContent;
-    const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+    const [status, setStatus] = useState<FormStatus>("idle");
 
-    async function handleSubmit(e: FormEvent<HTMLFormElement>) {
+    const handleSubmit = useCallback(async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setStatus("submitting");
 
@@ -41,7 +43,7 @@ export function ContactForm() {
             console.error('Form submission error:', error);
             setStatus("error");
         }
-    }
+    }, []);
 
     if (status === "success") {
         return (

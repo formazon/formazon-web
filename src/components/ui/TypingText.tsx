@@ -34,11 +34,9 @@ export function TypingText({
         setIsTyping(true);
         setShouldShowCursor(true);
 
-        if (blinkTimeoutRef.current) {
-            clearTimeout(blinkTimeoutRef.current);
-        }
-
         let currentIndex = 0;
+        let blinkInterval: NodeJS.Timeout | null = null;
+        
         const interval = setInterval(() => {
             if (currentIndex < text.length) {
                 setDisplayedText(text.slice(0, currentIndex + 1));
@@ -53,12 +51,14 @@ export function TypingText({
 
                 // Мигание курсора несколько раз перед исчезновением
                 let blinkCounter = 0;
-                const blinkInterval = setInterval(() => {
+                blinkInterval = setInterval(() => {
                     setShouldShowCursor((prev) => !prev);
                     blinkCounter++;
                     
                     if (blinkCounter >= blinkCount * 2) {
-                        clearInterval(blinkInterval);
+                        if (blinkInterval) {
+                            clearInterval(blinkInterval);
+                        }
                         setShouldShowCursor(false);
                     }
                 }, blinkSpeed);
@@ -67,6 +67,9 @@ export function TypingText({
 
         return () => {
             clearInterval(interval);
+            if (blinkInterval) {
+                clearInterval(blinkInterval);
+            }
             if (blinkTimeoutRef.current) {
                 clearTimeout(blinkTimeoutRef.current);
             }

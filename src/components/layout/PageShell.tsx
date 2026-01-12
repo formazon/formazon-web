@@ -5,7 +5,6 @@ import { QuadroDot } from "@/components/ui/QuadroDot";
 
 interface PageShellProps {
     children: ReactNode;
-    wide?: boolean;
     className?: string;
 }
 

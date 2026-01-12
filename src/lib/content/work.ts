@@ -724,6 +724,21 @@ export const featuredWorkItems: WorkItem[] = Object.values(workCases)
         tags,
     }));
 
+// Тип для проектов с логотипами (используется в HomeHero)
+export type ProjectWithLogo = {
+    slug: string;
+    logo: string;
+};
+
+// Проекты с логотипами для главной страницы (featured проекты с avatar)
+export const heroProjects: ProjectWithLogo[] = Object.values(workCases)
+    .filter((case_) => case_.featured === true && case_.avatar)
+    .sort((a, b) => (a.order ?? 999) - (b.order ?? 999))
+    .map(({ slug, avatar }) => ({
+        slug,
+        logo: avatar!,
+    }));
+
 export function getRandomWorkCase(currentSlug: string): WorkItem | undefined {
     // Сразу фильтруем workItems, не создавая лишних промежуточных переменных
     const otherItems = workItems.filter((item) => item.slug !== currentSlug);

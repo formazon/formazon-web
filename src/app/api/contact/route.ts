@@ -1,26 +1,43 @@
 import { NextRequest, NextResponse } from 'next/server';
 
+type ContactFormData = {
+    name: string;
+    email: string;
+    message: string;
+};
+
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+function validateContactForm(data: unknown): data is ContactFormData {
+    if (!data || typeof data !== 'object') {
+        return false;
+    }
+    
+    const { name, email, message } = data as Record<string, unknown>;
+    
+    return (
+        typeof name === 'string' &&
+        name.trim().length > 0 &&
+        typeof email === 'string' &&
+        EMAIL_REGEX.test(email) &&
+        typeof message === 'string' &&
+        message.trim().length > 0
+    );
+}
+
 export async function POST(request: NextRequest) {
     try {
         const body = await request.json();
-        const { name, email, message } = body;
 
         // Валидация
-        if (!name || !email || !message) {
+        if (!validateContactForm(body)) {
             return NextResponse.json(
-                { error: 'All fields are required' },
+                { error: 'Invalid form data. All fields are required and email must be valid.' },
                 { status: 400 }
             );
         }
 
-        // Валидация email
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(email)) {
-            return NextResponse.json(
-                { error: 'Invalid email format' },
-                { status: 400 }
-            );
-        }
+        const { name, email, message } = body;
 
         // TODO: Здесь должна быть интеграция с сервисом отправки email
         // Например: Formspree, Resend, SendGrid, или собственный SMTP сервер

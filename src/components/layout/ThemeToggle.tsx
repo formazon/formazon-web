@@ -1,7 +1,7 @@
 "use client";
 
+import { useCallback, useEffect, useState, useMemo } from "react";
 import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
 import { DarkIcon } from "@/components/ui/DarkIcon";
 import { LightIcon } from "@/components/ui/LightIcon";
 
@@ -12,17 +12,21 @@ export function ThemeToggle() {
     // Избегает гидратационной ошибки
     useEffect(() => setMounted(true), []);
 
+    const isDark = useMemo(() => theme === "dark", [theme]);
+
+    const handleToggle = useCallback(() => {
+        setTheme(isDark ? "light" : "dark");
+    }, [isDark, setTheme]);
+
     // Чтобы избежать сдвига верстки (layout shift) при загрузке,
     // можно вернуть заглушку того же размера, вместо null.
     if (!mounted) {
         return <div className="h-10 w-10" />;
     }
 
-    const isDark = theme === "dark";
-
     return (
         <button
-            onClick={() => setTheme(isDark ? "light" : "dark")}
+            onClick={handleToggle}
             aria-label="Toggle theme"
             className="
                 flex items-center justify-center w-8 h-8 rounded-lg

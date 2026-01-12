@@ -2,8 +2,9 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState, useEffect, MouseEvent } from "react";
+import { useState, useEffect, useCallback, useMemo, MouseEvent } from "react";
 import { journalEnabled } from "@/lib/config/features";
+import { navItems, socialLinks } from "@/lib/config/navigation";
 import { workItems, workCases } from "@/lib/content/work";
 import { ThemeToggle } from "./ThemeToggle";
 import { Dot } from "@/components/ui/Dot";
@@ -11,20 +12,6 @@ import { DoubleDot } from "@/components/ui/DoubleDot";
 import { MenuToggle } from "@/components/ui/MenuToggle";
 import { WorkPreviewCard } from "@/components/ui/WorkPreviewCard";
 import { WorkDropdownMenu } from "@/components/ui/WorkDropdownMenu";
-
-const navItems = [
-    { href: "/work", label: "Work" },
-    { href: "/about", label: "About" },
-    { href: "/services", label: "Services" },
-    { href: "/journal", label: "Journal", feature: "journal" },
-    { href: "/contact", label: "Contact" },
-];
-
-const socialLinks = [
-    { href: "https://x.com/formazon", label: "X", external: true },
-    { href: "https://www.linkedin.com/in/faridrafikov/", label: "LinkedIn", external: true },
-    { href: "mailto:mail@formazon.com", label: "Email", external: false },
-];
 
 const socialLinkDesktopClassName = "label-medium hover:opacity-70 transition-opacity";
 const socialLinkMobileClassName = "caption px-4 py-2";
@@ -37,26 +24,31 @@ export function Header() {
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
     const [isScrolled, setIsScrolled] = useState(false);
 
+    // Close menu when pathname changes
     useEffect(() => {
         setIsOpen(false);
     }, [pathname]);
 
+    // Prevent body scroll when menu is open
     useEffect(() => {
         if (isOpen) {
             document.body.style.overflow = "hidden";
         } else {
             document.body.style.overflow = "unset";
         }
-        return () => { document.body.style.overflow = "unset"; };
+        return () => {
+            document.body.style.overflow = "unset";
+        };
     }, [isOpen]);
 
+    // Handle scroll detection
     useEffect(() => {
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 0);
         };
 
-        window.addEventListener("scroll", handleScroll);
-        // Проверяем сразу при монтировании
+        window.addEventListener("scroll", handleScroll, { passive: true });
+        // Check immediately on mount
         handleScroll();
 
         return () => {
@@ -64,9 +56,38 @@ export function Header() {
         };
     }, []);
 
-    const activeNavItems = navItems.filter((item) => {
-        return !(item.feature === "journal" && !journalEnabled);
-    });
+    // Memoize filtered nav items
+    const activeNavItems = useMemo(
+        () => navItems.filter((item) => !(item.feature === "journal" && !journalEnabled)),
+        []
+    );
+
+    // Memoize mouse move handler
+    const handleMouseMove = useCallback((e: MouseEvent<HTMLDivElement>) => {
+        setMousePosition({ x: e.clientX, y: e.clientY });
+    }, []);
+
+    // Memoize work hover handlers
+    const handleWorkMouseEnter = useCallback(() => {
+        setIsWorkHovered(true);
+    }, []);
+
+    const handleWorkMouseLeave = useCallback(() => {
+        setIsWorkHovered(false);
+        setHoveredWorkSlug(null);
+    }, []);
+
+    const handleWorkItemHover = useCallback((slug: string) => {
+        setHoveredWorkSlug(slug);
+    }, []);
+
+    const handleWorkItemLeave = useCallback(() => {
+        setHoveredWorkSlug(null);
+    }, []);
+
+    const handleMenuToggle = useCallback(() => {
+        setIsOpen((prev) => !prev);
+    }, []);
 
     return (
         <header className="sticky top-0 z-50 bg-surface sm:bg-transparent">
@@ -95,26 +116,15 @@ export function Header() {
                                 <div
                                     key={item.href}
                                     className="relative inline-flex"
-                                    onMouseEnter={() => setIsWorkHovered(true)}
-                                    onMouseLeave={() => {
-                                        setIsWorkHovered(false);
-                                        setHoveredWorkSlug(null);
-                                    }}
-                                    onMouseMove={(e: MouseEvent<HTMLDivElement>) => {
-                                        setMousePosition({ x: e.clientX, y: e.clientY });
-                                    }}
+                                    onMouseEnter={handleWorkMouseEnter}
+                                    onMouseLeave={handleWorkMouseLeave}
+                                    onMouseMove={handleMouseMove}
                                 >
                                     <Link
                                         href={item.href}
                                         className="group relative inline-block caption-medium uppercase transition-all duration-200"
                                     >
                                         <span className="relative z-10">{item.label}</span>
-                                        {!isWork && (
-                                            <div className={`absolute top-full left-0 mt-1 w-full flex justify-between transition-all duration-200 ${isActive ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-1 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto"}`}>
-                                                <Dot />
-                                                <Dot />
-                                            </div>
-                                        )}
                                     </Link>
                                     
                                     {/* Невидимая зона для плавного перехода */}
@@ -129,13 +139,10 @@ export function Header() {
                                     {isWorkHovered && (
                                         <WorkDropdownMenu
                                             workItems={workItems}
-                                            onItemHover={setHoveredWorkSlug}
-                                            onItemLeave={() => setHoveredWorkSlug(null)}
-                                            onMouseEnter={() => setIsWorkHovered(true)}
-                                            onMouseLeave={() => {
-                                                setIsWorkHovered(false);
-                                                setHoveredWorkSlug(null);
-                                            }}
+                                            onItemHover={handleWorkItemHover}
+                                            onItemLeave={handleWorkItemLeave}
+                                            onMouseEnter={handleWorkMouseEnter}
+                                            onMouseLeave={handleWorkMouseLeave}
                                         />
                                     )}
                                 </div>
@@ -194,13 +201,13 @@ export function Header() {
                     <ThemeToggle />
 
                     {/* Mobile Menu Button */}
-                    <MenuToggle isOpen={isOpen} onClick={() => setIsOpen(!isOpen)} />
+                    <MenuToggle isOpen={isOpen} onClick={handleMenuToggle} />
                 </div>
             </div>
 
             {/* Mobile Navigation Dropdown */}
             {isOpen && (
-                <div className="absolute left-0 top-14 h-[calc(100vh-4rem)] w-full bg-background border-b border-border-subtle px-4 py-6 sm:hidden">
+                <div className="absolute left-0 top-14 h-[calc(100vh-3.5rem)] w-full bg-background border-b border-border-subtle px-4 py-6 sm:hidden">
                     <nav className="flex flex-col gap-2">
                         <DoubleDot />
                         {activeNavItems.map((item) => {

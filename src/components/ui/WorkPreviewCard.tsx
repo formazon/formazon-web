@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import Image from "next/image";
 import { workCases } from "@/lib/content/work";
 
@@ -6,10 +7,11 @@ type WorkPreviewCardProps = {
 };
 
 export function WorkPreviewCard({ workSlug }: WorkPreviewCardProps) {
-    const workCase = workCases[workSlug];
+    const workCase = useMemo(() => workCases[workSlug], [workSlug]);
+    
     if (!workCase) return null;
     
-    const previewImage = workCase.images?.[0] ?? null;
+    const previewImage = useMemo(() => workCase.images?.[0] ?? null, [workCase]);
     
     return (
         <div className="bg-surface rounded-sm shadow-lg overflow-hidden w-64">

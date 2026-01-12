@@ -3,8 +3,8 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState, MouseEvent, useEffect, useRef } from "react";
-import { useTheme } from "next-themes";
+import { useState, MouseEvent, useEffect, useRef, useCallback, useMemo } from "react";
+import { heroProjects } from "@/lib/content/work";
 import { WorkPreviewCard } from "@/components/ui/WorkPreviewCard";
 import { TypingText } from "@/components/ui/TypingText";
 
@@ -13,41 +13,73 @@ export type HomeHeroProps = {
     subtitle: string;
 };
 
-const projects = [
-    { slug: "appfortype", logo: "/work/appfortype.svg" },
-    { slug: "jungle", logo: "/work/jungle.svg" },
-    { slug: "fuelet", logo: "/work/fuelet.svg" },
-    { slug: "tra-robotics", logo: "/work/tra-robotics.svg" },
-];
-
 export function HomeHero({
                              title,
                              subtitle,
                          }: HomeHeroProps) {
-    const { resolvedTheme } = useTheme();
-    const isDark = resolvedTheme === "dark";
     
-    // Разделяем subtitle на два абзаца
-    const paragraphs = subtitle.split('\n\n').filter(p => p.trim());
+    // Memoize paragraphs split
+    const paragraphs = useMemo(
+        () => subtitle.split('\n\n').filter(p => p.trim()),
+        [subtitle]
+    );
+
     const [isHovered, setIsHovered] = useState(false);
     const [hoveredProject, setHoveredProject] = useState<string | null>(null);
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
     const containerRef = useRef<HTMLDivElement>(null);
 
-    // Скрываем карточку при скролле
-    useEffect(() => {
-        const handleScroll = () => {
-            setHoveredProject(null);
-            setIsHovered(false);
-        };
+    // Memoize scroll handler
+    const handleScroll = useCallback(() => {
+        setHoveredProject(null);
+        setIsHovered(false);
+    }, []);
 
-        window.addEventListener('scroll', handleScroll);
-        window.addEventListener('wheel', handleScroll);
+    // Hide card on scroll
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        window.addEventListener('wheel', handleScroll, { passive: true });
 
         return () => {
             window.removeEventListener('scroll', handleScroll);
             window.removeEventListener('wheel', handleScroll);
         };
+    }, [handleScroll]);
+
+    // Memoize mouse handlers
+    const handleMouseEnter = useCallback(() => {
+        setIsHovered(true);
+    }, []);
+
+    const handleMouseLeave = useCallback(() => {
+        setIsHovered(false);
+        setHoveredProject(null);
+    }, []);
+
+    const handleMouseMove = useCallback((e: MouseEvent<HTMLDivElement>) => {
+        setMousePosition({ x: e.clientX, y: e.clientY });
+        // Check if cursor is still in container bounds
+        if (containerRef.current) {
+            const rect = containerRef.current.getBoundingClientRect();
+            const isInBounds = 
+                e.clientX >= rect.left && 
+                e.clientX <= rect.right && 
+                e.clientY >= rect.top && 
+                e.clientY <= rect.bottom;
+            
+            if (!isInBounds) {
+                setHoveredProject(null);
+                setIsHovered(false);
+            }
+        }
+    }, []);
+
+    const handleProjectEnter = useCallback((slug: string) => {
+        setHoveredProject(slug);
+    }, []);
+
+    const handleProjectLeave = useCallback(() => {
+        setHoveredProject(null);
     }, []);
 
     return (
@@ -68,30 +100,11 @@ export function HomeHero({
                 <div 
                     ref={containerRef}
                     className="relative mt-8 h-16 w-72"
-                    onMouseEnter={() => setIsHovered(true)}
-                    onMouseLeave={() => {
-                        setIsHovered(false);
-                        setHoveredProject(null);
-                    }}
-                    onMouseMove={(e: MouseEvent<HTMLDivElement>) => {
-                        setMousePosition({ x: e.clientX, y: e.clientY });
-                        // Проверяем, что курсор все еще в зоне контейнера
-                        if (containerRef.current) {
-                            const rect = containerRef.current.getBoundingClientRect();
-                            const isInBounds = 
-                                e.clientX >= rect.left && 
-                                e.clientX <= rect.right && 
-                                e.clientY >= rect.top && 
-                                e.clientY <= rect.bottom;
-                            
-                            if (!isInBounds) {
-                                setHoveredProject(null);
-                                setIsHovered(false);
-                            }
-                        }
-                    }}
+                    onMouseEnter={handleMouseEnter}
+                    onMouseLeave={handleMouseLeave}
+                    onMouseMove={handleMouseMove}
                 >
-                {projects.map((project, index) => {
+                {heroProjects.map((project, index) => {
                     return (
                         <div
                             key={project.slug}
@@ -102,8 +115,8 @@ export function HomeHero({
                                     : `translateX(${index * 50}px)`,
                                 zIndex: index + 1,
                             }}
-                            onMouseEnter={() => setHoveredProject(project.slug)}
-                            onMouseLeave={() => setHoveredProject(null)}
+                            onMouseEnter={() => handleProjectEnter(project.slug)}
+                            onMouseLeave={handleProjectLeave}
                         >
                             <Link
                                 href={`/work/${project.slug}`}
