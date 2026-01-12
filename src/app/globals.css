@@ -26,7 +26,7 @@
     --surface-muted: #1a1a1d;     /* zinc-950-ish */
     --tag-surface: #1a1a1d;       /* tag background dark */
 
-    --border-subtle: #27272a;     /* zinc-800 */
+    --border-subtle: #404040;     /* subtle border for dark theme */
     --accent: #818cf8;            /* indigo-400 */
     --accent-soft: rgba(129, 140, 248, 0.16);
 
@@ -61,7 +61,7 @@
         --surface: #272727;
         --surface-muted: #1a1a1d;
         --tag-surface: #1a1a1d;
-        --border-subtle: #27272a;
+        --border-subtle: #404040;
         --accent: #818cf8;
         --accent-soft: rgba(129, 140, 248, 0.16);
         --text-muted: #a1a1aa;

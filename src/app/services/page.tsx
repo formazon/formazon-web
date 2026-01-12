@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { PageShell } from "@/components/layout/PageShell";
 import { services } from "@/lib/content/services"; // Импортируем данные
 import { Button } from "@/components/ui/Button"; // Используем общий компонент
+import { ServiceCard } from "@/components/services/ServiceCard";
 
 export const metadata: Metadata = {
     title: "Services — Formazon",
@@ -32,32 +33,7 @@ export default function ServicesPage() {
             {/* Services grid */}
             <section className="mb-16 grid gap-6 md:grid-cols-2">
                 {services.map((service) => (
-                    <article
-                        key={service.title}
-                        className="flex flex-col rounded-sm border border-border-subtle bg-surface-muted p-5 transition-colors hover:border-text-muted/30"
-                    >
-                        <header className="mb-3 space-y-1">
-                            <h2 className="subtitle-medium">
-                                {service.title}
-                            </h2>
-                            {service.subtitle && (
-                                <p className="label">{service.subtitle}</p>
-                            )}
-                        </header>
-
-                        <p className="mb-4">
-                            {service.description}
-                        </p>
-
-                        <ul className="mt-auto space-y-1.5 label">
-                            {service.bullets.map((bullet) => (
-                                <li key={bullet} className="flex gap-2 items-start">
-                                    <span className="mt-[6px] h-[3px] w-[12px] shrink-0 rounded-full bg-border-subtle" />
-                                    <span>{bullet}</span>
-                                </li>
-                            ))}
-                        </ul>
-                    </article>
+                    <ServiceCard key={service.title} service={service} />
                 ))}
             </section>
 

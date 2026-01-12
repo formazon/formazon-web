@@ -1,5 +1,6 @@
 // src/components/services/ServiceCard.tsx
 import type { Service } from "@/lib/content/services";
+import { Dot } from "@/components/ui/Dot";
 
 type ServiceCardProps = {
     service: Service;
@@ -7,28 +8,30 @@ type ServiceCardProps = {
 
 export function ServiceCard({ service }: ServiceCardProps) {
     return (
-        <article className="flex flex-col rounded-2xl border border-border-subtle bg-surface p-5 transition-colors hover:border-text-muted/30 hover:bg-surface-muted/30">
+        <article className="flex flex-col rounded-sm border border-border-subtle bg-surface p-5">
             <header className="mb-3 space-y-1">
                 <h3 className="subtitle-medium">
                     {service.title}
                 </h3>
                 {service.subtitle && (
-                    <p className="label text-text-muted opacity-80">
+                    <p className="label text-text-muted">
                         {service.subtitle}
                     </p>
                 )}
             </header>
 
-            <p className="mb-4 body text-text-muted">
+            <p className="mb-4 body-16 text-foreground">
                 {service.description}
             </p>
 
             {/* mt-auto прижимает список к низу, если карточки разной высоты */}
-            <ul className="mt-auto space-y-1.5 label text-text-muted/90">
+            <ul className="mt-auto space-y-1.5 body-16">
                 {service.bullets.map((bullet) => (
-                    <li key={bullet} className="flex gap-2 items-start">
+                    <li key={bullet} className="flex gap-3 items-start">
                         {/* Декоративная черточка или точка */}
-                        <span className="mt-[7px] h-[2px] w-[6px] shrink-0 rounded-full bg-border-subtle" />
+                        <span className="mt-3 shrink-0">
+                            <Dot bgColor="bg-black-40" />
+                        </span>
                         <span>{bullet}</span>
                     </li>
                 ))}

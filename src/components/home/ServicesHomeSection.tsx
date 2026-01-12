@@ -6,13 +6,12 @@ import { QuadroDot } from "@/components/ui/QuadroDot";
 
 export function ServicesHomeSection() {
     return (
-        <section className="mb-16 space-y-6">
+        <section className="mb-16 space-y-4">
             <QuadroDot />
             <H2Index index={3}>
                 Services
             </H2Index>
-
-            <div className="grid gap-6 md:grid-cols-2">
+            <div className="grid gap-4 md:grid-cols-2">
                 {/* Если услуг будет много, тут можно сделать .slice(0, 4),
                    но сейчас их 4, так что показываем все.
                 */}

@@ -60,7 +60,8 @@ export function WorkCaseLayout({ workCase, previousCase, nextCase }: WorkCaseLay
                                     alt={`${title} avatar`}
                                     width={64}
                                     height={64}
-                                    className="w-11 h-11 sm:w-16 sm:h-16"
+                                    className="w-11 sm:w-16"
+                                    style={{ height: 'auto' }}
                                 />
                             </div>
                         ) : (
@@ -69,8 +70,11 @@ export function WorkCaseLayout({ workCase, previousCase, nextCase }: WorkCaseLay
                                 alt={`${title} avatar`}
                                 width={64}
                                 height={64}
-                                className="w-11 h-11 sm:w-16 sm:h-16 mt-1"
-                                style={{ filter: workCase.slug === 'fuelet' && isDark ? 'invert(1)' : 'none' }}
+                                className="w-11 sm:w-16 mt-1"
+                                style={{ 
+                                    height: 'auto',
+                                    filter: workCase.slug === 'fuelet' && isDark ? 'invert(1)' : 'none' 
+                                }}
                             />
                         )
                     )}

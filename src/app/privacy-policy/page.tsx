@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { PageShell } from "@/components/layout/PageShell";
 import { TextLink } from "@/components/ui/TextLink";
+import { Dot } from "@/components/ui/Dot";
 
 export const metadata: Metadata = {
     title: "Privacy Policy — Formazon",
@@ -31,10 +32,25 @@ export default function PrivacyPolicyPage() {
                         <p className="body-16">
                             When you visit our website, we may collect the following types of information:
                         </p>
-                        <ul className="list-disc list-inside space-y-2 ml-4">
-                            <li className="body-16">Technical information: IP address, browser type, device information, operating system</li>
-                            <li className="body-16">Usage data: pages visited, time spent on pages, click patterns, referral sources</li>
-                            <li className="body-16">Cookies and similar tracking technologies</li>
+                        <ul className="space-y-1.5 body-16">
+                            <li className="flex gap-3 items-start">
+                                <span className="mt-3 shrink-0">
+                                    <Dot bgColor="bg-black-40" />
+                                </span>
+                                <span>Technical information: IP address, browser type, device information, operating system</span>
+                            </li>
+                            <li className="flex gap-3 items-start">
+                                <span className="mt-3 shrink-0">
+                                    <Dot bgColor="bg-black-40" />
+                                </span>
+                                <span>Usage data: pages visited, time spent on pages, click patterns, referral sources</span>
+                            </li>
+                            <li className="flex gap-3 items-start">
+                                <span className="mt-3 shrink-0">
+                                    <Dot bgColor="bg-black-40" />
+                                </span>
+                                <span>Cookies and similar tracking technologies</span>
+                            </li>
                         </ul>
                     </section>
 
@@ -43,11 +59,31 @@ export default function PrivacyPolicyPage() {
                         <p className="body-16">
                             We use the collected information for the following purposes:
                         </p>
-                        <ul className="list-disc list-inside space-y-2 ml-4">
-                            <li className="body-16">To analyze website usage and improve user experience</li>
-                            <li className="body-16">To understand how visitors interact with our content</li>
-                            <li className="body-16">To optimize website performance and functionality</li>
-                            <li className="body-16">To generate aggregated, anonymized statistics about website traffic</li>
+                        <ul className="space-y-1.5 body-16">
+                            <li className="flex gap-3 items-start">
+                                <span className="mt-3 shrink-0">
+                                    <Dot bgColor="bg-black-40" />
+                                </span>
+                                <span>To analyze website usage and improve user experience</span>
+                            </li>
+                            <li className="flex gap-3 items-start">
+                                <span className="mt-3 shrink-0">
+                                    <Dot bgColor="bg-black-40" />
+                                </span>
+                                <span>To understand how visitors interact with our content</span>
+                            </li>
+                            <li className="flex gap-3 items-start">
+                                <span className="mt-3 shrink-0">
+                                    <Dot bgColor="bg-black-40" />
+                                </span>
+                                <span>To optimize website performance and functionality</span>
+                            </li>
+                            <li className="flex gap-3 items-start">
+                                <span className="mt-3 shrink-0">
+                                    <Dot bgColor="bg-black-40" />
+                                </span>
+                                <span>To generate aggregated, anonymized statistics about website traffic</span>
+                            </li>
                         </ul>
                     </section>
 
@@ -61,31 +97,41 @@ export default function PrivacyPolicyPage() {
                         <p className="body-16">
                             We use the following analytics services:
                         </p>
-                        <ul className="list-disc list-inside space-y-2 ml-4">
-                            <li className="body-16">
-                                <span className="body-16-medium">Google Analytics</span> — We use Google Analytics to understand how visitors 
-                                use our site. Google Analytics uses cookies to collect information such as how often 
-                                users visit the site, what pages they visit, and what other sites they used prior to 
-                                coming to our site. For more information, please visit{" "}
-                                <TextLink 
-                                    href="https://policies.google.com/privacy" 
-                                    external
-                                >
-                                    Google&apos;s Privacy Policy
-                                </TextLink>
-                                .
+                        <ul className="space-y-1.5 body-16">
+                            <li className="flex gap-3 items-start">
+                                <span className="mt-3 shrink-0">
+                                    <Dot bgColor="bg-black-40" />
+                                </span>
+                                <span>
+                                    <span className="body-16-medium">Google Analytics</span> — We use Google Analytics to understand how visitors 
+                                    use our site. Google Analytics uses cookies to collect information such as how often 
+                                    users visit the site, what pages they visit, and what other sites they used prior to 
+                                    coming to our site. For more information, please visit{" "}
+                                    <TextLink 
+                                        href="https://policies.google.com/privacy" 
+                                        external
+                                    >
+                                        Google&apos;s Privacy Policy
+                                    </TextLink>
+                                    .
+                                </span>
                             </li>
-                            <li className="body-16">
-                                <span className="body-16-medium">Yandex Metrika</span> — We use Yandex Metrika for website analytics and 
-                                performance monitoring. Yandex Metrika collects anonymized data about user behavior. 
-                                For more information, please visit{" "}
-                                <TextLink 
-                                    href="https://yandex.com/legal/privacy/" 
-                                    external
-                                >
-                                    Yandex Privacy Policy
-                                </TextLink>
-                                .
+                            <li className="flex gap-3 items-start">
+                                <span className="mt-3 shrink-0">
+                                    <Dot bgColor="bg-black-40" />
+                                </span>
+                                <span>
+                                    <span className="body-16-medium">Yandex Metrika</span> — We use Yandex Metrika for website analytics and 
+                                    performance monitoring. Yandex Metrika collects anonymized data about user behavior. 
+                                    For more information, please visit{" "}
+                                    <TextLink 
+                                        href="https://yandex.com/legal/privacy/" 
+                                        external
+                                    >
+                                        Yandex Privacy Policy
+                                    </TextLink>
+                                    .
+                                </span>
                             </li>
                         </ul>
                         <p className="body-16">
@@ -109,14 +155,49 @@ export default function PrivacyPolicyPage() {
                             Depending on your location, you may have certain rights regarding your personal information, 
                             including:
                         </p>
-                        <ul className="list-disc list-inside space-y-2 ml-4">
-                            <li className="body-16">The right to access your personal data</li>
-                            <li className="body-16">The right to rectify inaccurate data</li>
-                            <li className="body-16">The right to erase your data</li>
-                            <li className="body-16">The right to restrict processing</li>
-                            <li className="body-16">The right to data portability</li>
-                            <li className="body-16">The right to object to processing</li>
-                            <li className="body-16">The right to withdraw consent</li>
+                        <ul className="space-y-1.5 body-16">
+                            <li className="flex gap-3 items-start">
+                                <span className="mt-3 shrink-0">
+                                    <Dot bgColor="bg-black-40" />
+                                </span>
+                                <span>The right to access your personal data</span>
+                            </li>
+                            <li className="flex gap-3 items-start">
+                                <span className="mt-3 shrink-0">
+                                    <Dot bgColor="bg-black-40" />
+                                </span>
+                                <span>The right to rectify inaccurate data</span>
+                            </li>
+                            <li className="flex gap-3 items-start">
+                                <span className="mt-3 shrink-0">
+                                    <Dot bgColor="bg-black-40" />
+                                </span>
+                                <span>The right to erase your data</span>
+                            </li>
+                            <li className="flex gap-3 items-start">
+                                <span className="mt-3 shrink-0">
+                                    <Dot bgColor="bg-black-40" />
+                                </span>
+                                <span>The right to restrict processing</span>
+                            </li>
+                            <li className="flex gap-3 items-start">
+                                <span className="mt-3 shrink-0">
+                                    <Dot bgColor="bg-black-40" />
+                                </span>
+                                <span>The right to data portability</span>
+                            </li>
+                            <li className="flex gap-3 items-start">
+                                <span className="mt-3 shrink-0">
+                                    <Dot bgColor="bg-black-40" />
+                                </span>
+                                <span>The right to object to processing</span>
+                            </li>
+                            <li className="flex gap-3 items-start">
+                                <span className="mt-3 shrink-0">
+                                    <Dot bgColor="bg-black-40" />
+                                </span>
+                                <span>The right to withdraw consent</span>
+                            </li>
                         </ul>
                         <p className="body-16">
                             To exercise these rights, please contact us at{" "}
