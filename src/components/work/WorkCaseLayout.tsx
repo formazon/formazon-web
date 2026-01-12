@@ -53,18 +53,6 @@ export function WorkCaseLayout({ workCase, previousCase, nextCase }: WorkCaseLay
                         {title}
                     </h1>
                     {avatar && (
-                        workCase.slug === 'appfortype' ? (
-                            <div className="relative rounded-full dark:bg-white mt-1">
-                                <Image
-                                    src={avatar}
-                                    alt={`${title} avatar`}
-                                    width={64}
-                                    height={64}
-                                    className="w-11 sm:w-16"
-                                    style={{ height: 'auto' }}
-                                />
-                            </div>
-                        ) : (
                             <Image
                                 src={avatar}
                                 alt={`${title} avatar`}
@@ -77,7 +65,7 @@ export function WorkCaseLayout({ workCase, previousCase, nextCase }: WorkCaseLay
                                 }}
                             />
                         )
-                    )}
+                    }
                     
                 </div>
                 {heroSummary && (

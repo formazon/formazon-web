@@ -4,6 +4,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState, MouseEvent, useEffect, useRef, useCallback, useMemo } from "react";
+import { useTheme } from "next-themes";
 import { heroProjects } from "@/lib/content/work";
 import { WorkPreviewCard } from "@/components/ui/WorkPreviewCard";
 import { TypingText } from "@/components/ui/TypingText";
@@ -82,6 +83,9 @@ export function HomeHero({
         setHoveredProject(null);
     }, []);
 
+    const { resolvedTheme } = useTheme();
+    const isDark = resolvedTheme === "dark";
+
     return (
         <section className="mb-16 space-y-8">
             <div className="space-y-6">
@@ -122,14 +126,17 @@ export function HomeHero({
                                 href={`/work/${project.slug}`}
                                 className="block w-17 h-17 pr-6"
                             >
-                                <div className="relative w-17 h-17 rounded-full bg-white border-2 border-background flex items-center justify-center">
+                                <div className={`${project.slug === 'fuelet' && isDark ? 'bg-background' : 'bg-white'} relative w-17 h-17 rounded-full border-2 border-background flex items-center justify-center`}>
                                     <Image
                                         src={project.logo}
                                         alt={project.slug}
                                         width={68}
                                         height={68}
                                         className="w-17"
-                                        style={{ height: 'auto' }}
+                                        style={{ 
+                                            height: 'auto',
+                                            filter: project.slug === 'fuelet' && isDark ? 'invert(1)' : 'none' 
+                                        }}
                                     />
                                 </div>
                             </Link>
