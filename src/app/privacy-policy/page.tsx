@@ -169,7 +169,7 @@ export default function PrivacyPolicyPage() {
                         </p>
                     </section>
 
-                    <div className="pt-4 border-t border-border-subtle text-text-muted caption">
+                    <div className="pt-4 caption-medium">
                         Last updated: {new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}
                     </div>
                 </div>

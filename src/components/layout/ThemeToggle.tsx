@@ -30,7 +30,7 @@ export function ThemeToggle() {
             aria-label="Toggle theme"
             className="
                 flex items-center justify-center w-8 h-8 rounded-lg
-                text-text-muted
+                text-foreground
                 dark:text-white
                 transition-all duration-200
                 hover:opacity-70
