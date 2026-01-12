@@ -1,4 +1,4 @@
 export function Dot() {
-    return <div className="w-1 h-0.5 rounded-xs bg-foreground" />;
+    return <div className="w-1 h-[1.5px] rounded-xs bg-foreground" />;
 }
 

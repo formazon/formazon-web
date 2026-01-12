@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { Dot } from '../components/ui/Dot';
 
 const meta = {
-  title: 'UI/Dot',
+  title: 'Dividers/Dot',
   component: Dot,
   parameters: {
     layout: 'centered',

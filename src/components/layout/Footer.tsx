@@ -8,7 +8,7 @@ export function Footer() {
                 {/* ЛЕВАЯ ГРУППА: Privacy Policy */}
                 <Link
                     href="/privacy-policy"
-                    className="label hover:opacity-70 transition-opacity order-1 sm:order-1"
+                    className="label-medium hover:opacity-70 transition-opacity order-1 sm:order-1"
                 >
                     Privacy Policy
                 </Link>
@@ -24,7 +24,7 @@ export function Footer() {
                         href="https://x.com/formazon"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="label hover:opacity-70 transition-opacity"
+                        className="label-medium hover:opacity-70 transition-opacity"
                     >
                         X
                     </Link>
@@ -32,13 +32,13 @@ export function Footer() {
                         href="https://www.linkedin.com/in/faridrafikov/"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="label hover:opacity-70 transition-opacity"
+                        className="label-medium hover:opacity-70 transition-opacity"
                     >
                         LinkedIn
                     </Link>
                     <Link
                         href="mailto:mail@formazon.com"
-                        className="label hover:opacity-70 transition-opacity"
+                        className="label-medium hover:opacity-70 transition-opacity"
                     >
                         Email
                     </Link>

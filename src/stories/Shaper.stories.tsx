@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { Shaper } from '../components/ui/Shaper';
 
 const meta = {
-  title: 'UI/Shaper',
+  title: 'Dividers/Shaper',
   component: Shaper,
   parameters: {
     layout: 'centered',

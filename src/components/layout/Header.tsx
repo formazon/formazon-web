@@ -1,14 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState, useEffect, MouseEvent } from "react";
-import { Menu, X } from "lucide-react";
 import { journalEnabled } from "@/lib/config/features";
 import { workItems, workCases } from "@/lib/content/work";
 import { ThemeToggle } from "./ThemeToggle";
 import { Dot } from "@/components/ui/Dot";
+import { DoubleDot } from "@/components/ui/DoubleDot";
+import { MenuToggle } from "@/components/ui/MenuToggle";
 import { WorkPreviewCard } from "@/components/ui/WorkPreviewCard";
 import { WorkDropdownMenu } from "@/components/ui/WorkDropdownMenu";
 
@@ -19,6 +19,15 @@ const navItems = [
     { href: "/journal", label: "Journal", feature: "journal" },
     { href: "/contact", label: "Contact" },
 ];
+
+const socialLinks = [
+    { href: "https://x.com/formazon", label: "X", external: true },
+    { href: "https://www.linkedin.com/in/faridrafikov/", label: "LinkedIn", external: true },
+    { href: "mailto:mail@formazon.com", label: "Email", external: false },
+];
+
+const socialLinkDesktopClassName = "label-medium hover:opacity-70 transition-opacity";
+const socialLinkMobileClassName = "caption px-4 py-2";
 
 export function Header() {
     const pathname = usePathname();
@@ -65,8 +74,8 @@ export function Header() {
                 {/* ЛЕВАЯ ГРУППА: Логотип */}
                 <Link
                     href="/"
-                    className={`label hover:opacity-70 transition-all duration-200 ${
-                        isScrolled ? "bg-surface/80 backdrop-blur rounded-sm sm:px-3 sm:py-[9px]" : ""
+                    className={`caption-medium sm:label hover:opacity-70 transition-all duration-200 ${
+                        isScrolled ? "rounded-sm" : ""
                     }`}
                     onClick={() => setIsOpen(false)}
                 >
@@ -97,7 +106,7 @@ export function Header() {
                                 >
                                     <Link
                                         href={item.href}
-                                        className="group relative inline-block caption-medium normal-case transition-all duration-200"
+                                        className="group relative inline-block caption-medium uppercase transition-all duration-200"
                                     >
                                         <span className="relative z-10">{item.label}</span>
                                         {!isWork && (
@@ -137,7 +146,7 @@ export function Header() {
                             <Link
                                 key={item.href}
                                 href={item.href}
-                                className="group relative inline-block caption-medium normal-case transition-all duration-200"
+                                className="group relative inline-block caption-medium uppercase transition-all duration-200"
                             >
                                 <span className="relative z-10">{item.label}</span>
                                 <div className={`absolute top-full left-0 mt-0 w-full flex justify-between transition-all duration-200 ${isActive ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-1 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto"}`}>
@@ -164,49 +173,28 @@ export function Header() {
 
                 {/* ПРАВАЯ ГРУППА: Соцсети + Тема + Мобильный бургер */}
                 <div className={`flex items-center gap-2 sm:gap-4 transition-all duration-200 ${
-                    isScrolled ? "bg-surface/80 backdrop-blur rounded-sm  pl-2 sm:pl-3 sm:pr-1.5 py-0" : ""
+                    isScrolled ? "rounded-sm" : ""
                 }`}>
                     {/* Social Links - Desktop */}
                     <div className="hidden items-center gap-6 sm:flex">
-                        <Link
-                            href="https://x.com/formazon"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="label hover:opacity-70 transition-opacity"
-                        >
-                            X
-                        </Link>
-                        <Link
-                            href="https://www.linkedin.com/in/faridrafikov/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="label hover:opacity-70 transition-opacity"
-                        >
-                            LinkedIn
-                        </Link>
-                        <Link
-                            href="mailto:mail@formazon.com"
-                            className="label hover:opacity-70 transition-opacity"
-                        >
-                            Email
-                        </Link>
+                        {socialLinks.map((link) => (
+                            <Link
+                                key={link.href}
+                                href={link.href}
+                                target={link.external ? "_blank" : undefined}
+                                rel={link.external ? "noopener noreferrer" : undefined}
+                                className={socialLinkDesktopClassName}
+                            >
+                                {link.label}
+                            </Link>
+                        ))}
                     </div>
 
                     {/* Theme toggle */}
                     <ThemeToggle />
 
                     {/* Mobile Menu Button */}
-                    <button
-                        onClick={() => setIsOpen(!isOpen)}
-                        aria-label="Toggle menu"
-                        className="rounded-lg p-2 text-text-muted hover:text-foreground sm:hidden"
-                    >
-                        {isOpen ? (
-                            <X className="h-5 w-5" />
-                        ) : (
-                            <Menu className="h-5 w-5" />
-                        )}
-                    </button>
+                    <MenuToggle isOpen={isOpen} onClick={() => setIsOpen(!isOpen)} />
                 </div>
             </div>
 
@@ -214,6 +202,7 @@ export function Header() {
             {isOpen && (
                 <div className="absolute left-0 top-14 h-[calc(100vh-4rem)] w-full bg-background border-b border-border-subtle px-4 py-6 sm:hidden">
                     <nav className="flex flex-col gap-2">
+                        <DoubleDot />
                         {activeNavItems.map((item) => {
                             const isActive = pathname === item.href;
                             return (
@@ -221,10 +210,10 @@ export function Header() {
                                     key={item.href}
                                     href={item.href}
                                     className={`
-                                        block px-0 py-3 subtitle-medium transition-colors text-center
+                                        flex items-center justify-center h-18 px-0 caption-medium uppercase text-[20px]! transition-colors text-foreground
                                         ${isActive
-                                        ? "bg-surface-muted text-foreground"
-                                        : "text-text-muted hover:text-foreground"
+                                        ? "bg-surface-muted"
+                                        : ""
                                     }
                                     `}
                                 >
@@ -233,29 +222,21 @@ export function Header() {
                             );
                         })}
                         {/* Mobile Social Links */}
-                        <div className="flex flex-col gap-2 mt-4 pt-4 border-t border-border-subtle text-center">
-                            <Link
-                                href="https://x.com/formazon"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="label px-4 py-2"
-                            >
-                                X
-                            </Link>
-                            <Link
-                                href="https://www.linkedin.com/in/faridrafikov/"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="label px-4 py-2"
-                            >
-                                LinkedIn
-                            </Link>
-                            <Link
-                                href="mailto:mail@formazon.com"
-                                className="label px-4 py-2"
-                            >
-                                Email
-                            </Link>
+                        <div className="mt-4 pt-4">
+                            <DoubleDot />
+                        </div>
+                        <div className="flex flex-col gap-2 text-center">
+                            {socialLinks.map((link) => (
+                                <Link
+                                    key={link.href}
+                                    href={link.href}
+                                    target={link.external ? "_blank" : undefined}
+                                    rel={link.external ? "noopener noreferrer" : undefined}
+                                    className={socialLinkMobileClassName}
+                                >
+                                    {link.label}
+                                </Link>
+                            ))}
                         </div>
                     </nav>
                 </div>
