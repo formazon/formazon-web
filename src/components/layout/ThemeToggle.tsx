@@ -29,8 +29,7 @@ export function ThemeToggle() {
             onClick={handleToggle}
             aria-label="Toggle theme"
             className="
-                flex items-center justify-center w-8 h-8 rounded-lg
-                bg-background
+                flex items-center justify-center w-8 h-8
                 transition-all duration-200
                 hover:opacity-70
                 dark:hover:opacity-70
