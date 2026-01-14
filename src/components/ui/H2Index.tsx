@@ -1,10 +1,10 @@
 // src/components/ui/H2Index.tsx
 
-type H2IndexProps = {
+interface H2IndexProps {
     children: React.ReactNode;
     index?: number | string;
     className?: string;
-};
+}
 
 export function H2Index({ children, index = 1, className = "" }: H2IndexProps) {
     return (

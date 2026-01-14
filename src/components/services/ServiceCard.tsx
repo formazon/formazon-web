@@ -2,9 +2,9 @@
 import type { Service } from "@/lib/content/services";
 import { Dot } from "@/components/ui/Dot";
 
-type ServiceCardProps = {
+interface ServiceCardProps {
     service: Service;
-};
+}
 
 export function ServiceCard({ service }: ServiceCardProps) {
     return (

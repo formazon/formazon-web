@@ -1,11 +1,11 @@
 import Link from "next/link";
 import type { JournalPost } from "@/lib/content/journal";
 
-type JournalNavigationCardProps = {
+interface JournalNavigationCardProps {
     post: JournalPost;
     direction: "next" | "previous";
     href: string;
-};
+}
 
 export function JournalNavigationCard({ post, direction, href }: JournalNavigationCardProps) {
     const isNext = direction === "next";

@@ -1,10 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-type ContactFormData = {
+interface ContactFormData {
     name: string;
     email: string;
     message: string;
-};
+}
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 

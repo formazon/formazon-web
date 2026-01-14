@@ -1,11 +1,11 @@
 import Link from "next/link";
 
-type MenuItemProps = {
+interface MenuItemProps {
     href: string;
     label: string;
     isActive: boolean;
     onClick?: () => void;
-};
+}
 
 export function MenuItem({ href, label, isActive, onClick }: MenuItemProps) {
     return (

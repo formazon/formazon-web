@@ -1,17 +1,16 @@
-import { useMemo } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import type { WorkItem } from "@/lib/content/work";
 import { workCases } from "@/lib/content/work";
 import { Tag } from "@/components/ui/Tag";
 
-type WorkListCardProps = {
+interface WorkListCardProps {
     item: WorkItem;
-};
+}
 
 export function WorkCard({ item }: WorkListCardProps) {
-    const fullCase = useMemo(() => workCases[item.slug], [item.slug]);
-    const previewImage = useMemo(() => fullCase?.images?.[0] ?? null, [fullCase]);
+    const fullCase = workCases[item.slug];
+    const previewImage = fullCase?.images?.[0] ?? null;
 
     return (
         <Link
@@ -32,6 +31,7 @@ export function WorkCard({ item }: WorkListCardProps) {
                         height={previewImage.height}
                         className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]"
                         priority={false}
+                        loading="lazy"
                     />
                 </div>
             )}

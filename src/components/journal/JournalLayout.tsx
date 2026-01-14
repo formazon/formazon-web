@@ -7,11 +7,11 @@ import { Tag } from "@/components/ui/Tag";
 import { QuadroDot } from "@/components/ui/QuadroDot";
 import { JournalNavigationCard } from "./JournalNavigationCard";
 
-type JournalLayoutProps = {
+interface JournalLayoutProps {
     entry: JournalEntry;
     previous?: JournalPost;
     next?: JournalPost;
-};
+}
 
 export function JournalLayout({ entry, previous, next }: JournalLayoutProps) {
     const { title, date, tag, body, coverImage } = entry;

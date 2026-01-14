@@ -6,9 +6,9 @@ import { journalEntries } from "@/lib/content/journal";
 import { journalEnabled } from "@/lib/config/features";
 import { Tag } from "../ui/Tag";
 
-type Props = {
+interface Props {
     post: JournalPost;
-};
+}
 
 export function JournalPostCard({ post }: Props) {
     // Достаём полную запись, чтобы получить coverImage
@@ -26,6 +26,7 @@ export function JournalPostCard({ post }: Props) {
                         width={coverImage.width}
                         height={coverImage.height}
                         className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]"
+                        loading="lazy"
                     />
                 </div>
             )}

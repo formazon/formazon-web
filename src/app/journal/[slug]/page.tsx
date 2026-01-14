@@ -9,9 +9,9 @@ import {
 import { JournalLayout } from "@/components/journal/JournalLayout";
 import { journalEnabled } from "@/lib/config/features";
 
-type Props = {
+interface Props {
     params: Promise<{ slug: string }>;
-};
+}
 
 export function generateStaticParams() {
     // Если журнал выключен — не генерим вообще никаких страниц

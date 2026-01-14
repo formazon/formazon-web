@@ -4,9 +4,9 @@ import { notFound } from "next/navigation";
 import { WorkCaseLayout } from "@/components/work/WorkCaseLayout";
 import { getWorkCase, getWorkNeighbors, workCases } from "@/lib/content/work";
 
-type Props = {
+interface Props {
     params: Promise<{ slug: string }>;
-};
+}
 
 export function generateStaticParams() {
     return Object.keys(workCases).map((slug) => ({ slug }));

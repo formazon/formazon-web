@@ -9,10 +9,10 @@ import { heroProjects } from "@/lib/content/work";
 import { WorkPreviewCard } from "@/components/ui/WorkPreviewCard";
 import { TypingText } from "@/components/ui/TypingText";
 
-export type HomeHeroProps = {
+interface HomeHeroProps {
     title: string;
     subtitle: string;
-};
+}
 
 export function HomeHero({
                              title,

@@ -12,11 +12,11 @@ import { Shaper } from "@/components/ui/Shaper";
 import { H2Index } from "@/components/ui/H2Index";
 import { QuadroDot } from "../ui/QuadroDot";
 
-type WorkCaseLayoutProps = {
+interface WorkCaseLayoutProps {
     workCase: WorkCase;
     previousCase?: WorkItem;
     nextCase?: WorkItem;
-};
+}
 
 export function WorkCaseLayout({ workCase, previousCase, nextCase }: WorkCaseLayoutProps) {
     const { resolvedTheme } = useTheme();
@@ -101,20 +101,14 @@ export function WorkCaseLayout({ workCase, previousCase, nextCase }: WorkCaseLay
                     const prevImage = index > 0 ? allImages[index - 1] : null;
                     const isSecondInGroup = prevImage?.groupWithNext === true;
                     
-                    if (isSecondInGroup) {
-                        return null;
-                    }
+                    if (isSecondInGroup) return null;
 
                     // Подсчитываем индекс для H2Index (учитывая только отображенные изображения с контентом)
                     let contentIndex = 0;
                     for (let i = 0; i <= index; i++) {
                         const img = allImages[i];
-                        if (i > 0 && allImages[i - 1]?.groupWithNext) {
-                            continue; // Пропускаем второе изображение в группе
-                        }
-                        if (img?.content) {
-                            contentIndex++;
-                        }
+                        if (i > 0 && allImages[i - 1]?.groupWithNext) continue;
+                        if (img?.content) contentIndex++;
                     }
 
                     return (
@@ -130,6 +124,7 @@ export function WorkCaseLayout({ workCase, previousCase, nextCase }: WorkCaseLay
                                             height={image.height}
                                             className="h-auto w-full object-cover rounded"
                                             priority={index === 0}
+                                            loading={index === 0 ? undefined : "lazy"}
                                         />
                                     </figure>
                                     {nextImage && (
@@ -141,6 +136,7 @@ export function WorkCaseLayout({ workCase, previousCase, nextCase }: WorkCaseLay
                                                 height={nextImage.height}
                                                 className="h-auto w-full object-cover rounded"
                                                 priority={false}
+                                                loading="lazy"
                                             />
                                         </figure>
                                     )}
@@ -155,6 +151,7 @@ export function WorkCaseLayout({ workCase, previousCase, nextCase }: WorkCaseLay
                                         height={image.height}
                                         className="h-auto w-full object-cover rounded"
                                         priority={index === 0}
+                                        loading={index === 0 ? undefined : "lazy"}
                                     />
                                 </figure>
                             )}

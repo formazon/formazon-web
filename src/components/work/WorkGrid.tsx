@@ -3,11 +3,11 @@ import { useMemo } from "react";
 import type { ReactNode } from "react";
 import type { WorkItem } from "@/lib/content/work";
 
-type WorkGridProps = {
+interface WorkGridProps {
     items: WorkItem[];
     renderItem: (item: WorkItem) => ReactNode;
     columns?: 1 | 2 | 3;
-};
+}
 
 export function WorkGrid({ items, renderItem, columns = 2 }: WorkGridProps) {
     const colsClass = useMemo(() => {

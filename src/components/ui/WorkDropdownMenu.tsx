@@ -4,13 +4,13 @@ import { useCallback } from "react";
 import Link from "next/link";
 import { WorkItem } from "@/lib/content/work";
 
-type WorkDropdownMenuProps = {
+interface WorkDropdownMenuProps {
     workItems: WorkItem[];
     onItemHover?: (slug: string) => void;
     onItemLeave?: () => void;
     onMouseEnter?: () => void;
     onMouseLeave?: () => void;
-};
+}
 
 export function WorkDropdownMenu({
     workItems,
