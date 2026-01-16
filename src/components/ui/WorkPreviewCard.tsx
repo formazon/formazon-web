@@ -14,7 +14,7 @@ export function WorkPreviewCard({ workSlug }: WorkPreviewCardProps) {
     
     return (
         <div className="bg-surface rounded-sm shadow-lg overflow-hidden w-64">
-            {previewImage && (
+            {previewImage ? (
                 <div className="relative aspect-[1.618/1] w-full overflow-hidden bg-surface-muted">
                     <Image
                         src={previewImage.src}
@@ -26,7 +26,7 @@ export function WorkPreviewCard({ workSlug }: WorkPreviewCardProps) {
                         loading="lazy"
                     />
                 </div>
-            )}
+            ) : null}
             <div className="p-3 space-y-1">
                 <h3 className="caption-medium">{workCase.title}</h3>
                 <p className="label text-text-muted line-clamp-2">{workCase.description}</p>

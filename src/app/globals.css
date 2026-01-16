@@ -229,3 +229,16 @@ li.body-16 {
         font-size: 14px;
     }
 }
+
+/* Performance optimizations: content-visibility for long lists (rendering-content-visibility rule) */
+.work-grid > *,
+.grid > * {
+    content-visibility: auto;
+    contain-intrinsic-size: 400px;
+}
+
+/* Optimize work cards specifically */
+.work-card-item {
+    content-visibility: auto;
+    contain-intrinsic-size: 500px;
+}

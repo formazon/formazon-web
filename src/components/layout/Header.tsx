@@ -10,7 +10,13 @@ import { ThemeToggle } from "./ThemeToggle";
 import { Dot } from "@/components/ui/Dot";
 import { DoubleDot } from "@/components/ui/DoubleDot";
 import { MenuToggle } from "@/components/ui/MenuToggle";
-import { WorkPreviewCard } from "@/components/ui/WorkPreviewCard";
+import dynamic from "next/dynamic";
+
+// Dynamic import for WorkPreviewCard (only needed on hover)
+const WorkPreviewCard = dynamic(
+    () => import("@/components/ui/WorkPreviewCard").then(mod => ({ default: mod.WorkPreviewCard })),
+    { ssr: false }
+);
 import { WorkDropdownMenu } from "@/components/ui/WorkDropdownMenu";
 
 const socialLinkDesktopClassName = "label-medium hover:opacity-70 transition-opacity";
@@ -128,15 +134,15 @@ export function Header() {
                                     </Link>
                                     
                                     {/* Невидимая зона для плавного перехода */}
-                                    {isWorkHovered && (
+                                    {isWorkHovered ? (
                                         <div 
                                             className="absolute top-full left-0 w-full h-1"
                                             onMouseEnter={() => setIsWorkHovered(true)}
                                         />
-                                    )}
+                                    ) : null}
                                     
                                     {/* Выпадающее меню работ */}
-                                    {isWorkHovered && (
+                                    {isWorkHovered ? (
                                         <WorkDropdownMenu
                                             workItems={workItems}
                                             onItemHover={handleWorkItemHover}
@@ -144,7 +150,7 @@ export function Header() {
                                             onMouseEnter={handleWorkMouseEnter}
                                             onMouseLeave={handleWorkMouseLeave}
                                         />
-                                    )}
+                                    ) : null}
                                 </div>
                             );
                         }
@@ -166,7 +172,7 @@ export function Header() {
                 </nav>
                 
                 {/* Превью карточки работы рядом с курсором */}
-                {hoveredWorkSlug && workCases[hoveredWorkSlug] && (
+                {hoveredWorkSlug && workCases[hoveredWorkSlug] ? (
                     <div
                         className="fixed z-50 pointer-events-none"
                         style={{
@@ -176,7 +182,7 @@ export function Header() {
                     >
                         <WorkPreviewCard workSlug={hoveredWorkSlug} />
                     </div>
-                )}
+                ) : null}
 
                 {/* ПРАВАЯ ГРУППА: Соцсети + Тема + Мобильный бургер */}
                 <div className={`flex items-center gap-2 sm:gap-4 transition-all duration-200 ${
@@ -206,7 +212,7 @@ export function Header() {
             </div>
 
             {/* Mobile Navigation Dropdown */}
-            {isOpen && (
+            {isOpen ? (
                 <div className="absolute left-0 top-14 h-[calc(100vh-3.5rem)] w-full bg-background border-b border-border-subtle px-4 py-6 sm:hidden">
                     <nav className="flex flex-col gap-2">
                         <DoubleDot />
@@ -247,7 +253,7 @@ export function Header() {
                         </div>
                     </nav>
                 </div>
-            )}
+            ) : null}
         </header>
     );
 }

@@ -36,6 +36,22 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             text-foreground — черный в светлой, белый в темной
         */}
         <body className="bg-background text-foreground antialiased font-plex-sans">
+        <script
+            dangerouslySetInnerHTML={{
+                __html: `
+                    (function() {
+                        try {
+                            const consent = localStorage.getItem('cookie-consent');
+                            window.__COOKIE_CONSENT__ = consent === 'accepted' || consent === 'rejected' 
+                                ? consent 
+                                : 'pending';
+                        } catch (e) {
+                            window.__COOKIE_CONSENT__ = 'pending';
+                        }
+                    })();
+                `,
+            }}
+        />
         <ThemeProvider>
             <CookieConsentProvider>
                 <GoogleAnalytics />

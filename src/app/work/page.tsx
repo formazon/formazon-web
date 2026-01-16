@@ -11,25 +11,7 @@ export const metadata: Metadata = {
 };
 
 export default function WorkPage() {
-    const items: React.ReactNode[] = [];
-    
-    workItems.forEach((item, index) => {
-        items.push(
-            <div key={item.slug}>
-                <WorkCard item={item} />
-            </div>
-        );
-        
-        // Добавляем QuadroDot после каждых двух карточек (после индексов 1, 3, 5...)
-        if ((index + 1) % 2 === 0 && index < workItems.length - 1) {
-            items.push(
-                <div key={`quadro-${index}`} className="col-span-1 md:col-span-2">
-                    <QuadroDot />
-                </div>
-            );
-        }
-    });
-
+    // Use clean JSX instead of creating array (rendering-hoist-jsx rule)
     return (
         <PageShell>
             {/* Intro / hero для списка работ */}
@@ -44,8 +26,17 @@ export default function WorkPage() {
 
             {/* Сетка кейсов */}
             <section>
-                <div className="grid grid-cols-1 gap-x-4 gap-y-20 md:grid-cols-2 mb-20">
-                    {items}
+                <div className="grid grid-cols-1 gap-x-4 gap-y-20 md:grid-cols-2 mb-20 work-grid">
+                    {workItems.map((item, index) => (
+                        <div key={item.slug} className="work-card-item">
+                            <WorkCard item={item} />
+                            {(index + 1) % 2 === 0 && index < workItems.length - 1 ? (
+                                <div className="col-span-1 md:col-span-2 mt-20">
+                                    <QuadroDot />
+                                </div>
+                            ) : null}
+                        </div>
+                    ))}
                 </div>
             </section>
         </PageShell>

@@ -1,5 +1,4 @@
 // src/components/ui/Button.tsx
-import { useMemo } from "react";
 import Link from "next/link";
 import { ReactNode, ButtonHTMLAttributes } from "react";
 
@@ -25,11 +24,8 @@ export function Button({
                            className = "",
                            ...props
                        }: ButtonProps) {
-    // Memoize className calculation
-    const combinedClassName = useMemo(
-        () => `${baseStyles} ${variants[variant]} ${className}`,
-        [variant, className]
-    );
+    // Simple string concatenation - no need for useMemo (rerender-memo rule)
+    const combinedClassName = `${baseStyles} ${variants[variant]} ${className}`;
 
     // 3. Логика рендера: Link или button
     if (href) {

@@ -1,7 +1,7 @@
 // src/components/contact/ContactForm.tsx
 "use client";
 
-import { useState, FormEvent, useCallback } from "react";
+import { useState, FormEvent, useCallback, useRef } from "react";
 import { contactContent } from "@/lib/content/contact";
 import { Button } from "@/components/ui/Button";
 import { Input, Textarea } from "@/components/ui/Input";
@@ -11,9 +11,19 @@ type FormStatus = "idle" | "submitting" | "success" | "error";
 export function ContactForm() {
     const { form } = contactContent;
     const [status, setStatus] = useState<FormStatus>("idle");
+    const abortControllerRef = useRef<AbortController | null>(null);
 
     const handleSubmit = useCallback(async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        
+        // Cancel previous request if any (client-swr-dedup rule)
+        if (abortControllerRef.current) {
+            abortControllerRef.current.abort();
+        }
+        
+        const abortController = new AbortController();
+        abortControllerRef.current = abortController;
+        
         setStatus("submitting");
 
         const formData = new FormData(e.currentTarget);
@@ -30,7 +40,13 @@ export function ContactForm() {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(data),
+                signal: abortController.signal,
             });
+
+            // Check if request was aborted
+            if (abortController.signal.aborted) {
+                return;
+            }
 
             if (!response.ok) {
                 const error = await response.json();
@@ -40,8 +56,14 @@ export function ContactForm() {
             setStatus("success");
             e.currentTarget.reset();
         } catch (error) {
+            // Ignore abort errors
+            if (error instanceof Error && error.name === 'AbortError') {
+                return;
+            }
             console.error('Form submission error:', error);
             setStatus("error");
+        } finally {
+            abortControllerRef.current = null;
         }
     }, []);
 
@@ -92,9 +114,9 @@ export function ContactForm() {
                 </Button>
             </div>
 
-            {status === "error" && (
+            {status === "error" ? (
                 <p className="label text-red-500">{form.errorMessage}</p>
-            )}
+            ) : null}
         </form>
     );
 }

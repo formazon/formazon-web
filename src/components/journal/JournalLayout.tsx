@@ -39,13 +39,13 @@ export function JournalLayout({ entry, previous, next }: JournalLayoutProps) {
                     {title}
                 </h1>
                 <p className="label-medium">{formattedDate}</p>
-                {tag && (
+                {tag ? (
                     <Tag>{tag}</Tag>
-                )}
+                ) : null}
             </header>
 
             {/* Cover image (если есть) */}
-            {coverImage && (
+            {coverImage ? (
                 <div className="mb-8 overflow-hidden rounded-sm border border-border-subtle bg-surface-muted">
                     <Image
                         src={coverImage.src}
@@ -56,7 +56,7 @@ export function JournalLayout({ entry, previous, next }: JournalLayoutProps) {
                         priority
                     />
                 </div>
-            )}
+            ) : null}
 
             {/* Body */}
             <section className="space-y-5">
@@ -74,21 +74,21 @@ export function JournalLayout({ entry, previous, next }: JournalLayoutProps) {
             <section className="mt-12 pt-8">
                 <QuadroDot />
                 <div className="grid gap-4 md:grid-cols-2 mt-8">
-                    {previous && (
+                    {previous ? (
                         <JournalNavigationCard
                             post={previous}
                             direction="previous"
                             href={`/journal/${previous.slug}`}
                         />
-                    )}
+                    ) : null}
 
-                    {next && (
+                    {next ? (
                         <JournalNavigationCard
                             post={next}
                             direction="next"
                             href={`/journal/${next.slug}`}
                         />
-                    )}
+                    ) : null}
                 </div>
 
                 <div className="mt-10 label mb-10">

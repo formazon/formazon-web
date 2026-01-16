@@ -6,8 +6,18 @@ import Image from "next/image";
 import { useState, MouseEvent, useEffect, useRef, useCallback, useMemo } from "react";
 import { useTheme } from "next-themes";
 import { heroProjects } from "@/lib/content/work";
-import { WorkPreviewCard } from "@/components/ui/WorkPreviewCard";
-import { TypingText } from "@/components/ui/TypingText";
+import dynamic from "next/dynamic";
+
+// Dynamic imports for non-critical components
+const WorkPreviewCard = dynamic(
+    () => import("@/components/ui/WorkPreviewCard").then(mod => ({ default: mod.WorkPreviewCard })),
+    { ssr: false }
+);
+
+const TypingText = dynamic(
+    () => import("@/components/ui/TypingText").then(mod => ({ default: mod.TypingText })),
+    { ssr: true }
+);
 
 interface HomeHeroProps {
     title: string;
@@ -28,15 +38,22 @@ export function HomeHero({
     const [isHovered, setIsHovered] = useState(false);
     const [hoveredProject, setHoveredProject] = useState<string | null>(null);
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+    const [mounted, setMounted] = useState(false);
     const containerRef = useRef<HTMLDivElement>(null);
 
-    // Memoize scroll handler
+    const { resolvedTheme } = useTheme();
+    
+    // Avoid hydration mismatch by using mounted state (rendering-hydration-no-flicker rule)
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
+    // Hide card on scroll - useCallback needed for cleanup
     const handleScroll = useCallback(() => {
         setHoveredProject(null);
         setIsHovered(false);
     }, []);
 
-    // Hide card on scroll
     useEffect(() => {
         window.addEventListener('scroll', handleScroll, { passive: true });
         window.addEventListener('wheel', handleScroll, { passive: true });
@@ -47,16 +64,8 @@ export function HomeHero({
         };
     }, [handleScroll]);
 
-    // Memoize mouse handlers
-    const handleMouseEnter = useCallback(() => {
-        setIsHovered(true);
-    }, []);
-
-    const handleMouseLeave = useCallback(() => {
-        setIsHovered(false);
-        setHoveredProject(null);
-    }, []);
-
+    // Mouse handlers - no need for useCallback if only used inline
+    // But we keep handleMouseMove as useCallback since it's called frequently
     const handleMouseMove = useCallback((e: MouseEvent<HTMLDivElement>) => {
         setMousePosition({ x: e.clientX, y: e.clientY });
         // Check if cursor is still in container bounds
@@ -75,16 +84,8 @@ export function HomeHero({
         }
     }, []);
 
-    const handleProjectEnter = useCallback((slug: string) => {
-        setHoveredProject(slug);
-    }, []);
-
-    const handleProjectLeave = useCallback(() => {
-        setHoveredProject(null);
-    }, []);
-
-    const { resolvedTheme } = useTheme();
-    const isDark = resolvedTheme === "dark";
+    // Use resolvedTheme only after mounting to avoid hydration mismatch
+    const isDark = mounted && resolvedTheme === "dark";
 
     return (
         <section className="mb-16 space-y-8">
@@ -104,8 +105,11 @@ export function HomeHero({
                 <div 
                     ref={containerRef}
                     className="relative mt-8 h-16 w-72"
-                    onMouseEnter={handleMouseEnter}
-                    onMouseLeave={handleMouseLeave}
+                    onMouseEnter={() => setIsHovered(true)}
+                    onMouseLeave={() => {
+                        setIsHovered(false);
+                        setHoveredProject(null);
+                    }}
                     onMouseMove={handleMouseMove}
                 >
                 {heroProjects.map((project, index) => {
@@ -119,8 +123,8 @@ export function HomeHero({
                                     : `translateX(${index * 50}px)`,
                                 zIndex: index + 1,
                             }}
-                            onMouseEnter={() => handleProjectEnter(project.slug)}
-                            onMouseLeave={handleProjectLeave}
+                            onMouseEnter={() => setHoveredProject(project.slug)}
+                            onMouseLeave={() => setHoveredProject(null)}
                         >
                             <Link
                                 href={`/work/${project.slug}`}
@@ -135,7 +139,7 @@ export function HomeHero({
                                         className="w-17"
                                         style={{ 
                                             height: 'auto',
-                                            filter: project.slug === 'fuelet' && isDark ? 'invert(1)' : 'none' 
+                                            filter: project.slug === 'fuelet' && isDark ? 'invert(1)' : 'none'
                                         }}
                                     />
                                 </div>
@@ -146,7 +150,7 @@ export function HomeHero({
                 </div>
                 
                 {/* Work Preview Card */}
-                {hoveredProject && (
+                {hoveredProject ? (
                     <div
                         className="fixed z-50 pointer-events-none"
                         style={{
@@ -156,7 +160,7 @@ export function HomeHero({
                     >
                         <WorkPreviewCard workSlug={hoveredProject} />
                     </div>
-                )}
+                ) : null}
             </div>
         </section>
     );

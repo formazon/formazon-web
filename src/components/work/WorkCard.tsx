@@ -50,7 +50,7 @@ export function WorkCard({ item }: WorkListCardProps) {
                     </p>
 
                     {/* ИСПОЛЬЗУЕМ НОВЫЙ КОМПОНЕНТ */}
-                    {item.tags && item.tags.length > 0 && (
+                    {item.tags && item.tags.length > 0 ? (
                         <div className="mt-6 flex flex-wrap gap-2">
                             {item.tags.map((tag) => (
                                 <Tag key={tag}>
@@ -58,7 +58,7 @@ export function WorkCard({ item }: WorkListCardProps) {
                                 </Tag>
                             ))}
                         </div>
-                    )}
+                    ) : null}
                 </div>
             </div>
         </Link>
