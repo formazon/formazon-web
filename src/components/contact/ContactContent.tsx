@@ -11,7 +11,7 @@ interface ContactContentProps {
 }
 
 export function ContactContent({ className = "", variant = "page" }: ContactContentProps) {
-    const { intro, direct, socials, guidelines } = contactContent;
+    const { intro, direct, socials } = contactContent;
     const isPage = variant === "page";
 
     return (
@@ -29,8 +29,8 @@ export function ContactContent({ className = "", variant = "page" }: ContactCont
                 <p className="max-w-2xl">{intro.description}</p>
             </section>
 
-            {/* Main Content Grid */}
-            <div className="grid gap-12 lg:grid-cols-[1.5fr_1fr]">
+            {/* Main Content Grid: 50/50, gap 16px */}
+            <div className="grid gap-4 lg:grid-cols-2">
                 <section>
                     <div className="rounded-2xl border border-border-subtle bg-surface-muted/30 p-6 sm:p-8">
                         <ContactForm />
@@ -40,7 +40,6 @@ export function ContactContent({ className = "", variant = "page" }: ContactCont
                 <aside className="space-y-10">
                     <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-1">
                         <div className="space-y-3">
-                            <p className="label-medium">{direct.label}</p>
                             <TextLink
                                 href={`mailto:${direct.email}`}
                                 external
@@ -69,17 +68,6 @@ export function ContactContent({ className = "", variant = "page" }: ContactCont
                                 })}
                             </ul>
                         </div>
-                    </div>
-
-                    <div className="border-t border-border-subtle pt-8 space-y-4">
-                        <p className="label-medium">{guidelines.label}</p>
-                        <p className="caption">{guidelines.intro}</p>
-                        <ul className="space-y-1 label">
-                            {guidelines.points.map((point) => (
-                                <li key={point}>• {point}</li>
-                            ))}
-                        </ul>
-                        <p className="pt-2 label">{guidelines.privacy}</p>
                     </div>
                 </aside>
             </div>

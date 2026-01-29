@@ -49,9 +49,9 @@ I design and build digital products that combine clarity, structure, and thought
             <Suspense fallback={<div className="mb-16" />}>
                 <SelectedWorkSection />
             </Suspense>
-            <Suspense fallback={<div className="mb-20" />}>
+            <Suspense fallback={<div className="mb-16" />}>
                 <QuadroDot />
-                <AboutContent className="mb-20" variant="preview" />
+                <AboutContent className="mb-16" variant="preview" />
             </Suspense>
             <Suspense fallback={<div className="mb-16" />}>
                 <QuadroDot />
@@ -62,7 +62,7 @@ I design and build digital products that combine clarity, structure, and thought
             </Suspense>
             <Suspense fallback={<div />}>
                 <QuadroDot />
-                <ContactContent variant="preview" className="mt-20" />
+                <ContactContent variant="preview" className="mt-16 mb-16" />
             </Suspense>
         </PageShell>
     );

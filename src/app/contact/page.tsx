@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 export default function ContactPage() {
     return (
         <PageShell>
-            <ContactContent variant="page" />
+            <ContactContent className="mb-16" variant="page" />
         </PageShell>
     );
 }
