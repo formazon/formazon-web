@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import { Suspense } from "react";
 import { HomeHero } from "@/components/home/HomeHero";
 import { PageShell } from "@/components/layout/PageShell";
+import { QuadroDot } from "@/components/ui/QuadroDot";
 
 // Dynamic imports for components below the fold (bundle-dynamic-imports)
 const SelectedWorkSection = dynamic(
@@ -11,13 +12,13 @@ const SelectedWorkSection = dynamic(
     { ssr: true }
 );
 
-const AboutPreviewSection = dynamic(
-    () => import("@/components/home/AboutPreviewSection").then(mod => ({ default: mod.AboutPreviewSection })),
+const AboutContent = dynamic(
+    () => import("@/components/about/AboutContent").then(mod => ({ default: mod.AboutContent })),
     { ssr: true }
 );
 
-const ServicesHomeSection = dynamic(
-    () => import("@/components/home/ServicesHomeSection").then(mod => ({ default: mod.ServicesHomeSection })),
+const ServicesContent = dynamic(
+    () => import("@/components/services/ServicesContent").then(mod => ({ default: mod.ServicesContent })),
     { ssr: true }
 );
 
@@ -26,8 +27,8 @@ const JournalPreviewSection = dynamic(
     { ssr: true }
 );
 
-const ContactCtaSection = dynamic(
-    () => import("@/components/home/ContactCtaSection").then(mod => ({ default: mod.ContactCtaSection })),
+const ContactContent = dynamic(
+    () => import("@/components/contact/ContactContent").then(mod => ({ default: mod.ContactContent })),
     { ssr: true }
 );
 
@@ -49,16 +50,19 @@ I design and build digital products that combine clarity, structure, and thought
                 <SelectedWorkSection />
             </Suspense>
             <Suspense fallback={<div className="mb-20" />}>
-                <AboutPreviewSection />
+                <QuadroDot />
+                <AboutContent className="mb-20" variant="preview" />
             </Suspense>
             <Suspense fallback={<div className="mb-16" />}>
-                <ServicesHomeSection />
+                <QuadroDot />
+                <ServicesContent variant="preview" />
             </Suspense>
             <Suspense fallback={<div />}>
                 <JournalPreviewSection />
             </Suspense>
             <Suspense fallback={<div />}>
-                <ContactCtaSection />
+                <QuadroDot />
+                <ContactContent variant="preview" className="mt-20" />
             </Suspense>
         </PageShell>
     );

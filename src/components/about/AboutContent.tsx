@@ -13,7 +13,6 @@ export function AboutContent({ className = "", variant = "preview" }: AboutConte
 
     return (
         <section className={className}>
-            {!isPage && <QuadroDot />}
             <div className="flex flex-col gap-16 md:flex-row md:items-start md:justify-between">
                 <div className="space-y-4">
                     {isPage ? (

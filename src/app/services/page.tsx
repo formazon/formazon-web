@@ -1,9 +1,7 @@
 // src/app/services/page.tsx
 import type { Metadata } from "next";
 import { PageShell } from "@/components/layout/PageShell";
-import { services } from "@/lib/content/services"; // Импортируем данные
-import { Button } from "@/components/ui/Button"; // Используем общий компонент
-import { ServiceCard } from "@/components/services/ServiceCard";
+import { ServicesContent } from "@/components/services/ServicesContent";
 
 export const metadata: Metadata = {
     title: "Services — Formazon",
@@ -14,67 +12,7 @@ export const metadata: Metadata = {
 export default function ServicesPage() {
     return (
         <PageShell>
-            {/* Intro / hero */}
-            <section className="mb-12 space-y-4">
-                <p className="caption">
-                    Services
-                </p>
-                <h1 className="h1 max-w-4xl">
-                    I help shape products, interfaces, and brands around real constraints.
-                </h1>
-                <p className="max-w-2xl">
-                    Most of my work happens at the intersection of product definition,
-                    interface design, and narrative. I usually join as a founder, product
-                    partner, or design lead — to bring focus to what&apos;s being built and
-                    how it should look, feel, and behave.
-                </p>
-            </section>
-
-            {/* Services grid */}
-            <section className="mb-16 grid gap-6 md:grid-cols-2">
-                {services.map((service) => (
-                    <ServiceCard key={service.title} service={service} />
-                ))}
-            </section>
-
-            {/* How we can work together */}
-            <section className="pt-10">
-                <h2 className="mb-6 label-medium">
-                    How I usually work
-                </h2>
-
-                <div className="grid gap-8 md:grid-cols-3 label">
-                    <div className="space-y-2">
-                        <p className="label-medium">Focused projects</p>
-                        <p className="body">
-                            A clear scope and timeline around a specific outcome: a new
-                            product, redesign, investor deck, or a key release.
-                        </p>
-                    </div>
-
-                    <div className="space-y-2">
-                        <p className="label-medium">Ongoing product partner</p>
-                        <p className="body">
-                            Long-term collaboration where I help shape direction, interfaces,
-                            and story as the product evolves.
-                        </p>
-                    </div>
-
-                    <div className="space-y-2">
-                        <p className="label-medium">Early conversations</p>
-                        <p className="body">
-                            If you&apos;re not sure about the scope yet, we can start with a short
-                            call and a lightweight audit of what you already have.
-                        </p>
-                    </div>
-                </div>
-
-                <div className="mt-8 mb-10">
-                    <Button href="/contact" variant="outline">
-                        Talk about a project
-                    </Button>
-                </div>
-            </section>
+            <ServicesContent variant="page" />
         </PageShell>
     );
 }
