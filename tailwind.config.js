@@ -11,6 +11,8 @@ module.exports = {
                 "plex-mono": ["var(--font-plex-mono)", "monospace"],
             },
             colors: {
+                black: "var(--color-black)",
+                "black-20": "var(--color-black-20)",
                 "black-40": "var(--color-black-40)",
             },
         },

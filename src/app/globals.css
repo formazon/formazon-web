@@ -10,6 +10,7 @@
     --tag-surface: #EBECF0;       /* tag background */
 
     --border-subtle: #e5e7eb;     /* light border */
+    --black-20: #D4D4D4;          /* card top border */
     --accent: #6366f1;            /* indigo-500 */
     --accent-soft: rgba(99, 102, 241, 0.12);
 
@@ -27,6 +28,7 @@
     --tag-surface: #1a1a1d;       /* tag background dark */
 
     --border-subtle: #404040;     /* subtle border for dark theme */
+    --black-20: #525252;          /* card top border dark */
     --accent: #818cf8;            /* indigo-400 */
     --accent-soft: rgba(129, 140, 248, 0.16);
 
@@ -44,6 +46,7 @@
     --color-tag-surface: var(--tag-surface);
 
     --color-border-subtle: var(--border-subtle);
+    --color-black-20: var(--black-20);
 
     --color-accent: var(--accent);
     --color-accent-soft: var(--accent-soft);
@@ -62,6 +65,7 @@
         --surface-muted: #1a1a1d;
         --tag-surface: #1a1a1d;
         --border-subtle: #404040;
+        --black-20: #525252;
         --accent: #818cf8;
         --accent-soft: rgba(129, 140, 248, 0.16);
         --text-muted: #a1a1aa;

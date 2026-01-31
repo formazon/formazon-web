@@ -24,11 +24,11 @@ export function ServicesContent({ className = "", variant = "page" }: ServicesCo
             {isPage ? (
                 <>
                     <section className="mb-12 space-y-4">
-                        <p className="caption">Services</p>
+                        <p className="caption mb-4 md:mb-16">Services</p>
                         <h1 className="h1 max-w-4xl">{PAGE_INTRO.title}</h1>
                         <p className="max-w-2xl">{PAGE_INTRO.description}</p>
                     </section>
-                    <section className="mb-16 grid gap-6 md:grid-cols-2">
+                    <section className="mb-12 flex flex-col">
                         {services.map((service) => (
                             <ServiceCard key={service.title} service={service} />
                         ))}
@@ -36,8 +36,8 @@ export function ServicesContent({ className = "", variant = "page" }: ServicesCo
                 </>
             ) : (
                 <section className="mb-16 space-y-4">
-                    <H2Index index={3}>Services</H2Index>
-                    <div className="grid gap-4 md:grid-cols-2">
+                    <H2Index index={3} className="mb-16">Services</H2Index>
+                    <div className="flex flex-col">
                         {services.map((service) => (
                             <ServiceCard key={service.title} service={service} />
                         ))}
