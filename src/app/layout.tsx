@@ -31,6 +31,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
     return (
         <html lang="en" suppressHydrationWarning className={`${ibmPlexSans.variable} ${ibmPlexMono.variable}`}>
+        <head>
+            <link rel="icon" href="/apple-touch-icon.png" type="image/png" />
+            <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        </head>
         {/* Используем токены:
             bg-background — белый в светлой, черный в темной
             text-foreground — черный в светлой, белый в темной

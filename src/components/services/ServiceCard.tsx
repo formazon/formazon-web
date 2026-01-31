@@ -15,7 +15,7 @@ export function ServiceCard({ service }: ServiceCardProps) {
             className={`
                 group grid w-full rounded-sm border-t border-black-20 bg-surface
                 transition-[grid-template-rows,border-color] duration-300 ease-out
-                hover:border-black
+                hover:border-foreground
                 ${expanded ? "grid-rows-[96px_1fr] md:grid-rows-[120px_1fr]" : "grid-rows-[96px_0fr] md:grid-rows-[120px_0fr]"}
             `}
         >
@@ -28,7 +28,7 @@ export function ServiceCard({ service }: ServiceCardProps) {
             >
                 <h3 className="subtitle-medium pr-10">{service.title}</h3>
                 <span
-                    className="absolute right-0 top-1/2 flex -translate-y-1/2 items-center justify-center text-black-40 transition-colors group-hover:text-black"
+                    className="absolute right-0 top-1/2 flex -translate-y-1/2 items-center justify-center text-black-40 transition-colors group-hover:text-foreground"
                     aria-hidden
                 >
                     <svg
