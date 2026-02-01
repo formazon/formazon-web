@@ -24,7 +24,7 @@ export function ServicesContent({ className = "", variant = "page" }: ServicesCo
             {isPage ? (
                 <>
                     <section className="mb-12 space-y-4">
-                        <p className="caption mb-4 md:mb-16">Services</p>
+                        <p className="caption">Services</p>
                         <h1 className="h1 max-w-4xl">{PAGE_INTRO.title}</h1>
                         <p className="max-w-2xl">{PAGE_INTRO.description}</p>
                     </section>
