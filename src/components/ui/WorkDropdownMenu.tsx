@@ -28,7 +28,7 @@ export function WorkDropdownMenu({
 
     return (
         <div 
-            className="absolute top-full -left-3 pt-2"
+            className="absolute top-full -left-3 pt-3"
             onMouseEnter={onMouseEnter}
             onMouseLeave={onMouseLeave}
         >

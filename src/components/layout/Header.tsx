@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState, useEffect, useCallback, useMemo, MouseEvent } from "react";
+import { useState, useEffect, useCallback, useMemo, useRef, MouseEvent } from "react";
 import { journalEnabled } from "@/lib/config/features";
 import { navItems, socialLinks } from "@/lib/config/navigation";
 import { workItems, workCases } from "@/lib/content/work";
@@ -29,6 +29,8 @@ export function Header() {
     const [hoveredWorkSlug, setHoveredWorkSlug] = useState<string | null>(null);
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
     const [isScrolled, setIsScrolled] = useState(false);
+    const [isHeaderVisible, setIsHeaderVisible] = useState(true);
+    const lastScrollY = useRef(0);
 
     // Close menu when pathname changes
     useEffect(() => {
@@ -47,14 +49,24 @@ export function Header() {
         };
     }, [isOpen]);
 
-    // Handle scroll detection
+    // Handle scroll: hide header on scroll down, show on scroll up; always show near top
+    const scrollThreshold = 80;
     useEffect(() => {
         const handleScroll = () => {
-            setIsScrolled(window.scrollY > 0);
+            const currentScrollY = window.scrollY;
+            setIsScrolled(currentScrollY > 0);
+
+            if (currentScrollY <= scrollThreshold) {
+                setIsHeaderVisible(true);
+            } else if (currentScrollY > lastScrollY.current) {
+                setIsHeaderVisible(false);
+            } else {
+                setIsHeaderVisible(true);
+            }
+            lastScrollY.current = currentScrollY;
         };
 
         window.addEventListener("scroll", handleScroll, { passive: true });
-        // Check immediately on mount
         handleScroll();
 
         return () => {
@@ -96,13 +108,15 @@ export function Header() {
     }, []);
 
     return (
-        <header className={`sticky top-0 z-50 ${isOpen ? "bg-surface" : "bg-surface/80 backdrop-blur"}`}>
+        <header
+            className={`sticky top-0 z-50 transition-transform duration-300 ease-out ${isOpen ? "bg-surface" : "bg-surface/80 backdrop-blur"} ${!isHeaderVisible ? "-translate-y-full" : "translate-y-0"}`}
+        >
             <div className="mx-auto flex h-12 sm:h-12 items-center justify-between gutter">
                 {/* ЛЕВАЯ ГРУППА: Логотип (мобильная и от 960px) */}
                 <Link
                     href="/"
-                    className={`label-medium hover:opacity-70 transition-all duration-200 uppercase sm:hidden nav:inline-block ${
-                        isScrolled ? "rounded-sm" : ""
+                    className={`caption-medium hover:opacity-70 transition-all duration-200 uppercase sm:hidden nav:inline-block ${
+                        isScrolled ? "" : ""
                     }`}
                     onClick={() => setIsOpen(false)}
                 >
@@ -114,7 +128,7 @@ export function Header() {
                     <div className="flex items-center gap-6">
                     <Link
                         href="/"
-                        className="label-medium hover:opacity-70 transition-all duration-200 hidden sm:inline-block sm:uppercase nav:hidden"
+                        className="caption-medium hover:opacity-70 transition-all duration-200 hidden sm:inline-block sm:uppercase nav:hidden"
                         onClick={() => setIsOpen(false)}
                     >
                         formazon.com
@@ -134,7 +148,7 @@ export function Header() {
                                 >
                                     <Link
                                         href={item.href}
-                                        className="group relative inline-block label-medium sm:label-medium nav:caption-medium uppercase transition-all duration-200"
+                                        className="group relative inline-block caption-medium uppercase transition-all duration-200"
                                     >
                                         <span className="relative z-10">{item.label}</span>
                                     </Link>
@@ -165,7 +179,7 @@ export function Header() {
                             <Link
                                 key={item.href}
                                 href={item.href}
-                                className="group relative inline-block label-medium sm:label-medium nav:caption-medium uppercase transition-all duration-200"
+                                className="group relative inline-block caption-medium uppercase transition-all duration-200"
                             >
                                 <span className="relative z-10">{item.label}</span>
                                 <div className={`absolute top-full left-0 mt-0 w-full flex justify-between transition-all duration-200 ${isActive ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-1 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto"}`}>
