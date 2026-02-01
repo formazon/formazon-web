@@ -1,7 +1,6 @@
 // src/components/contact/ContactContent.tsx
-import { ContactForm } from "@/components/contact/ContactForm";
+import { ContactCard } from "@/components/contact/ContactCard";
 import { H2Index } from "@/components/ui/H2Index";
-import { TextLink } from "@/components/ui/TextLink";
 import { contactContent } from "@/lib/content/contact";
 
 interface ContactContentProps {
@@ -25,52 +24,21 @@ export function ContactContent({ className = "", variant = "page" }: ContactCont
                 ) : (
                     <H2Index index={5}>{intro.title}</H2Index>
                 )}
-
-                <p className="max-w-2xl">{intro.description}</p>
             </section>
 
-            {/* Main Content Grid: 50/50, gap 16px */}
-            <div className="grid gap-4 lg:grid-cols-2">
-                <section>
-                    <div className="rounded-2xl border border-border-subtle bg-surface-muted/30 p-6 sm:p-8">
-                        <ContactForm />
-                    </div>
-                </section>
-
-                <aside className="space-y-10">
-                    <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-1">
-                        <div className="space-y-3">
-                            <TextLink
-                                href={`mailto:${direct.email}`}
-                                external
-                                className="caption"
-                            >
-                                {direct.email}
-                            </TextLink>
-                            <p className="label">{direct.description}</p>
-                        </div>
-
-                        <div className="space-y-3">
-                            <p className="label-medium">{socials.label}</p>
-                            <ul className="space-y-2 caption">
-                                {socials.links.map((link) => {
-                                    const isExternal = link.href.startsWith("http");
-                                    return (
-                                        <li key={link.label}>
-                                            <TextLink
-                                                href={link.href}
-                                                external={isExternal}
-                                            >
-                                                {link.label}
-                                            </TextLink>
-                                        </li>
-                                    );
-                                })}
-                            </ul>
-                        </div>
-                    </div>
-                </aside>
-            </div>
+            <section className="mb-16 flex flex-col">
+                <ContactCard title={direct.email} href={`mailto:${direct.email}`} />
+                {socials.links
+                    .filter((link) => link.label === "Telegram" || link.label === "LinkedIn")
+                    .map((link) => (
+                        <ContactCard
+                            key={link.label}
+                            title={link.label}
+                            href={link.href}
+                            external
+                        />
+                    ))}
+            </section>
         </div>
     );
 }

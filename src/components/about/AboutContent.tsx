@@ -44,7 +44,7 @@ export function AboutContent({ className = "", variant = "preview" }: AboutConte
                     <img
                         src="/farid-rafikov.jpg"
                         alt="Farid Rafikov"
-                        className="w-full h-full object-cover rounded-sm shadow-lg"
+                        className="w-full h-full object-cover rounded-sm"
                         loading="lazy"
                         width={648}
                         height={648}

@@ -41,26 +41,26 @@ export function ServiceCard({ service }: ServiceCardProps) {
                         aria-hidden
                     >
                         <line
-                            y1="-0.75"
-                            x2="33"
-                            y2="-0.75"
-                            transform="matrix(0.999998 0.00209904 0.00209896 0.999998 7.5 24.7861)"
+                            y1="-1"
+                            x2="32"
+                            y2="-1"
+                            transform="matrix(1 0 0.00419799 0.999991 8 25)"
                             stroke="currentColor"
-                            strokeWidth={1.5}
+                            strokeWidth={2}
                         />
                         <line
-                            y1="-0.75"
-                            x2="33.0001"
-                            y2="-0.75"
-                            transform="matrix(-0.00209904 -0.999998 0.999998 0.00209896 24.7871 40.5)"
+                            y1="-1"
+                            x2="32"
+                            y2="-1"
+                            transform="matrix(0 -1 0.999991 0.00419799 25 40)"
                             stroke="currentColor"
-                            strokeWidth={1.5}
+                            strokeWidth={2}
                         />
                     </svg>
                 </span>
             </button>
 
-            <div className="min-h-0 overflow-hidden transition-[opacity] duration-300 ease-out" style={{ opacity: expanded ? 1 : 0 }}>
+            <div className="min-h-0 overflow-hidden transition-opacity duration-300 ease-out" style={{ opacity: expanded ? 1 : 0 }}>
                 <div className="pb-10 pl-10">
                     <ul className="list-disc list-inside">
                         {service.bullets.map((bullet) => (
