@@ -139,6 +139,13 @@ body {
     line-height: 1.5;
 }
 
+.body-18-medium {
+    font-family: var(--font-plex-sans);
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.5;
+}
+
 .body-16 {
     font-family: var(--font-plex-sans);
     font-size: 16px;

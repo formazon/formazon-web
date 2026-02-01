@@ -33,7 +33,7 @@ export function WorkDropdownMenu({
             onMouseLeave={onMouseLeave}
         >
             <div 
-                className="bg-foreground backdrop-blur-sm rounded-sm min-w-[200px]">
+                className="bg-foreground backdrop-blur-sm rounded-sm min-w-[208px]">
                 <ul>
                     {workItems.map((workItem) => (
                         <li key={workItem.slug}>
@@ -43,7 +43,7 @@ export function WorkDropdownMenu({
                                 onMouseEnter={handleItemHover(workItem.slug)}
                                 onMouseLeave={onItemLeave}
                             >
-                                <span className="label-medium text-background">{workItem.title}</span>
+                                <span className="caption-medium text-background">{workItem.title}</span>
                             </Link>
                         </li>
                     ))}

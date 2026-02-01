@@ -19,7 +19,7 @@ const WorkPreviewCard = dynamic(
 );
 import { WorkDropdownMenu } from "@/components/ui/WorkDropdownMenu";
 
-const socialLinkDesktopClassName = "label-medium hover:opacity-70 transition-opacity";
+const socialLinkDesktopClassName = "body-18-medium hover:opacity-70 transition-opacity";
 const socialLinkMobileClassName = "caption px-4 py-2 uppercase";
 
 export function Header() {
@@ -115,7 +115,7 @@ export function Header() {
                 {/* ЛЕВАЯ ГРУППА: Логотип (мобильная и от 960px) */}
                 <Link
                     href="/"
-                    className={`caption-medium hover:opacity-70 transition-all duration-200 uppercase sm:hidden nav:inline-block ${
+                    className={`body-18-medium hover:opacity-70 transition-all duration-200 uppercase sm:hidden nav:inline-block ${
                         isScrolled ? "" : ""
                     }`}
                     onClick={() => setIsOpen(false)}
@@ -128,7 +128,7 @@ export function Header() {
                     <div className="flex items-center gap-6">
                     <Link
                         href="/"
-                        className="caption-medium hover:opacity-70 transition-all duration-200 hidden sm:inline-block sm:uppercase nav:hidden"
+                        className="body-18-medium hover:opacity-70 transition-all duration-200 hidden sm:inline-block sm:uppercase nav:hidden"
                         onClick={() => setIsOpen(false)}
                     >
                         formazon.com
@@ -148,7 +148,7 @@ export function Header() {
                                 >
                                     <Link
                                         href={item.href}
-                                        className="group relative inline-block caption-medium uppercase transition-all duration-200"
+                                        className="group relative inline-block body-18-medium uppercase transition-all duration-200"
                                     >
                                         <span className="relative z-10">{item.label}</span>
                                     </Link>
@@ -179,7 +179,7 @@ export function Header() {
                             <Link
                                 key={item.href}
                                 href={item.href}
-                                className="group relative inline-block caption-medium uppercase transition-all duration-200"
+                                className="group relative inline-block body-18-medium uppercase transition-all duration-200"
                             >
                                 <span className="relative z-10">{item.label}</span>
                                 <div className={`absolute top-full left-0 mt-0 w-full flex justify-between transition-all duration-200 ${isActive ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-1 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto"}`}>
