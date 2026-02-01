@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+@theme {
+    --breakpoint-nav: 60rem; /* 960px */
+}
+
 :root {
     --background: #ffffff;
     --foreground: #272727;        /* Black */
@@ -88,7 +92,7 @@ body {
     }
 }
 
-.gutter { @apply px-4 sm:px-16; }
+.gutter { @apply px-4 sm:px-6 nav:px-16; }
 
 /* Typography Styles */
 

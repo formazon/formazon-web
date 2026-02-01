@@ -6,6 +6,10 @@ module.exports = {
     ],
     theme: {
         extend: {
+            screens: {
+                nav: "960px",
+                belowNav: { max: "959px" },
+            },
             fontFamily: {
                 "plex-sans": ["var(--font-plex-sans)", "Arial", "Helvetica", "sans-serif"],
                 "plex-mono": ["var(--font-plex-mono)", "monospace"],

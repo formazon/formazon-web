@@ -7,7 +7,7 @@ const linkClassName = "label-medium hover:opacity-70 transition-opacity";
 export function Footer() {
     return (
         <footer className="bg-surface">
-            <div className="mx-auto flex flex-col sm:flex-row h-auto sm:h-16 items-center justify-between gap-4 sm:gap-0 py-4 sm:py-0 gutter">
+            <div className="mx-auto flex flex-col sm:flex-row h-auto sm:h-16 items-center justify-between gap-4 sm:gap-0 py-4 sm:py-0 gutter uppercase">
                 {/* ЦЕНТР: Copyright */}
                 <p className="label-medium text-center order-3 sm:order-2">
                     © {new Date().getFullYear()} formazon. All rights reserved.
