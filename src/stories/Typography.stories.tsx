@@ -59,6 +59,12 @@ export const BodyText: Story = {
         </p>
         <p className="label text-text-muted mt-2">IBM Plex Sans • 16px • 500 • 1.5</p>
       </div>
+      <div>
+        <p className="body-18-medium">
+          Body 18 Medium text. This style uses 18px font size with medium weight (500). Used for nav links and emphasis at body scale.
+        </p>
+        <p className="label text-text-muted mt-2">IBM Plex Sans • 18px • 500 • 1.5</p>
+      </div>
     </div>
   ),
 };
@@ -129,6 +135,12 @@ export const AllStyles: Story = {
               The quick brown fox jumps over the lazy dog. This is body-16-medium text with medium weight for emphasis.
             </p>
             <p className="label text-text-muted mt-2">.body-16-medium</p>
+          </div>
+          <div>
+            <p className="body-18-medium">
+              The quick brown fox jumps over the lazy dog. This is body-18-medium text with 18px and medium weight.
+            </p>
+            <p className="label text-text-muted mt-2">.body-18-medium</p>
           </div>
         </div>
       </section>
